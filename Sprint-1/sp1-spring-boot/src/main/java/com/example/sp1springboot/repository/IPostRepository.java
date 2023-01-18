@@ -11,7 +11,7 @@ import java.util.List;
 public interface IPostRepository extends JpaRepository<Post, Long> {
     @Query(value = "select p.id_post idPost,p.price price,p.date_creation dateCreation, sp.id_status_post statusPost,ap.number_address numberPost,w.name_ward nameWard,d.name_district nameDistrict,c.name_city nameCity,year(p.date_creation) yearPost,month(p.date_creation) monthPost" +
             " from post p join address_post ap on ap.id_address = p.id_address_post join ward w on ap.id_ward = w.id_ward join district d on w.id_district = d.id_district join city c on d.id_city = c.id_city join status_post sp on sp.id_status_post = p.id_status_post" +
-            " where p.flag_deleted = false", nativeQuery = true)
+            " where p.flag_deleted = false order by p.date_creation DESC", nativeQuery = true)
     List<PostDto> getAll();
 
     @Query(value = "select p.id_post idPost,p.price price,p.date_creation dateCreation, sp.id_status_post statusPost,ap.number_address numberPost,w.name_ward nameWard,d.name_district nameDistrict,c.name_city nameCity,year(p.date_creation) yearPost,month(p.date_creation) monthPost" +

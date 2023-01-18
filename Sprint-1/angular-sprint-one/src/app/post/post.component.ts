@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-// @ts-ignore
 import {Chart} from 'chart.js';
 import {Post} from "./interface/post";
 import {PostService} from "./post.service";
