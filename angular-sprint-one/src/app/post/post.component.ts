@@ -93,30 +93,15 @@ export class PostComponent implements OnInit {
               label: 'Tổng bài đăng',
               data: [this.count1, this.count2, this.count3, this.count4, this.count5, this.count6,
                 this.count7, this.count8, this.count9, this.count10, this.count11, this.count12],
-              backgroundColor: '#ec0326',
-              borderColor: '#ec0326',
-              borderWidth: 1,
+              backgroundColor: '#02165f',
+              borderColor: '#02165f',
+              borderWidth: 2,
               fill: false,
             }]
           },
         });
     })
-    // new Chart('myChart', {
-    //   type: 'line',
-    //   data: {
-    //     labels: ['Tháng1', 'Tháng2', 'Tháng3', 'Tháng4', 'Tháng5', 'Tháng6',
-    //       'Tháng7', 'Tháng8', 'Tháng9', 'Tháng10', 'Tháng11', 'Tháng12'],
-    //     datasets: [{
-    //       label: 'Tổng bài đăng',
-    //       data: [this.count1, this.count2, this.count3, this.count4, this.count5, this.count6,
-    //         this.count7, this.count8, this.count9, this.count10, this.count11, this.count12],
-    //       backgroundColor: '#ec0326',
-    //       borderColor: '#ec0326',
-    //       borderWidth: 1,
-    //       fill: false,
-    //     }]
-    //   },
-    // })
+
   }
 
   onSearch(month: string, year: string) {
