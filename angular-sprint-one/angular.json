@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-sprint-one": {
+    "sprint-one-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-sprint-one",
+            "outputPath": "dist/sprint-one-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -28,9 +28,13 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -65,18 +69,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "angular-sprint-one:build"
+            "browserTarget": "sprint-one-angular:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "angular-sprint-one:build:production"
+              "browserTarget": "sprint-one-angular:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-sprint-one:build"
+            "browserTarget": "sprint-one-angular:build"
           }
         },
         "test": {
@@ -113,16 +117,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "angular-sprint-one:serve"
+            "devServerTarget": "sprint-one-angular:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "angular-sprint-one:serve:production"
+              "devServerTarget": "sprint-one-angular:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "angular-sprint-one"
+  "defaultProject": "sprint-one-angular",
+  "cli": {
+    "analytics": "f0a90a07-fc2c-4c51-82b9-7665b7b9ff91"
+  }
 }
