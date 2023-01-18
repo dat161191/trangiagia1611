@@ -1,0 +1,87 @@
+{
+  "product": [
+    {
+      "proId": 1,
+      "productName": "Táo",
+      "origin": "USA",
+      "price": 15000,
+      "unit": "kg"
+    },
+    {
+      "proId": 2,
+      "productName": "Cam",
+      "origin": "Anh",
+      "price": 25000,
+      "unit": "kg"
+    },
+    {
+      "proId": 3,
+      "productName": "Chuối",
+      "origin": "Braxin",
+      "price": 18000,
+      "unit": "kg"
+    }
+  ],
+  "consignment": [
+    {
+      "id": 1,
+      "consignmentCode": "LX-0001",
+      "quantity": 500,
+      "importDate": "2023-01-01",
+      "productionDate": "2023-01-02",
+      "expirationDate": "2023-01-05",
+      "product": {
+        "proId": 1,
+        "productName": "Táo",
+        "origin": "USA",
+        "price": 15000,
+        "unit": "kg"
+      }
+    },
+    {
+      "id": 2,
+      "consignmentCode": "LX-0002",
+      "quantity": 100,
+      "importDate": "2023-01-01",
+      "productionDate": "2022-12-28",
+      "expirationDate": "2022-01-30",
+      "product": {
+        "proId": 2,
+        "productName": "Cam",
+        "origin": "Anh",
+        "price": 25000,
+        "unit": "kg"
+      }
+    },
+    {
+      "consignmentCode": "LX-7894",
+      "quantity": 3,
+      "importDate": "2023-01-01",
+      "productionDate": "2023-01-07",
+      "expirationDate": "2023-01-07",
+      "product": {
+        "proId": 2,
+        "productName": "Cam",
+        "origin": "Anh",
+        "price": 25000,
+        "unit": "kg"
+      },
+      "id": 3
+    },
+    {
+      "consignmentCode": "LX-7896",
+      "quantity": 1502,
+      "importDate": "2023-01-07",
+      "productionDate": "2023-01-16",
+      "expirationDate": "2023-01-25",
+      "product": {
+        "proId": 1,
+        "productName": "Táo",
+        "origin": "USA",
+        "price": 15000,
+        "unit": "kg"
+      },
+      "id": 4
+    }
+  ]
+}

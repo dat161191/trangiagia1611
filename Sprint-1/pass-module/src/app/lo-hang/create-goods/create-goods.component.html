@@ -1,0 +1,104 @@
+<div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog  modal-lg">
+    <div class="modal-content text-danger bg-dark">
+      <div class="modal-header text-danger bg-dark"><h3 class="text-center">Create Consignment Form</h3></div>
+      <div class="modal-body">
+        <form [formGroup]="consignmentForm" (ngSubmit)="createConsignment()">
+          <div class="text-danger">
+            <div class="row mb-2">
+              <div class="col-3">
+                <label class="col col-3 form-labe " for="consignmentCode">ConsignmentCode: </label>
+              </div>
+              <div class="col-9">
+                <input type="text" placeholder="VD:LX-0001" id="consignmentCode" formControlName="consignmentCode"
+                       class="form-control text-danger"/>
+                <div
+                  *ngIf="!prod?.valid && (prod.consignmentCode.dirty ||prod.consignmentCode.touched||prod.consignmentCode.pristine)">
+                  <small *ngIf="prod.consignmentCode.errors?.required"> ConsignmentCode is required! </small>
+                  <small *ngIf="prod.consignmentCode.errors?.pattern"> ConsignmentCode not format! </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-3"><label class="form-label" for="product">Product:</label></div>
+              <div class="col-9">
+                <select id="product" formControlName="product" class="form-select text-danger">
+                  <option value="">-- Choosen---</option>
+                  <option *ngFor="let item of products" [ngValue]="item">{{item.productName}}</option>
+                </select>
+                <div *ngIf="!prod?.valid && (prod.product.dirty ||prod.product.touched || prod.product.pristine)">
+                  <small *ngIf="prod.product.errors?.required"> Product is required! </small>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="row mb-2">
+              <div class="col-3">
+                <label class="col col-3 form-label " for="quantity"> Quantity: </label>
+              </div>
+              <div class="col-9">
+                <input type="number" name="quantity" min="0" id="quantity" formControlName="quantity"
+                       class="form-control text-danger"/>
+                <div *ngIf="!prod?.valid && (prod.quantity.dirty ||prod.quantity.touched || prod.quantity.pristine)">
+                  <small *ngIf="prod.quantity.errors?.required"> Quantity is required! </small>
+                  <small *ngIf="prod.quantity.errors?.min"> Quantity must be >0! </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-3">
+                <label class="col col-3 form-label " for="importDate">ImportDate: </label>
+              </div>
+              <div class="col-9">
+                <input type="date" id="importDate" formControlName="importDate"
+                       class="form-control text-danger"/>
+                <div
+                  *ngIf="!prod?.valid && (prod.importDate.dirty ||prod.importDate.touched||prod.importDate.pristine)">
+                  <small *ngIf="prod.importDate.errors?.required"> ImportDate is required! </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-3">
+                <label class="col col-3 form-label " for="productionDate">ProductionDate: </label>
+              </div>
+              <div class="col-9">
+                <input type="date" id="productionDate" formControlName="productionDate"
+                       class="form-control text-danger"/>
+                <div
+                  *ngIf="!prod?.valid && (prod.productionDate.dirty ||prod.productionDate.touched||prod.productionDate.pristine)">
+                  <small *ngIf="prod.productionDate.errors?.required"> ProductionDate is required! </small>
+                </div>
+              </div>
+            </div>
+
+            <div class="row mb-2">
+              <div class="col-3">
+                <label class="col col-3 form-label " for="expirationDate">ExpirationDate: </label>
+              </div>
+              <div class="col-9">
+                <input type="date" id="expirationDate" formControlName="expirationDate"
+                       class="form-control text-danger"/>
+                <div
+                  *ngIf="!prod?.valid && (prod.expirationDate.dirty ||prod.expirationDate.touched||prod.expirationDate.pristine)">
+                  <small *ngIf="prod.expirationDate.errors?.required"> ExpirationDate is required! </small>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="modal-footer bg-dark row text-lg-center align-items-center justify-content-center mb-2">
+            <small>Please choose the correct format to show the 'CreateGoods' button!!!</small>
+            <button class="btn btn-outline-danger w-25 me-2" *ngIf="consignmentForm.valid" data-bs-dismiss="modal" type="submit">CreateGoods
+            </button>
+            <button type="button" class="btn btn-outline-danger w-25 me-2" data-bs-dismiss="modal">Close</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

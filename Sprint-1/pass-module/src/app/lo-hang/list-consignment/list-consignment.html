@@ -1,0 +1,108 @@
+<div class="row mt-5 mb-5">
+  <div class="col col-1"></div>
+  <div class="col col-10">
+    <table class="table table-dark text-center table-hover text-light">
+      <thead>
+      <tr>
+        <th colspan="11" class="text-danger"><h2>List Consignment</h2>
+          <form class="d-flex justify-content-center">
+            <select #productName style="width: 20%" class="form-select text-danger me-1">
+              <option value="">Choosen</option>
+              <option *ngFor="let item of products"
+                      [value]="item.productName">{{item.productName}}</option>
+            </select>
+            <input #importDate type="date" class="form-control text-danger me-1" style="width: 20%">
+            <button class="btn btn-outline-danger me-1" (click)="onSearch(productName.value,importDate.value)"
+                    type="button"><i class="fa-brands fa-searchengin"></i></button>
+            <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#create">
+              CreateGoods
+            </button>
+          </form>
+        </th>
+      </tr>
+      <tr>
+        <th>#</th>
+        <th hidden>ID</th>
+        <th>ConsignmentCode</th>
+        <th>Quantity</th>
+        <th>Price</th>
+        <th>Unit</th>
+        <th>Quanlity</th>
+        <th>ImportDate</th>
+        <th>ProductionDate</th>
+        <th>ExpirationDate</th>
+        <th>Edit</th>
+        <th>Delete</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr class="text-danger"
+          *ngFor="let consignment of consignments ;index as i ">
+        <td>{{i + 1}}</td>
+
+        <td hidden>{{consignment.id}}</td>
+        <td>{{consignment.consignmentCode}}</td>
+        <td>{{consignment.product?.productName}}</td>
+        <td>{{consignment.product?.price}}</td>
+        <td>{{consignment.product?.unit}}</td>
+        <td>{{consignment.quantity}}</td>
+        <td>{{consignment.importDate}}</td>
+        <td>{{consignment.productionDate}}</td>
+        <td>{{consignment.expirationDate}}</td>
+        <td>
+          <!--          <button type="button" class="btn btn-outline-danger" [routerLink]="['/edit',consignment.id]">Edit</button>-->
+          <button class="btn btn-outline-danger" type="button" (click)="(tempedit=consignment)" data-bs-toggle="modal"
+                  data-bs-target="#edit"> Edit
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  (click)="(temp=consignment)"> Delete
+          </button>
+
+        </td>
+      <tr>
+      <tr>
+        <td colspan="11" *ngIf="consignments.length==0">No Result!!!</td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <a class="btn btn-outline-danger" *ngIf="page > 0" (click)="previousPage()">Previous</a>
+      <span *ngIf="totalElement> 2" class="text-danger"> {{page + 1}}/{{totalPage}} </span>
+      <a class="btn btn-outline-danger" *ngIf="totalElement > size && page + 1 < totalPage"
+         (click)="nextPage()">Next</a>
+    </div>
+  </div>
+  <div class="col col-1"></div>
+
+</div>
+
+<app-edit-consignment [consignment]="tempedit" (emitEdit)="editGoods($event)"></app-edit-consignment>
+<app-create-goods (emit)="creatGoods($event)"></app-create-goods>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content text-danger bg-dark">
+      <div class="modal-header text-danger bg-dark"><h3 class="text-center">Delete Form</h3></div>
+
+      <div class="modal-body">
+        <h4 class="text-danger text-center">Are you sure you want to delete????</h4>
+        <div class="row text-danger text-center">
+          <div class="col-4"><h5>ProductName:</h5></div>
+          <div class="col-8"><h5>{{temp.product?.productName}}</h5></div>
+        </div>
+        <div class="row text-danger text-center">
+          <div class="col-4"><h5>ImportDate:</h5></div>
+          <div class="col-8"><h5>{{temp.importDate}}</h5></div>
+        </div>
+      </div>
+      <div class="modal-footer bg-dark">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="delete()">Xóa
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
