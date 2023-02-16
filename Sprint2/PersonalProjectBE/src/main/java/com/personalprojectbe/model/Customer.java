@@ -24,6 +24,7 @@ public class Customer {
     private String birthday;
     @OneToOne
     private Account account;
+
     @ManyToOne
     @JoinColumn(name = "order_product_id",referencedColumnName = "id")
     private OrderProduct orderProduct;

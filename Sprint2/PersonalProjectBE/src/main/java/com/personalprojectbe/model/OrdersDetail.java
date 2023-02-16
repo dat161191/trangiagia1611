@@ -12,12 +12,15 @@ import javax.persistence.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class NumberOrders {
+public class OrdersDetail {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
     @JoinColumn(name = "product_id", referencedColumnName = "id")
     private Product product;
-    private Integer buyQuanlity;
+    @ManyToOne
+    @JoinColumn(name = "order_product_id", referencedColumnName = "id")
+    private OrderProduct orderProduct;
+    private Integer quantityPurchased;
 }

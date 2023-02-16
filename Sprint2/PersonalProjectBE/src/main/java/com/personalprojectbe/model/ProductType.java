@@ -20,4 +20,5 @@ public class ProductType {
     @Id
     @Column(name = "id", nullable = false)
     private Long id;
+    private String name_product_type;
 }

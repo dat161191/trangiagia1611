@@ -34,5 +34,4 @@ public class Product {
     @ManyToOne
     @JoinColumn(name = "product_type_id")
     private ProductType productType;
-
 }

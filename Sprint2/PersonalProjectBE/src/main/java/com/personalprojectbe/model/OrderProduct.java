@@ -23,7 +23,4 @@ public class OrderProduct {
     private boolean paymentStatus;
     private String deliveryAddress;
     private String phone;
-    @ManyToOne
-    @JoinColumn(name = "number_orders_id", referencedColumnName = "id")
-    private NumberOrders numberOrders;
 }
