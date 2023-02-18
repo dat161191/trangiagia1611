@@ -20,12 +20,17 @@ public class Customer {
     private String email;
     private String phone;
     private String addressCustomer;
+    private String idCard;
+    @Column(columnDefinition = "bit")
+    private boolean gender;
     @Column(columnDefinition = "date")
     private String birthday;
+    @Column(columnDefinition = "bit default false")
+    private boolean flagDelete;
     @OneToOne
     private Account account;
 
     @ManyToOne
-    @JoinColumn(name = "order_product_id",referencedColumnName = "id")
+    @JoinColumn(name = "order_product_id", referencedColumnName = "id")
     private OrderProduct orderProduct;
 }

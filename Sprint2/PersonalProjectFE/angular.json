@@ -28,9 +28,14 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.css",
+              "node_modules/bootstrap/dist/css/bootstrap.css",
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "node_modules/ngx-toastr/toastr.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"
+            ]
           },
           "configurations": {
             "production": {
@@ -124,5 +129,8 @@
       }
     }
   },
-  "defaultProject": "PersonalProject"
+  "defaultProject": "PersonalProject",
+  "cli": {
+    "analytics": "a3fc9557-b4ee-4211-9cc7-bf600a36e232"
+  }
 }

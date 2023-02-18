@@ -1,0 +1,57 @@
+<div
+  style="background-image: url(https://images.squarespace-cdn.com/content/v1/5bd969d6506fbe4b1a0f5e6b/1613556027347-TNYY9VEX2PRTODIHEP9J/shutterstock_1592944909+-+Badminton+racket+and+shuttlecock+in+motion_1200px+JPEG.jpg?format=1000w);background-size: 100%;background-repeat: no-repeat;min-height: 100vh">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="text-center">
+        <h1>ĐĂNG NHẬP</h1>
+        <h6>Vui lòng điền email và mật khẩu</h6>
+      </div>
+      <form [formGroup]="signInForm" (ngSubmit)="login()">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email:</label>
+          <input type="email" formControlName="email" class="form-control" placeholder="name@example.com"
+                 id="email" aria-describedby="emailHelp">
+          <div class="text-danger"
+               *ngIf="signInForm.controls.email.invalid && signInForm.controls.email.touched else elseBlock">
+            <span *ngIf="signInForm.controls.email.hasError('required')"><i
+              class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên tài khoản không được để trống.</span>
+            <span *ngIf="signInForm.controls.email.hasError('minlength')"><i
+              class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên tài khoản Không nhỏ hơn 3 ký tự.</span>
+          </div>
+          <ng-template #elseBlock><br></ng-template>
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label">Mật Khẩu:</label>
+          <input type="password" formControlName="password" class="form-control" placeholder="Password"
+                 id="password">
+          <div class="text-danger"
+               *ngIf="signInForm.controls.password.invalid && signInForm.controls.password.touched else elseBlock">
+            <span *ngIf="signInForm.controls.password.hasError('required')"><i
+              class="fa-solid fa-triangle-exclamation"></i>&nbsp;Mật khẩu không được để trống.</span>
+            <span *ngIf="signInForm.controls.password.hasError('minlength')"><i
+              class="fa-solid fa-triangle-exclamation"></i>&nbsp;Mật khẩu Không nhỏ hơn 5 ký tự.</span>
+          </div>
+          <ng-template #elseBlock><br></ng-template>
+        </div>
+
+        <div class="mb-3 form-check">
+          <input type="checkbox" id="rememberMe" class="form-check-input" value="">
+          <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
+        </div>
+        <div class="text-center mb-3">
+          <button type="submit" [disabled]="signInForm.invalid" class="btn btn-primary">Đăng nhập</button>
+          <hr>
+        </div>
+        <div class="text-center">
+          <h6>Chưa có tài khoản ? Hãy <span><button type="submit" class="btn btn-primary">Đăng Ký</button>
+                    </span><span> Hoặc </span>
+            <button type="submit" class="btn btn-primary">Đăng ký thông qua <i class="bi bi-facebook"></i>
+            </button>
+          </h6>
+        </div>
+
+      </form>
+    </div>
+  </div>
+</div>

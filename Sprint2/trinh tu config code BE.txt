@@ -1,0 +1,13 @@
+1 entity
+2 tạo repo Account,Role
+3 interface service -> impl Account(find,exit,save),Role
+4 tạo userprincal(để lấy ra user hiện tại, userdetailservice)
+	=> Tạo class AccountPrinciple implement UserDetail(lớp có sẵn của Spring Boot) để sử dụng các phương thức của SP
+5 tạo class Jwtprovider
+	=>tạo mới jwt token và valid token
+6 tạo class jwtTokenFilter(tìm token thông qua request)
+	=> Kiểm tra và lấy token từ trong request
+7 tạo class entrypoint(Check xem token còn sống ko)
+8 tạo class websecurityconfig config bảo mật phân quyền
+
+mã ứng dụng mail google shmily1611@gmail.com:mjajhchfqnatkkgp

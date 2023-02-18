@@ -23,8 +23,12 @@ public class Staff {
     private String birthday;
     private String phone;
     private Integer salary;
-    private Integer citizenIdentification;
+    private String idCard;
+    @Column(columnDefinition = "bit default false")
+    private boolean flagDelete;
+    @Column(columnDefinition = "bit")
+    private boolean gender;
     @OneToOne
-    @JoinColumn(name = "account_id",referencedColumnName = "id")
     private Account account;
+
 }
