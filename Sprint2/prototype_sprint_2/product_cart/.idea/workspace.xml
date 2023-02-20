@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="52104b1f-fca8-4999-b4cd-e695ccbed55b" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/.browserslistrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/README.md" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/angular.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/e2e/protractor.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/e2e/src/app.e2e-spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/e2e/src/app.po.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/e2e/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/karma.conf.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app-routing.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/app.module.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/interface/post.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.component.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.component.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.component.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.component.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.service.spec.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/app/post/post.service.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/assets/.gitkeep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/environments/environment.prod.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/environments/environment.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/favicon.ico" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/polyfills.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/styles.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/src/test.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/tsconfig.app.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/angular-sprint-one/tsconfig.spec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/conect-be-modal/src/main/java/com/conectbemodal/controller/ConsignmentRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/conect-be-modal/src/main/java/com/conectbemodal/controller/ConsignmentRestController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/create-goods/create-goods.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/create-goods/create-goods.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/edit-consignment/edit-consignment.component.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/edit-consignment/edit-consignment.component.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/list-consignment/list-consignment.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/list-consignment/list-consignment.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/list-consignment/list-consignment.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/lo-hang/list-consignment/list-consignment.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/service/consignment.service.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Sprint-1/pass-module/src/app/service/consignment.service.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/build.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/gradle/wrapper/gradle-wrapper.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/gradle/wrapper/gradle-wrapper.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/gradlew" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/gradlew.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/settings.gradle" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/Sp1SpringBootApplication.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/controller/PostRestController.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/dto/PostDto.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/AddressPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/City.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/Customer.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/DemandType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/Direction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/District.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/Images.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/LandType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/Post.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/StatusPost.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/models/Ward.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/repository/IPostRepository.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/service/IPostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/java/com/example/sp1springboot/service/impl/PostService.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/main/resources/application.properties" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Sprint-1/sp1-spring-boot/src/test/java/com/example/sp1springboot/Sp1SpringBootApplicationTests.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PersonalProjectBE/src/main/java/com/personalprojectbe/model/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../PersonalProjectBE/src/main/java/com/personalprojectbe/model/Product.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../PersonalProjectBE/src/main/java/com/personalprojectbe/model/ProductType.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/sonarlint/issuestore/index.pb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product_detail/detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/../product_detail/detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product_detail/detail.js" beforeDir="false" afterPath="$PROJECT_DIR$/../product_detail/detail.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../product_detail/detail_css.css" beforeDir="false" afterPath="$PROJECT_DIR$/../product_detail/detail_css.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../show_room/src/main/resources/templates/cart/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../show_room/src/main/resources/templates/cart/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Database.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Database_EER.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Database_ERD.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Database_SQL.sql" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/.idea/Create_property_5.10.1.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/.idea/workspace.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/5.10.1_see_statistics.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/main.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[C0722G1]_Prototype_DatQT/style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../[Cxx2xG1]_DailyReport_AccountName.xlsx" beforeDir="false" afterPath="$PROJECT_DIR$/../../../[Cxx2xG1]_DailyReport_AccountName.xlsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="ProjectId" id="2LxulV68a3JeRktz2VorhDf9wqb" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "D:/Codegym/Module_6/Sprint2/prototype_sprint_2"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="52104b1f-fca8-4999-b4cd-e695ccbed55b" name="Changes" comment="" />
+      <created>1676825205625</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1676825205625</updated>
+      <workItem from="1676825206987" duration="25000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

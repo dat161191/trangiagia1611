@@ -3,9 +3,9 @@
     border: none;
     width: 600px;
     position: absolute;
-    top: 18%;
+    top: 15%;
     left: 50%;
-    transform: translate(-50%, 18%);
+    transform: translate(-50%, 15%);
     background: hsl(205, 47%, 43%, 0.6);
     background: linear-gradient(90deg, hsla(205, 47%, 34%, 0.6) 0%, hsl(264, 64%, 32%, 0.6) 100%);
 }

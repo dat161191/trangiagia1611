@@ -2,7 +2,7 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    border: 1px solid crimson
+    /*border: 1px solid red;*/
 }
 
 body {
@@ -11,13 +11,18 @@ body {
 }
 
 hr {
-    color: blue;
+    color: red;
 }
 
 .main {
-    height: 75%;
-    margin-bottom: 5px;
+    height: 72%;
+    margin-bottom: 10px;
     position: relative;
+    overflow: hidden;
+}
+
+.main img {
+    border: 2px solid blue;
 }
 
 .list-img {
@@ -29,7 +34,8 @@ hr {
 
 .list-img div {
     flex: 1;
-    padding: 2px;
+    padding: 5px;
+    cursor: pointer;
 }
 
 img {
@@ -37,6 +43,7 @@ img {
     height: 100%;
     object-fit: cover;
     object-position: center;
+    border-radius: 5px;
 }
 
 .control {
@@ -46,15 +53,53 @@ img {
     color: rgb(12, 2, 2);
     /*Di chuyển lên phía trên 1 đoạn bằng chính nó: transform*/
     transform: translateY(-50%);
+    cursor: pointer;
+
 }
-.active{
-    background: #cc2c2c;
+
+.active {
+    border: 2px solid red;
+    border-radius: 5px;
 }
 
 .prev {
-    left: 5px
+    left: 5px;
+    color: red;
+    font-size: 30px;
 }
 
 .next {
-    right: 5px
+    right: 5px;
+    color: red;
+    font-size: 30px;
+}
+
+.img-feature {
+    transition: 1s;
+}
+
+@keyframes slideleft {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+@keyframes slideright {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(0%);
+    }
+}
+
+.img-detail {
+    box-shadow: 2px 2px 3px #1976d2;
+    min-height: 100%
+}
+h2{
+    color: orangered;
 }

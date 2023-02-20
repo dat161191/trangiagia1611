@@ -61,3 +61,7 @@
 .home i:hover {
     color: hsl(264, 64%, 32%, 1);
 }
+
+img {
+    image-rendering: pixelated;
+}

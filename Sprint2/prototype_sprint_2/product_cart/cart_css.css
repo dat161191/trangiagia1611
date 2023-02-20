@@ -1,0 +1,25 @@
+* {
+    font-family: "Palatino Linotype", serif;
+}
+
+body {
+    height: 100vh;
+    background-color: snow;
+}
+
+img {
+    width: 100%;
+    border-radius: 5px;
+    box-shadow: 2px 2px 3px #d70828;
+    image-rendering: pixelated;
+}
+
+.address {
+    border: 1px solid blue;
+    border-radius: 5px;
+}
+
+.pay {
+    border: 1px solid blue;
+    border-radius: 5px;
+}
