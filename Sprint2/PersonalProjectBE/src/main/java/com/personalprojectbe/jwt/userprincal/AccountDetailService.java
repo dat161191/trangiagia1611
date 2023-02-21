@@ -1,6 +1,6 @@
 package com.personalprojectbe.jwt.userprincal;
 
-import com.personalprojectbe.model.Account;
+import com.personalprojectbe.entity.Account;
 import com.personalprojectbe.repository.account.IAccountRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

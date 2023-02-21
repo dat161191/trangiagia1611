@@ -1,6 +1,6 @@
 package com.personalprojectbe.dto.customer;
 
-import com.personalprojectbe.model.Account;
+import com.personalprojectbe.entity.Account;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

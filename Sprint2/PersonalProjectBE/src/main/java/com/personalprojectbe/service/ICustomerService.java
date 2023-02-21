@@ -1,6 +1,6 @@
 package com.personalprojectbe.service;
 
-import com.personalprojectbe.model.Customer;
+import com.personalprojectbe.entity.Customer;
 
 public interface ICustomerService {
     Customer save(Customer customer);

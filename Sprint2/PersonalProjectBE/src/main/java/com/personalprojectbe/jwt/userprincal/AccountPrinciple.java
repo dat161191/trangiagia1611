@@ -1,7 +1,7 @@
 package com.personalprojectbe.jwt.userprincal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.personalprojectbe.model.Account;
+import com.personalprojectbe.entity.Account;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

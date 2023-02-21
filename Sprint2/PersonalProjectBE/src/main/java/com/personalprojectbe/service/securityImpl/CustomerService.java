@@ -1,6 +1,6 @@
-package com.personalprojectbe.service.impl;
+package com.personalprojectbe.service.securityImpl;
 
-import com.personalprojectbe.model.Customer;
+import com.personalprojectbe.entity.Customer;
 import com.personalprojectbe.repository.account.ICustomerrRpository;
 import com.personalprojectbe.service.ICustomerService;
 import org.springframework.beans.factory.annotation.Autowired;

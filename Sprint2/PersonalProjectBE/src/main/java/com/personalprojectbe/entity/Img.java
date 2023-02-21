@@ -12,7 +12,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Getter
 @Setter
-public class ImgList {
+public class Img {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

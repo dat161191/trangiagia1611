@@ -1,4 +1,4 @@
-package com.personalprojectbe.controller;
+package com.personalprojectbe.controller.security;
 
 import com.personalprojectbe.dto.customer.CustomerDto;
 import com.personalprojectbe.dto.request.SignInForm;
@@ -6,13 +6,13 @@ import com.personalprojectbe.dto.respone.JwtResponse;
 import com.personalprojectbe.jwt.jwt.JwtProvider;
 import com.personalprojectbe.jwt.jwt.JwtTokenFilter;
 import com.personalprojectbe.jwt.userprincal.AccountPrinciple;
-import com.personalprojectbe.model.Account;
-import com.personalprojectbe.model.Customer;
-import com.personalprojectbe.model.Role;
-import com.personalprojectbe.model.RoleName;
+import com.personalprojectbe.entity.Account;
+import com.personalprojectbe.entity.Customer;
+import com.personalprojectbe.entity.Role;
+import com.personalprojectbe.entity.RoleName;
 import com.personalprojectbe.service.ICustomerService;
 import com.personalprojectbe.service.IRoleService;
-import com.personalprojectbe.service.impl.AccountService;
+import com.personalprojectbe.service.securityImpl.AccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

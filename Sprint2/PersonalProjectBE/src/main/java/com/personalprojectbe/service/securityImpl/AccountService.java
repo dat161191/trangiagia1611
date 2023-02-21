@@ -1,6 +1,6 @@
-package com.personalprojectbe.service.impl;
+package com.personalprojectbe.service.securityImpl;
 
-import com.personalprojectbe.model.Account;
+import com.personalprojectbe.entity.Account;
 import com.personalprojectbe.repository.account.IAccountRepository;
 import com.personalprojectbe.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;

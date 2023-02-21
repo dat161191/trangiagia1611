@@ -1,8 +1,7 @@
-package com.personalprojectbe.service.impl;
+package com.personalprojectbe.service.securityImpl;
 
-import com.personalprojectbe.model.Role;
-import com.personalprojectbe.model.RoleName;
-import com.personalprojectbe.repository.account.ICustomerrRpository;
+import com.personalprojectbe.entity.Role;
+import com.personalprojectbe.entity.RoleName;
 import com.personalprojectbe.repository.account.IRoleRepository;
 import com.personalprojectbe.service.IRoleService;
 import org.springframework.beans.factory.annotation.Autowired;

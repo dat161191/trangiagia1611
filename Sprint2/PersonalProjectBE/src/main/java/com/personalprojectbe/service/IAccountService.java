@@ -1,6 +1,6 @@
 package com.personalprojectbe.service;
 
-import com.personalprojectbe.model.Account;
+import com.personalprojectbe.entity.Account;
 
 import java.util.Optional;
 

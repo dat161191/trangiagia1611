@@ -1,7 +1,7 @@
 package com.personalprojectbe.service;
 
-import com.personalprojectbe.model.Role;
-import com.personalprojectbe.model.RoleName;
+import com.personalprojectbe.entity.Role;
+import com.personalprojectbe.entity.RoleName;
 
 import java.util.Optional;
 
