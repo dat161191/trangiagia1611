@@ -45,7 +45,7 @@ export class ListConsignment implements OnInit {
   }
 
   creatGoods($event: any) {
-    console.log($event);
+    // console.log($event);
     // @ts-ignore
     this.consignmentService.save($event).subscribe(data => {
       alert('Create is success!!!');

@@ -14,9 +14,10 @@
             <input #importDate type="date" class="form-control text-danger me-1" style="width: 20%">
             <button class="btn btn-outline-danger me-1" (click)="onSearch(productName.value,importDate.value)"
                     type="button"><i class="fa-brands fa-searchengin"></i></button>
-            <button class="btn btn-outline-danger" type="button" data-bs-toggle="modal" data-bs-target="#create">
+            <button class="btn btn-outline-danger me-2" type="button" data-bs-toggle="modal" data-bs-target="#create">
               CreateGoods
             </button>
+            <button class="btn btn-outline-danger" routerLink="/create" type="button"> CreateLink </button>
           </form>
         </th>
       </tr>
@@ -50,14 +51,17 @@
         <td>{{consignment.productionDate}}</td>
         <td>{{consignment.expirationDate}}</td>
         <td>
-          <!--          <button type="button" class="btn btn-outline-danger" [routerLink]="['/edit',consignment.id]">Edit</button>-->
-          <button class="btn btn-outline-danger" type="button" (click)="(tempedit=consignment)" data-bs-toggle="modal"
-                  data-bs-target="#edit"> Edit
+          <a class="text-danger text-decoration-none" [routerLink]="['/edit',consignment.id]"><i
+            class="fa-solid fa-file-pen"></i></a>
+          <!--          <button type="button" class="btn btn-outline-danger" [routerLink]="['/edit',consignment.id]">EditLink</button>-->
+          <button class="btn btn-outline-danger ms-2" type="button" (click)="(tempedit=consignment)"
+                  data-bs-toggle="modal"
+                  data-bs-target="#edit"> EditModal
           </button>
         </td>
         <td>
           <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
-                  (click)="(temp=consignment)"> Delete
+                  (click)="(temp=consignment)"><i class="fa-solid fa-trash-can"></i>
           </button>
 
         </td>

@@ -21,7 +21,7 @@ export class EditConsignmentComponent implements OnInit, OnChanges {
   constructor(private consignmentService: ConsignmentService, private productService: ProductService, private router: Router) {
     this.productService.getAll().subscribe(data => {
       this.products = data;
-      console.log(data);
+      // console.log(data);
     });
     this.consignmentForm = new FormGroup({
       id: new FormControl(''),
@@ -55,8 +55,7 @@ export class EditConsignmentComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(this.consignment);
     this.consignmentForm.patchValue(this.consignment);
-    console.log(this.consignmentForm.value);
+    // console.log(this.consignmentForm.value);
   }
 }

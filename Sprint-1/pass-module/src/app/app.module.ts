@@ -11,6 +11,8 @@ import {ReactiveFormsModule} from '@angular/forms';
 import { ListConsignment } from './lo-hang/list-consignment/list-consignment';
 import { CreateGoodsComponent } from './lo-hang/create-goods/create-goods.component';
 import { EditConsignmentComponent } from './lo-hang/edit-consignment/edit-consignment.component';
+import { EditLinkComponent } from './lo-hang/edit-link/edit-link.component';
+import { CreateLinkComponent } from './lo-hang/create-link/create-link.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +22,8 @@ import { EditConsignmentComponent } from './lo-hang/edit-consignment/edit-consig
     ListConsignment,
     CreateGoodsComponent,
     EditConsignmentComponent,
+    EditLinkComponent,
+    CreateLinkComponent,
   ],
   imports: [
     BrowserModule,

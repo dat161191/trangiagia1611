@@ -17,7 +17,6 @@ public class ConsignmentRestController {
     private IConsignmentService consignmentService;
 
     @GetMapping("")
-//    public ResponseEntity<Page<Consignment>> display(@PageableDefault(size = 100) Pageable pageable) {
     public ResponseEntity<Page<Consignment>> display(@RequestParam(defaultValue = "") String productName, @RequestParam(defaultValue = "") String importDate,
                                                      @RequestParam(defaultValue = "1") int page,
                                                      @RequestParam() int size) {
@@ -55,5 +54,14 @@ public class ConsignmentRestController {
         }
         consignmentService.remove(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Consignment> findById(@PathVariable("id") Integer id) {
+        Consignment consignment = consignmentService.findById(id);
+        if (consignment == null) {
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        }
+        return new ResponseEntity<>(consignment, HttpStatus.OK);
     }
 }

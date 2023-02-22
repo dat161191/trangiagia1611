@@ -14,7 +14,6 @@ export class ConsignmentService {
   }
 
   getAll(): Observable<any> {
-    console.log(this.URL);
     return this.http.get<any>(this.URL);
   }
 
@@ -40,5 +39,9 @@ export class ConsignmentService {
       console.log(this.URL + '?productName=' + productName + '&page=' + page + '&size=' + size);
       return this.http.get<any>(this.URL + '?productName=' + productName + '&importDate=' + importDate + '&page=' + page + '&size=' + size);
     }
+  }
+
+  findById(id: number): Observable<Consignment> {
+    return this.http.get<Consignment>(this.URL + '/' + id);
   }
 }
