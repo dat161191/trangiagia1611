@@ -18,6 +18,6 @@ public class Img {
     private Long id;
     private String url;
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @JoinColumn(name = "clock_id", referencedColumnName = "id")
+    private Clock clock;
 }

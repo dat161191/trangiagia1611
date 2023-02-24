@@ -10,7 +10,8 @@ hr {
 }
 
 .main img {
-  border: 2px solid red;
+  border: 2px solid blue;
+  height: 300px;
 }
 
 .list-img {
@@ -85,18 +86,23 @@ img {
 }
 
 .img-detail {
-  min-height: 100%;
-}
-
-.img-body {
-  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+  border: 1px solid crimson;
+  min-height: 100%
 }
 
 h2 {
   color: orangered;
 }
 
+
 .img-detail:hover {
   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
-  transform: scale(1.1) rotate(-2deg)
+  /*transform: scale(1.1) rotate(-2deg)*/
+}
+
+.img-body {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+}
+.container-fluid {
+  background: linear-gradient(to right, #d9f5db, #739a96)
 }

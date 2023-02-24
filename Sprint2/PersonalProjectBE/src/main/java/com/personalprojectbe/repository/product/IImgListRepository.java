@@ -1,6 +1,6 @@
 package com.personalprojectbe.repository.product;
 
-import com.personalprojectbe.dto.product.ImgDto;
+import com.personalprojectbe.dto.clock.ImgDto;
 import com.personalprojectbe.entity.Img;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,8 +14,8 @@ import java.util.List;
 
 @Repository
 public interface IImgListRepository extends JpaRepository<Img, Long> {
-    @Query(value = "SELECT img.id as idImage, img.url from img where img.product_id=:productId", nativeQuery = true)
-    List<ImgDto> findByIdProduct(@Param("productId") Long productId);
+    @Query(value = "SELECT img.id as idImage, img.url url from img where img.clock_id=:clockId", nativeQuery = true)
+    List<ImgDto> findByIdClock(@Param("clockId") Long clockId);
     @Modifying
     @Query(value = "insert into img (url, product_id) values (:url, :idProduct)",nativeQuery = true)
     @Transactional

@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ProductHome} from '../../enity/product/product-home';
-import {ProductService} from '../../service/product.service';
-import {ProductInfoJson} from '../../product-info-json';
+import {ClockService} from '../../service/clock.service';
+import {ClockInfoJson} from '../../clock-info-json';
 
 @Component({
   selector: 'app-home',
@@ -9,11 +8,11 @@ import {ProductInfoJson} from '../../product-info-json';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  productList!: ProductInfoJson;
-  request = {page: 0, size: 5};
+  clockList!: ClockInfoJson;
+  request = {page: 0, size: 8};
   pageNumber = 0;
 
-  constructor(private productService: ProductService) {
+  constructor(private clockService: ClockService) {
   }
 
   ngOnInit(): void {
@@ -22,8 +21,8 @@ export class HomeComponent implements OnInit {
   }
 
   private getAllList(request: { page: number; size: number } | undefined): void {
-    this.productService.getListProduct(request).subscribe(data => {
-      this.productList = data;
+    this.clockService.getListClock(request).subscribe(data => {
+      this.clockList = data;
     });
 
   }

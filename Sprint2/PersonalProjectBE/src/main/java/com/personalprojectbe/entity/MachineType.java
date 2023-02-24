@@ -13,7 +13,7 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class HostType {
+public class MachineType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

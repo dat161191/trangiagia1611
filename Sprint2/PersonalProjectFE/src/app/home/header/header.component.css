@@ -1,75 +1,159 @@
-.dropbtn {
-  background-color: blue;
-  color: white;
-  padding: 4px;
-  /*margin-top: 14px;*/
-  font-size: 20px;
-  border: none;
+/*.dropbtn {*/
+/*  background-color: blue;*/
+/*  color: white;*/
+/*  padding: 4px;*/
+/*  !*margin-top: 14px;*!*/
+/*  font-size: 20px;*/
+/*  border: none;*/
+/*  cursor: pointer;*/
+/*  border-radius: 5px;*/
+/*  width: 100%;*/
+/*}*/
+
+/*!* The container <div> - needed to position the dropdown content *!*/
+/*.dropdown {*/
+/*  position: relative;*/
+/*  display: inline-block;*/
+/*}*/
+
+/*!* Dropdown Content (Hidden by Default) *!*/
+/*.dropdown-content {*/
+/*  display: none;*/
+/*  position: absolute;*/
+/*  min-width: 240px;*/
+/*  box-shadow: 0px 0px 15px 10px rgb(3, 22, 114);*/
+/*  z-index: 1;*/
+/*}*/
+
+/*!* Links inside the dropdown *!*/
+/*.dropdown-content a {*/
+/*  color: white;*/
+/*  padding: 5px 16px;*/
+/*  text-decoration: none;*/
+/*  display: block;*/
+/*  border: solid white 1px;*/
+/*  border-radius: 5px;*/
+/*  background-color: blue;*/
+
+/*}*/
+
+/*!* Change color of dropdown links on hover *!*/
+/*.dropdown-content a:hover {*/
+/*  background-color: hsl(264, 64%, 32%);*/
+/*  border-radius: 5px;*/
+/*}*/
+
+/*!* Show the dropdown menu on hover *!*/
+/*.dropdown:hover .dropdown-content {*/
+/*  display: block;*/
+/*}*/
+
+/*!* Change the background color of the dropdown button when the dropdown content is shown *!*/
+/*.dropdown:hover .dropbtn {*/
+/*  background-color: hsl(264, 64%, 32%);*/
+/*}*/
+
+/*.home i {*/
+/*  font-size: 30px;*/
+/*  color: blue;*/
+/*}*/
+
+/*.home i:hover {*/
+/*  color: hsl(264, 64%, 32%);*/
+/*}*/
+
+/*img {*/
+/*  image-rendering: pixelated;*/
+/*}*/
+
+/*.logo {*/
+/*  width: 70%;*/
+/*  height: 100%;*/
+/*  box-shadow: 2px 2px 2px 2px red;*/
+/*  border: 1px solid royalblue;*/
+/*  border-radius: 8px*/
+/*}*/
+
+/*@import 'https://fonts.googleapis.com/css?family=Raleway';*/
+/*html, body*/
+/*{*/
+/*  margin: 0px;*/
+/*}*/
+
+/*header, footer*/
+/*{*/
+/*  font-family: Raleway;*/
+/*  margin: 0 auto;*/
+/*  padding: 5em 3em;*/
+/*  text-align: center;*/
+/*  background: #555;*/
+/*}*/
+
+/*header h1*/
+/*{*/
+/*  color: #AAA;*/
+/*  font-size: 40px;*/
+/*  font-weight: lighter;*/
+/*  margin-bottom: 5px;*/
+/*}*/
+
+/*header span*/
+/*{*/
+/*  color: #222;*/
+/*}*/
+
+/*footer span*/
+/*{*/
+/*  color: #AAA;*/
+/*}*/
+
+div.container
+{
+  margin: 0 auto;
+  padding: 2em 1em;
+  text-align: center;
+}
+
+div.container a
+{
+  color: #FFF;
+  text-decoration: none;
+  /*margin: 0px 10px;*/
+  padding: 10px 10px;
+  position: relative;
+  z-index: 0;
   cursor: pointer;
-  border-radius: 5px;
+}
+div.borderYtoX a:before, div.borderYtoX a:after
+{
+  position: absolute;
+  opacity: 0.5;
+  height: 100%;
+  width: 2px;
+  content: '';
+  background: #FFF;
+  transition: all 0.3s;
+}
+
+div.borderYtoX a:before
+{
+  left: 0px;
+  top: 0px;
+}
+
+div.borderYtoX a:after
+{
+  right: 0px;
+  bottom: 0px;
+}
+
+div.borderYtoX a:hover:before, div.borderYtoX a:hover:after
+{
+  opacity: 1;
+  height: 2px;
   width: 100%;
 }
-
-/* The container <div> - needed to position the dropdown content */
-.dropdown {
-  position: relative;
-  display: inline-block;
-}
-
-/* Dropdown Content (Hidden by Default) */
-.dropdown-content {
-  display: none;
-  position: absolute;
-  min-width: 240px;
-  box-shadow: 0px 0px 15px 10px rgb(3, 22, 114);
-  z-index: 1;
-}
-
-/* Links inside the dropdown */
-.dropdown-content a {
-  color: white;
-  padding: 5px 16px;
-  text-decoration: none;
-  display: block;
-  border: solid white 1px;
-  border-radius: 5px;
-  background-color: blue;
-
-}
-
-/* Change color of dropdown links on hover */
-.dropdown-content a:hover {
-  background-color: hsl(264, 64%, 32%);
-  border-radius: 5px;
-}
-
-/* Show the dropdown menu on hover */
-.dropdown:hover .dropdown-content {
-  display: block;
-}
-
-/* Change the background color of the dropdown button when the dropdown content is shown */
-.dropdown:hover .dropbtn {
-  background-color: hsl(264, 64%, 32%);
-}
-
-.home i {
-  font-size: 30px;
-  color: blue;
-}
-
-.home i:hover {
-  color: hsl(264, 64%, 32%);
-}
-
-img {
-  image-rendering: pixelated;
-}
-
-.logo {
-  width: 70%;
-  height: 100%;
-  box-shadow: 2px 2px 2px 2px red;
-  border: 1px solid royalblue;
-  border-radius: 8px
+.teal
+{
+  background: black;
 }

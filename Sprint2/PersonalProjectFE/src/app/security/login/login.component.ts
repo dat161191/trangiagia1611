@@ -49,7 +49,7 @@ export class LoginComponent implements OnInit {
         if (data.token !== undefined) {
           if (this.signInForm?.value.rememberMe) {
             this.tokenService.rememberMe(data.roles, data.name, data.token);
-            location.href = 'http://localhost:4200/home';
+            location.href = 'http://localhost:4200/';
           } else {
             this.tokenService.setToken(data.token);
             this.tokenService.setName(data.name);
@@ -58,7 +58,7 @@ export class LoginComponent implements OnInit {
             this.tokenService.setEmail(data.email);
             this.tokenService.setId(data.id);
             this.tokenService.setAvatar(data.avatar);
-            location.href = 'http://localhost:4200/home';
+            location.href = 'http://localhost:4200/';
             this.toast.info('Đăng nhập thành công.', 'Thông báo', {
               timeOut: 3000
             });

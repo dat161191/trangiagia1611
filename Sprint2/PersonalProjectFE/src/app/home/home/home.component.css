@@ -1,6 +1,25 @@
 img {
   image-rendering: pixelated;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
 }
-hr{
+
+.container-fluid {
+  background: linear-gradient(to right, #d9f5db, #739a96)
+}
+
+hr {
   color: blue;
+}
+
+.img-detail {
+  min-height: 100%;
+}
+
+.img-detail:hover {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+  transform: scale(1.1) rotate(-2deg)
 }

@@ -1,6 +1,6 @@
 package com.personalprojectbe.controller.product;
 
-import com.personalprojectbe.dto.product.ImgDto;
+import com.personalprojectbe.dto.clock.ImgDto;
 import com.personalprojectbe.service.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,9 +16,9 @@ public class ImgController {
     @Autowired
     private IImgService imgService;
 
-    @GetMapping("")
-    public ResponseEntity<List<ImgDto>> findImgByIdProduct(@RequestParam Long id) {
-        List<ImgDto> imgDtoList = imgService.findByIdProduct(id);
+    @GetMapping("{clockId}")
+    public ResponseEntity<List<ImgDto>> findByIdClock(@PathVariable("clockId") Long clockId) {
+        List<ImgDto> imgDtoList = imgService.findByIdClock(clockId);
         if (imgDtoList.isEmpty()){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }return new ResponseEntity<>(imgDtoList,HttpStatus.OK);

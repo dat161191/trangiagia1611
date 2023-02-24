@@ -1,0 +1,76 @@
+-------CÀI ĐẶT BOOTSTRAP---------
+npm i -s bootstrap
+@import "~bootstrap/dist/css/bootstrap.css"; vào file src/styles.css
+
+-------CÀI ĐẶT NgxPagination--------
+npm i ngx-pagination@5.1.1
+npm install ngx-pagination --save
+
+-------CÀI ĐẶT JSON SERVER--------
+npm i json-server
+json-server --watch db.json
+
+-------CÀI ĐẶT THƯ VIỆN NGÀY--------
+npm i date-fns -s
+
+
+validateBirthday(c: AbstractControl) {
+  let date = new Date(c.value);
+  let age = differenceInYears(new Date(), date);
+  return (age <= 18) ? {'greaterThan18': true} : null;
+}
+
+// Validate ngày kết thúc phải sau ngày bắt đầu
+validateRegisteredDate(c: AbstractControl) {
+  let startDate = new Date(c.get('startDate')?.value);
+  let endDate = new Date(c.get('endDate')?.value);
+  let check = differenceInDays(endDate, startDate);
+  return (check < 0) ? {'endDateAfterStartDate': true} : null;
+}
+
+========== Account trùng ============
+checkAccount: ValidatorFn = (control: AbstractControl): { checkAccount: boolean } => {
+    // @ts-ignore
+    const username =  control.get('account.usernameAccount')?.value;
+    let result =  {checkAccount: false};
+    // @ts-ignore
+    this.listMailAndUsernameAccount?.forEach(value => {
+      if (username === value.usernameAccount) {
+        result = {checkAccount: true};
+      }
+    });
+    return result;
+  }
+
+========== checkEmail: trùng ============
+  checkEmail: ValidatorFn = (control: AbstractControl): { checkEmail: boolean } => {
+    // @ts-ignore
+    const email =  control.get('emailEmployee')?.value;
+    let result =  {checkEmail: false};
+    // @ts-ignore
+    this.listMailAndUsernameAccount?.forEach(value => {
+      // @ts-ignore
+      if (email === value.email) {
+        result = {checkEmail: true};
+      }
+    });
+    return result;
+  }
+
+-------TẠO SERVICE---------
+ng g service *tên service*
+
+
+-------IMPORT TOASTR-------
+	npm i ngx-toastr@13.2.1
+	npm install @angular/animations --save
+	import trong appmodule: ToastrModule.forRoot({positionClass: 'toast-top-right'}),
+    				BrowserAnimationsModule
+
+xem chi tiết ~> https://www.npmjs.com/package/ngx-toastr/v/13.2.1
+
+========= Query tìm thời gian trong khoảng ============
+@Query(value="select * from lo_hang join san_pham on lo_hang.ten_san_pham_id = san_pham.id where lo_hang.flag_delete=false and  date(lo_hang.ngay_san_xuat) between date(:day1) and date(:day2) and san_pham.id = :idSanPham",
+            countQuery ="select * from lo_hang join san_pham on lo_hang.ten_san_pham_id = san_pham.id where lo_hang.flag_delete=false and  date(lo_hang.ngay_san_xuat) between date(:day1) and date(:day2) and san_pham.id = :idSanPham",
+            nativeQuery = true)
+    Page<LoHang> pageLoHang(@Param("day1") String day1,@Param("day2") String day2 , @Param("idSanPham") Long idSanPham , Pageable pageable);

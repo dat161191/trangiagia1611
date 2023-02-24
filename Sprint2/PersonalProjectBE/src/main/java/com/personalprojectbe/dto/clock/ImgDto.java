@@ -1,4 +1,4 @@
-package com.personalprojectbe.dto.product;
+package com.personalprojectbe.dto.clock;
 
 public interface ImgDto {
 

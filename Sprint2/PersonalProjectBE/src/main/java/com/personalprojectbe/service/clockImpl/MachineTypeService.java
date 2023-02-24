@@ -1,18 +1,25 @@
 package com.personalprojectbe.service.clockImpl;
 
 import com.personalprojectbe.entity.MachineType;
-import com.personalprojectbe.repository.product.IHostTypeRepository;
-import com.personalprojectbe.service.IHostTypeService;
+import com.personalprojectbe.repository.product.IMachineTypeRepository;
+import com.personalprojectbe.service.IMachineTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+
 @Service
-public class HostTypeService implements IHostTypeService {
+public class MachineTypeService implements IMachineTypeService {
     @Autowired
-    private IHostTypeRepository hostTypeRepository;
+    private IMachineTypeRepository machineTypeRepository;
+
     @Override
     public List<MachineType> findAll() {
-        return hostTypeRepository.findAll();
+        return machineTypeRepository.findAll();
+    }
+
+    @Override
+    public MachineType findById(Long id) {
+        return machineTypeRepository.findById(id).get();
     }
 }

@@ -1,48 +1,75 @@
 package com.personalprojectbe.controller.product;
 
-import com.personalprojectbe.dto.product.ProductGetListDto;
-import com.personalprojectbe.entity.Producer;
-import com.personalprojectbe.service.IProducerService;
-import com.personalprojectbe.service.IProductService;
+import com.personalprojectbe.dto.clock.ClockHomeDto;
+import com.personalprojectbe.entity.Clock;
+import com.personalprojectbe.entity.MachineType;
+import com.personalprojectbe.entity.Trademark;
+import com.personalprojectbe.service.IMachineTypeService;
+import com.personalprojectbe.service.ITrademarkService;
+import com.personalprojectbe.service.IClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RestController
 @CrossOrigin("*")
-@RequestMapping("api/pulic/product")
-public class ProductController {
+@RequestMapping("api/pulic/clock")
+public class ClockController {
     @Autowired
-    private IProducerService producerService;
+    private ITrademarkService trademarkService;
     @Autowired
-    private IProductService productService;
+    private IClockService clockService;
+    @Autowired
+    private IMachineTypeService hostTypeService;
 
-    @GetMapping("producer")
-    public ResponseEntity<List<Producer>> getListProducer() {
-        List<Producer> producerList = producerService.findAll();
-        if (producerList.isEmpty()) {
+    @GetMapping("trademark")
+    public ResponseEntity<List<Trademark>> getListTrademark() {
+        List<Trademark> trademarkList = trademarkService.findAll();
+        if (trademarkList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(producerList, HttpStatus.OK);
+        return new ResponseEntity<>(trademarkList, HttpStatus.OK);
+    }
+
+    @GetMapping("machine")
+    public ResponseEntity<List<MachineType>> getListHostType() {
+        List<MachineType> machineTypeList = hostTypeService.findAll();
+        if (machineTypeList.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(machineTypeList, HttpStatus.OK);
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<ProductGetListDto>> getList(@PageableDefault(size = 8) Pageable pageable) {
-        Page<ProductGetListDto> productGetListDtos = productService.getListProduct(pageable);
-        if (productGetListDtos.isEmpty()) {
+    public ResponseEntity<Page<ClockHomeDto>> getList(@PageableDefault(size = 6) Pageable pageable) {
+        Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable);
+        if (clockHomeDtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(productGetListDtos, HttpStatus.OK);
+        return new ResponseEntity<>(clockHomeDtos, HttpStatus.OK);
+    }
 
+    @GetMapping("{id}")
+    public ResponseEntity<Clock> findById(@PathVariable("id") Long id) {
+        Clock clock = clockService.findById(id);
+        if (clock == null) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(clock, HttpStatus.OK);
+    }
 
+    @GetMapping("detail/{idTrademark}")
+    public ResponseEntity<List<ClockHomeDto>> getListByTrademarkId(@PathVariable("idTrademark") Long idTrademark) {
+        List<ClockHomeDto> clockHomeDtos = clockService.getListByTrademarkId(idTrademark);
+        if (clockHomeDtos.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(clockHomeDtos, HttpStatus.OK);
     }
 }

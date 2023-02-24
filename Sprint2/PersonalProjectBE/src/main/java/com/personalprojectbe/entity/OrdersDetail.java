@@ -17,8 +17,8 @@ public class OrdersDetail {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @ManyToOne
-    @JoinColumn(name = "product_id", referencedColumnName = "id")
-    private Product product;
+    @JoinColumn(name = "trademark_id", referencedColumnName = "id")
+    private Trademark trademark;
     @ManyToOne
     @JoinColumn(name = "order_product_id", referencedColumnName = "id")
     private OrderProduct orderProduct;

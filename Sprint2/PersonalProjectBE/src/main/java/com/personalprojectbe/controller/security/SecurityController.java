@@ -56,7 +56,7 @@ public class SecurityController {
     @Autowired
     private ICustomerService customerService;
 
-    @PostMapping(value = "/signup")
+    @PostMapping(value = "register")
     public ResponseEntity<Customer> register(@Valid @RequestBody CustomerDto customerDto,
                                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -68,14 +68,16 @@ public class SecurityController {
         Account account = new Account();
         account.setName(customerDto.getCustomerName());
         account.setEmail(customerDto.getEmail());
-        account.setAvatar("BossTran");
+        if (customerDto.getAvatar() == null || customerDto.getAvatar().trim().isEmpty()) {
+            account.setAvatar("http://hinhnendepnhat.net/wp-content/uploads/2014/03/12+hinh+nen+dien+thoai+tinh+yeu.jpg");
+        }
         account.setEncryptPassword(passwordEncoder.encode(customerDto.getEncryptPassword()));
         Set<Role> roles = new HashSet<>();
         Role customerRole = roleService.findByName(RoleName.USER).orElse(new Role());
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setFrom("letahaphuong@gmail.com");
-        message.setTo(customerDto.getEmail(), "haphuong060695@gmail.com");
+        message.setFrom("quocdat.tran453@gmail.com");
+        message.setTo(customerDto.getEmail());
         String mailSubject = customerDto.getCustomerName() + "đã gửi một tin nhắn";
         String mailContent = "Người gửi: " + "Camera Store" + "\n";
         mailContent += "Sender E-mail: " + "letahaphuong@gmail.com" + "\n";

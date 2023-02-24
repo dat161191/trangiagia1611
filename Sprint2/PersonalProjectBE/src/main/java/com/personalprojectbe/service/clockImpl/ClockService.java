@@ -1,19 +1,33 @@
-package com.personalprojectbe.service.productImpl;
+package com.personalprojectbe.service.clockImpl;
 
-import com.personalprojectbe.dto.product.ProductGetListDto;
-import com.personalprojectbe.repository.product.IProductRepository;
-import com.personalprojectbe.service.IProductService;
+import com.personalprojectbe.dto.clock.ClockHomeDto;
+import com.personalprojectbe.entity.Clock;
+import com.personalprojectbe.repository.product.IClockRepository;
+import com.personalprojectbe.service.IClockService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
-public class ProductService implements IProductService {
+public class ClockService implements IClockService {
     @Autowired
-    private IProductRepository productRepository;
+    private IClockRepository clockRepository;
+
     @Override
-    public Page<ProductGetListDto> getListProduct(Pageable pageable) {
-        return productRepository.getListProduct(pageable);
+    public Page<ClockHomeDto> getListClock(Pageable pageable) {
+        return clockRepository.getListClock(pageable);
+    }
+
+    @Override
+    public List<ClockHomeDto> getListByTrademarkId(Long tradeMarkId) {
+        return clockRepository.getListByTrademarkId(tradeMarkId);
+    }
+
+    @Override
+    public Clock findById(Long id) {
+        return clockRepository.findById(id).get();
     }
 }

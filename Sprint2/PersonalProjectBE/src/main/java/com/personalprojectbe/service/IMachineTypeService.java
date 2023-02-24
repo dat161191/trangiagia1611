@@ -4,7 +4,8 @@ import com.personalprojectbe.entity.MachineType;
 
 import java.util.List;
 
-public interface IHostTypeService {
+public interface IMachineTypeService {
     List<MachineType> findAll();
 
+    MachineType findById(Long id);
 }

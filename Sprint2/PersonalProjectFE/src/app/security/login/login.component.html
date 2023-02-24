@@ -1,5 +1,5 @@
 <div
-  style="background-image: url(https://images.squarespace-cdn.com/content/v1/5bd969d6506fbe4b1a0f5e6b/1613556027347-TNYY9VEX2PRTODIHEP9J/shutterstock_1592944909+-+Badminton+racket+and+shuttlecock+in+motion_1200px+JPEG.jpg?format=1000w);background-size: 100%;background-repeat: no-repeat;min-height: 100vh">
+  style="background-image: url(https://zenwatch.vn/thumb/crop/5690/1920/950/);background-size: 100%;background-repeat: no-repeat;min-height: 100vh;">
   <div class="col-md-6">
     <div class="card">
       <div class="text-center">
@@ -7,7 +7,7 @@
         <h6>Vui lòng điền email và mật khẩu</h6>
       </div>
       <form [formGroup]="signInForm" (ngSubmit)="login()">
-        <div class="mb-3">
+        <div class="mb-1">
           <label for="email" class="form-label">Email:</label>
           <input type="email" formControlName="email" class="form-control" placeholder="name@example.com"
                  id="email" aria-describedby="emailHelp">
@@ -21,7 +21,7 @@
           <ng-template #elseBlock><br></ng-template>
         </div>
 
-        <div class="mb-3">
+        <div class="mb-1">
           <label for="password" class="form-label">Mật Khẩu:</label>
           <input type="password" formControlName="password" class="form-control" placeholder="Password"
                  id="password">
@@ -35,7 +35,7 @@
           <ng-template #elseBlock><br></ng-template>
         </div>
 
-        <div class="mb-3 form-check">
+        <div class=" form-check">
           <input type="checkbox" id="rememberMe" class="form-check-input" value="">
           <label class="form-check-label" for="rememberMe">Ghi nhớ đăng nhập</label>
         </div>

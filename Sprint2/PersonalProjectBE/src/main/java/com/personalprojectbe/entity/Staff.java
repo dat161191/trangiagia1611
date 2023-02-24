@@ -26,7 +26,7 @@ public class Staff {
     private String idCard;
     @Column(columnDefinition = "bit default false")
     private boolean flagDelete;
-    @Column(columnDefinition = "bit")
+    @Column(columnDefinition = "bit default false")
     private boolean gender;
     @OneToOne
     private Account account;

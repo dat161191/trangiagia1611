@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  templateUrl: './clock-edit.component.html',
+  styleUrls: ['./clock-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class ClockEditComponent implements OnInit {
 
   constructor() { }
 

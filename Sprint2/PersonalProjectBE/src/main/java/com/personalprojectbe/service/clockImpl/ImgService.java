@@ -1,6 +1,6 @@
-package com.personalprojectbe.service.productImpl;
+package com.personalprojectbe.service.clockImpl;
 
-import com.personalprojectbe.dto.product.ImgDto;
+import com.personalprojectbe.dto.clock.ImgDto;
 import com.personalprojectbe.repository.product.IImgListRepository;
 import com.personalprojectbe.service.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,7 @@ public class ImgService implements IImgService {
     private IImgListRepository iImgListRepository;
 
     @Override
-    public List<ImgDto> findByIdProduct(Long productId) {
-        return iImgListRepository.findByIdProduct(productId);
+    public List<ImgDto> findByIdClock(Long productId) {
+        return iImgListRepository.findByIdClock(productId);
     }
 }

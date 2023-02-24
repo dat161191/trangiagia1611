@@ -1,6 +1,6 @@
-import {ClockHome} from './enity/product/clock-home';
+import {ClockHome} from './enity/clock/clock-home';
 
-export interface ProductInfoJson {
+export interface ClockInfoJson {
   content: ClockHome[];
   pageable: {
     sort: {
