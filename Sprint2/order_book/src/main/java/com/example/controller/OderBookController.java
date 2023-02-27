@@ -46,8 +46,7 @@ public class OderBookController {
             iBookService.saveBook(book);
             redirectAttributes.addFlashAttribute("mess", "Oder Success!!! Book rental code is: " + bookRentalCode);
             return "redirect:/book";
-        }
-        else {
+        } else {
             redirectAttributes.addFlashAttribute("mess", "Oder Not Success!!");
             return "redirect:/book";
         }

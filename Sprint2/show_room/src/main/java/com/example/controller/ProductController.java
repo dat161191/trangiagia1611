@@ -66,8 +66,7 @@ public class ProductController {
         if (action.equals("cart")) {
             cartDto.addProduct(productDto);
             return "redirect:/cart";
-        }
-        else if (action.equals("detail")) {
+        } else if (action.equals("detail")) {
             cartDto.addProduct(productDto);
             redirectAttributes.addFlashAttribute("mess", "Add success");
             return "redirect:/detail/{id}";

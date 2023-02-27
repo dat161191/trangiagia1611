@@ -13,6 +13,7 @@ import java.util.Optional;
 public class RoleService implements IRoleService {
     @Autowired
     private IRoleRepository roleRepository;
+
     @Override
     public Optional<Role> findByName(RoleName name) {
         return roleRepository.findByName(name);

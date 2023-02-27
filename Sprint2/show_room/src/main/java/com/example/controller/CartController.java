@@ -13,6 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class CartController {
     @Autowired
     private IProductService productService;
+
     @GetMapping("")
     public String showList(@SessionAttribute("cart") CartDto cart, Model model, @CookieValue(value = "idProduct", defaultValue = "-1") Long id) {
         model.addAttribute("cart", cart);

@@ -77,7 +77,7 @@ public class CartDto {
         return payment;
     }
 
-    public void pay(){
+    public void pay() {
         productMap.clear();
     }
 

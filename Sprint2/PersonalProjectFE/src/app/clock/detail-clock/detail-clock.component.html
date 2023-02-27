@@ -4,34 +4,17 @@
     <div class="card col-10 img-body">
       <div class="row">
         <div class="col-4 align-items-center">
-                    <div class="main mt-2">
-                      <img src="{{imgList[0]?.url}}"
-                           class="img-feature" alt="">
-                      <div class="control prev "><i class="bi bi-arrow-left-square-fill"></i></div>
-                      <div class="control next "><i class="bi bi-arrow-right-square-fill"></i></div>
-                    </div>
-                    <div class="list-img">
-                      <div *ngFor="let img of imgList "><img
-                        src="{{img.url}}"  alt="">
-                      </div>
-                    </div>
-<!--          <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">-->
-<!--            <div class="carousel-inner">-->
-<!--              <div class="carousel-item active" data-bs-interval="2500" *ngFor="let img of imgList ">-->
-<!--                <img src="{{img.url}}" class="d-block" style="width: 400px;height: 400px" alt="...">-->
-<!--              </div>-->
-<!--            </div>-->
-<!--            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval"-->
-<!--                    data-bs-slide="prev">-->
-<!--              <span class="carousel-control-prev-icon" aria-hidden="true"></span>-->
-<!--              <span class="visually-hidden">Previous</span>-->
-<!--            </button>-->
-<!--            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"-->
-<!--                    data-bs-slide="next">-->
-<!--              <span class="carousel-control-next-icon" aria-hidden="true"></span>-->
-<!--              <span class="visually-hidden">Next</span>-->
-<!--            </button>-->
-<!--          </div>-->
+          <div class="main mt-2">
+            <img src="{{imgList[0]?.url}}"
+                 class="img-feature" alt="">
+            <div class="control prev "><i class="bi bi-arrow-left-square-fill"></i></div>
+            <div class="control next "><i class="bi bi-arrow-right-square-fill"></i></div>
+          </div>
+          <div class="list-img">
+            <div *ngFor="let img of imgList "><img
+              src="{{img.url}}" alt="">
+            </div>
+          </div>
         </div>
 
         <div class="col col-5">
@@ -188,45 +171,6 @@
       </div>
     </div>
 
-    <div class="container-fluid mt-2">
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10"><h2><b>Giới thiệu sản phẩm</b></h2>
-          <hr>
-        </div>
-        <div class="col-1"></div>
-
-      </div>
-      <div class="row">
-        <div class="col-1"></div>
-        <div class="col-10">
-          <p>
-            Vợt cầu lông Lining chính hãng HC1000 black với thiết kế thân dẻo giúp bạn có những pha xử lý linh
-            hoạt thích hợp với những người có lối đánh công thủ toàn diện, đặc biệt là phù hợp với những bạn mới
-            bắt đầu tập chơi.
-            Vợt cầu lông Lining mới nhất HC1000 black thuộc dòng vợt cân bằng nên phông cầu có cảm giác thoát
-            tay,
-            nhẹ nhàng, dễ về cuối sân, không cần dùng quá nhiều lực, tiếng phông cầu rất đã tai. Khi đập cầu,
-            vợt hỗ
-            trợ nhiều lực giúp dễ đập hơn, đặc biệt với những người có cổ tay chưa được khỏe,
-            dễ dàng xử lí trong mọi tình huống. Trong phòng thủ cây vợt này dễ dàng xử lí tình huống một cách
-            linh
-            hoạt, bắt lưới nhanh và trợ lực từ
-            thân vợt tốt. Với dòng vợt High Carbon cao cấp chắc các bạn sẽ không còn nỗi lo khi vợt bị va chạm
-            bởi
-            dòng vợt này
-            tối ưu rất tốt bổ sung thêm phần carbon vào những phần yếu nhất để đảm bảo cho vợt chắc chắn đàn hồi
-            tốt.Nhìn chung cây vợt cầu lông công Lining công thủ toàn diện HC1000 black chính hãng với thân vợt
-            dẻo
-            và
-            đây là cây vợt cân bằng nên tấn công và phòng thủ đều rất tốt đấy nhé ! Là sự lựa chọn hoàn hảo dành
-            cho
-            các bạn mới tập chơi.</p>
-        </div>
-        <div class="col-1"></div>
-      </div>
-    </div>
-
     <div class="container-fluid mt-2 mb-2">
       <div class="row">
         <div class="col-1"></div>
@@ -243,7 +187,7 @@
             <ng-container *ngFor="let clock of clockListByTrademark">
               <ng-template carouselSlide>
                 <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">
-                  <div class="card img-detail mt-1 mb-1 ms-2 me-2">
+                  <div class="card img-detail mt-1 mb-1 ms-2 me-2" style="min-height: 100%">
                     <div>
                       <img src="{{clock.url}}" class="card-img-top" alt="...">
                     </div>

@@ -36,9 +36,11 @@ public class Logger {
     @Pointcut("execution(* com.example.controller.ProductController.addToCart(..))")
     public void changeAddProduct() {
     }
+
     @Pointcut("execution(* com.example.controller.ProductController.subToCart(..))")
     public void changeSubProduct() {
     }
+
     @Pointcut("execution(* com.example.controller.CartController.pay(..))")
     public void changePayCart() {
     }
@@ -47,10 +49,12 @@ public class Logger {
     public void afterReturningAdd(JoinPoint joinPoint) {
         System.out.println("Complete the " + joinPoint.getSignature() + " method at " + LocalDateTime.now());
     }
+
     @AfterReturning("changeSubProduct()")
     public void afterReturningSub(JoinPoint joinPoint) {
         System.out.println("Complete the " + joinPoint.getSignature() + " method at " + LocalDateTime.now());
     }
+
     @AfterReturning("changePayCart()")
     public void afterReturningPay(JoinPoint joinPoint) {
         System.out.println("Complete the " + joinPoint.getSignature() + " method at " + LocalDateTime.now());

@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
 import {HomeComponent} from './home/home/home.component';
 import {LoginComponent} from './security/login/login.component';
-import {InfoComponent} from './info/info/info.component';
+import {InfoComponent} from './info/info.component';
 import {DetailClockComponent} from './clock/detail-clock/detail-clock.component';
 import {CartComponent} from './cart/cart.component';
 import {RegisterComponent} from './security/register/register.component';

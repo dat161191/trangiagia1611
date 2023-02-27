@@ -7,73 +7,154 @@
           integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 </script>
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">Add Blog</button>
+<
+button
+type = "button"
+class
+= "btn btn-primary"
+data - toggle = "modal"
+data - target = "#exampleModal" > Add
+Blog < /button>
 
-<input type="text" id="search" placeholder="Search by author">
-<button class="btn btn-outline-success" type="button" id="searchButton">search</button>
+< input
+type = "text"
+id = "search"
+placeholder = "Search by author" >
+    < button
+class
+= "btn btn-outline-success"
+type = "button"
+id = "searchButton" > search < /button>
 
-<!--Modal add-->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-     aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <label for="title">Title</label>
-                <input type="text" id="title"><br>
+    <!--Modal add-->
+    < div
+class
+= "modal fade"
+id = "exampleModal"
+tabindex = "-1"
+role = "dialog"
+aria - labelledby = "exampleModalLabel"
+aria - hidden = "true" >
+    < div
+class
+= "modal-dialog"
+role = "document" >
+    < div
+class
+= "modal-content" >
+    < div
+class
+= "modal-header" >
+    < h5
+class
+= "modal-title"
+id = "exampleModalLabel" > Modal
+title < /h5>
+< button
+type = "button"
+class
+= "close"
+data - dismiss = "modal"
+aria - label = "Close" >
+    < span
+aria - hidden = "true" > & times;
+<
+/span>
+< /button>
+< /div>
+< div
+class
+= "modal-body" >
+    < label
+for= "title" > Title < /label>
+    < input type = "text"
+id = "title" > < br >
 
-                <label for="content">Content</label>
-                <input type="text" id="content"><br>
+    < label
+for= "content" > Content < /label>
+    < input type = "text"
+id = "content" > < br >
 
-                <label for="author">Author</label>
-                <input type="text" id="author"><br>
+    < label
+for= "author" > Author < /label>
+    < input type = "text"
+id = "author" > < br >
 
-                <label for="date">Date</label>
-                <input type="date" id="date"><br>
+    < label
+for= "date" > Date < /label>
+    < input type = "date"
+id = "date" > < br >
 
-                <label for="category">Category</label>
-                <select id="category">
-                    <option value=1>Tình cảm</option>
-                    <option value=2>Tình bạn</option>
-                    <option value=3>Sức Khỏe</option>
-                    <option value=4>Thể Thao</option>
-                    <option value=5>Cuộc sống</option>
-                </select>
+    < label
+for= "category" > Category < /label>
+    < select id = "category" >
+    < option
+value = 1 > Tình
+cảm < /option>
+< option
+value = 2 > Tình
+bạn < /option>
+< option
+value = 3 > Sức
+Khỏe < /option>
+< option
+value = 4 > Thể
+Thao < /option>
+< option
+value = 5 > Cuộc
+sống < /option>
+< /select>
 
 
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary" id="save">Save changes</button>
-            </div>
-        </div>
-    </div>
-</div>
+< /div>
+< div
+class
+= "modal-footer" >
+    < button
+type = "button"
+class
+= "btn btn-secondary"
+data - dismiss = "modal" > Close < /button>
+    < button
+type = "button"
+class
+= "btn btn-primary"
+id = "save" > Save
+changes < /button>
+< /div>
+< /div>
+< /div>
+< /div>
 
-<body>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">#</th>
-        <th scope="col">Title</th>
-        <th scope="col">Content</th>
-        <th scope="col">Author</th>
-        <th scope="col">Category</th>
-        <th scope="col">Date</th>
+< body >
+< table
+class
+= "table" >
+    < thead >
+    < tr >
+    < th
+scope = "col" > # < /th>
+    < th
+scope = "col" > Title < /th>
+    < th
+scope = "col" > Content < /th>
+    < th
+scope = "col" > Author < /th>
+    < th
+scope = "col" > Category < /th>
+    < th
+scope = "col" > Date < /th>
 
-    </tr>
-    </thead>
-    <tbody id="myBody">
-    </tbody>
-</table>
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
-        integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
-        crossorigin="anonymous"></script>
+    < /tr>
+    < /thead>
+    < tbody
+id = "myBody" >
+    < /tbody>
+    < /table>
+    < script
+src = "https://code.jquery.com/jquery-3.2.1.slim.min.js"
+integrity = "sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+crossorigin = "anonymous" ></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js"
         integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
         crossorigin="anonymous"></script>

@@ -69,7 +69,7 @@ public class BlogRestController {
     }
 
     @PutMapping("{id}")
-    public ResponseEntity<Blog> update(@PathVariable("id") int id,@RequestBody Blog blog) {
+    public ResponseEntity<Blog> update(@PathVariable("id") int id, @RequestBody Blog blog) {
         if (blog.isDeleted()) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

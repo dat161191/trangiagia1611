@@ -14,3 +14,6 @@ img {
   border: 1px solid blue;
   border-radius: 5px;
 }
+.container-fluid {
+  background: linear-gradient(to right, #d9f5db, #739a96)
+}

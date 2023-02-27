@@ -15,7 +15,7 @@ import javax.persistence.*;
 @SQLDelete(sql = "UPDATE blog SET deleted = true WHERE id=?")
 @Where(clause = "deleted=false")
 
-public class Blog{
+public class Blog {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;

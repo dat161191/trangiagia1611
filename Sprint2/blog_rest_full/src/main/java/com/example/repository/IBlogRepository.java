@@ -8,6 +8,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface IBlogRepository extends JpaRepository<Blog, Integer> {
-    Page<Blog> findByDeleted(boolean delete,Pageable pageable);
+    Page<Blog> findByDeleted(boolean delete, Pageable pageable);
+
     Page<Blog> findByCategory(Pageable pageable, Category category);
 }

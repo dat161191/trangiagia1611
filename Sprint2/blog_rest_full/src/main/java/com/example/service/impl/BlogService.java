@@ -40,7 +40,7 @@ public class BlogService implements IBlogService {
 
     @Override
     public Page<Blog> findByDeleted(Pageable pageable) {
-        return iBlogRepository.findByDeleted(false,pageable);
+        return iBlogRepository.findByDeleted(false, pageable);
     }
 
     @Override
@@ -50,6 +50,6 @@ public class BlogService implements IBlogService {
 
     @Override
     public Page<Blog> findByCategoryContains(Pageable pageable, Category category) {
-        return iBlogRepository.findByCategory(pageable,category);
+        return iBlogRepository.findByCategory(pageable, category);
     }
 }

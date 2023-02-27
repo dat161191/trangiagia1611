@@ -92,7 +92,7 @@ export class DetailClockComponent implements OnInit {
     // @ts-ignore
     this.clockService.getListByTrademarkId(this.idTrademark).subscribe(data => {
       this.clockListByTrademark = data;
-      // console.log(this.clockListByTrademark);
+      console.log(this.clockListByTrademark);
     }, error => {
     }, () => {
     });

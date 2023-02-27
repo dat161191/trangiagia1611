@@ -19,8 +19,9 @@ public class ImgController {
     @GetMapping("{clockId}")
     public ResponseEntity<List<ImgDto>> findByIdClock(@PathVariable("clockId") Long clockId) {
         List<ImgDto> imgDtoList = imgService.findByIdClock(clockId);
-        if (imgDtoList.isEmpty()){
+        if (imgDtoList.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-        }return new ResponseEntity<>(imgDtoList,HttpStatus.OK);
+        }
+        return new ResponseEntity<>(imgDtoList, HttpStatus.OK);
     }
 }

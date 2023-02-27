@@ -10,8 +10,8 @@ import {ClockHome} from '../enity/clock/clock-home';
 })
 export class ClockService {
   urlClockList = 'http://localhost:8080/api/pulic/clock';
-  urlImgListByIdClock='http://localhost:8080/api/img'
-  urlClockListByTradeId='http://localhost:8080/api/pulic/clock/detail'
+  urlImgListByIdClock = 'http://localhost:8080/api/img'
+  urlClockListByTradeId = 'http://localhost:8080/api/pulic/clock/detail'
 
   constructor(private httpClient: HttpClient) {
   }
@@ -26,12 +26,13 @@ export class ClockService {
     // console.log(this.urlClockList + '/' + id);
     return this.httpClient.get<ClockDetail>(this.urlClockList + '/' + id);
   }
+
   findImgByIdClock(id: number): Observable<ImgDto[]> {
     // console.log(this.urlImgListByIdClock + '/' + id);
     return this.httpClient.get<ImgDto[]>(this.urlImgListByIdClock + '/' + id);
   }
 
-  getListByTrademarkId(id: number):Observable<any>{
+  getListByTrademarkId(id: number): Observable<any> {
     console.log(this.urlClockListByTradeId + '/' + id);
     return this.httpClient.get<ClockHome[]>(this.urlClockListByTradeId + '/' + id);
   }

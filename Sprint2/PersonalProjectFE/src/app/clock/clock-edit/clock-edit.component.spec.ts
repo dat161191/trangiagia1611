@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClockEditComponent } from './clock-edit.component';
+import {ClockEditComponent} from './clock-edit.component';
 
 describe('ProductEditComponent', () => {
   let component: ClockEditComponent;
@@ -8,9 +8,9 @@ describe('ProductEditComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClockEditComponent ]
+      declarations: [ClockEditComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

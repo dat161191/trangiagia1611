@@ -37,8 +37,8 @@ public class BlogService implements IBlogService {
     }
 
     @Override
-    public Page<Blog> findAll(Pageable pageable,String search) {
-        return iBlogRepository.findByAuthorContaining(pageable,search);
+    public Page<Blog> findAll(Pageable pageable, String search) {
+        return iBlogRepository.findByAuthorContaining(pageable, search);
     }
 
     @Override
@@ -48,6 +48,6 @@ public class BlogService implements IBlogService {
 
     @Override
     public Page<Blog> findByCategoryContains(Pageable pageable, Category category) {
-        return iBlogRepository.findByCategory(pageable,category);
+        return iBlogRepository.findByCategory(pageable, category);
     }
 }

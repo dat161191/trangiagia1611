@@ -103,6 +103,11 @@ h2 {
 .img-body {
   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
 }
+
 .container-fluid {
   background: linear-gradient(to right, #d9f5db, #739a96)
+}
+
+.tskt:hover {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
 }

@@ -1,6 +1,6 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import {ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { ClockCreateComponent } from './clock-create.component';
+import {ClockCreateComponent} from './clock-create.component';
 
 describe('ProductCreateComponent', () => {
   let component: ClockCreateComponent;
@@ -8,9 +8,9 @@ describe('ProductCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ClockCreateComponent ]
+      declarations: [ClockCreateComponent]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

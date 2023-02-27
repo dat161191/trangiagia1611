@@ -16,8 +16,9 @@ import java.util.List;
 public interface IImgListRepository extends JpaRepository<Img, Long> {
     @Query(value = "SELECT img.id as idImage, img.url url from img where img.clock_id=:clockId", nativeQuery = true)
     List<ImgDto> findByIdClock(@Param("clockId") Long clockId);
+
     @Modifying
-    @Query(value = "insert into img (url, product_id) values (:url, :idProduct)",nativeQuery = true)
+    @Query(value = "insert into img (url, product_id) values (:url, :idProduct)", nativeQuery = true)
     @Transactional
     void saveImage(@Param("url") String url, @Param("id") Long idProduct);
 }

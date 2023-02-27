@@ -35,7 +35,7 @@ public class CategoryService implements ICategoryService {
 
     @Override
     public Page<Category> findByDeleted(Pageable pageable) {
-        return iCategoryRepository.findByDeleted(false,pageable);
+        return iCategoryRepository.findByDeleted(false, pageable);
     }
 
     @Override

@@ -35,7 +35,7 @@ public class Account {
     public Account() {
     }
 
-    public Account(Long idAccount, String name, String email,String avatar, String encryptPassword, boolean flagDelete, Set<Role> roles) {
+    public Account(Long idAccount, String name, String email, String avatar, String encryptPassword, boolean flagDelete, Set<Role> roles) {
         this.idAccount = idAccount;
         this.name = name;
         this.avatar = avatar;
