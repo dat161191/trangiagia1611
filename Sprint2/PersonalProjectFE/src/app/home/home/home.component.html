@@ -43,12 +43,12 @@
         <div class="row">
           <div class="col-9">
             <label style="width: 100%">
-              <input type="text" class="form-control mb-1" placeholder="VD:LINING,KUMPOO" style="width: 100%">
+              <input #search type="text" class="form-control mb-1" placeholder="VD:LINING,KUMPOO" style="width: 100%">
             </label>
           </div>
           <div class="col-3">
-            <button style="width: 100%" class="btn btn-primary ms-1 mb-1" type="button"><i class="bi bi-search"></i> Tìm
-              kiếm
+            <button style="width: 100%" class="btn btn-primary ms-1 mb-1" (click)="searchClock(search.value,false)" type="button">
+              <i class="bi bi-search"></i> Tìm kiếm
             </button>
           </div>
         </div>
@@ -65,22 +65,91 @@
       <h1 class="text-primary mt-1">Sản phẩm</h1>
       <hr>
       <div class="row mt-1 mb-1">
-        <div class="col-3 mt-2 mb-1" *ngFor="let clock of clockList?.content">
-          <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">
-            <div class="card img-detail">
-              <div>
-                <img src="{{clock.url}}" class="card-img-top" alt="...">
+        <div class="col-3 mt-2 mb-1" *ngIf="clockList.content?.length == 0; else elseBlock"><h6>Không có sản phẩm cần
+          tìm.</h6></div>
+        <ng-template #elseBlock>
+          <div class="col-3 mt-2 mb-1" *ngFor="let clock of clockList?.content">
+            <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">
+              <div class="card img-detail">
+                <div>
+                  <img src="{{clock.url}}" class="card-img-top" alt="...">
+                </div>
+                <div class="card-body text-center content bg-dark">
+                  <p class="card-text">{{clock.clockName}}</p>
+                  <h4 class="card-title"><span class="badge text-bg-primary">{{clock.price |number: '1.0-0'}} VNĐ</span>
+                  </h4>
+                </div>
               </div>
-              <div class="card-body text-center content bg-dark">
-                <p class="card-text">{{clock.clockName}}</p>
-                <h4 class="card-title"><span class="badge text-bg-primary">{{clock.price |number: '1.0-0'}} VNĐ</span>
-                </h4>
-              </div>
-            </div>
 
-          </a>
-        </div>
+            </a>
+          </div>
+        </ng-template>
       </div>
+
+      <div style="min-height: 60px">
+        <div *ngIf="clockList.content?.length != 0; else elseBlockPagination">
+          <div *ngIf="clockList" class="d-flex justify-content-center" id="last-row">
+            <div>
+              <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item" [ngClass]="clockList.first ? 'disabled': ''">
+                    <a role="button" class="page-link" (click)="changePage(0)">Trang đầu</a>
+                  </li>
+                  <!--                  <li class="page-item" [ngClass]="clockList.first ? 'disabled': ''">-->
+                  <!--                    <a role="button" class="page-link" (click)="changePage(clockList.number - 1)"><</a>-->
+                  <!--                  </li>-->
+                  <li class="page-item" *ngIf="clockList.number - 3 > 0">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number - 4)">{{clockList.number - 3}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number - 2 > 0">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number - 3)">{{clockList.number - 2}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number - 1 > 0">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number - 2)">{{clockList.number - 1}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number > 0">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number - 1)">{{clockList.number}}</a>
+                  </li>
+                  <li class="page-item active"><a class="page-link">{{clockList.number + 1}}</a></li>
+                  <li class="page-item" *ngIf="clockList.number + 2 <= clockList.totalPages">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number + 1)">{{clockList.number + 2}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number + 3 <= clockList.totalPages">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number + 2)">{{clockList.number + 3}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number + 4 <= clockList.totalPages">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number + 3)">{{clockList.number + 4}}</a>
+                  </li>
+                  <li class="page-item" *ngIf="clockList.number + 5 <= clockList.totalPages">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.number + 4)">{{clockList.number + 5}}</a>
+                  </li>
+                  <!--                  <li class="page-item" [ngClass]="clockList.last ? 'disabled': ''">-->
+                  <!--                    <a role="button" class="page-link"-->
+                  <!--                       (click)="changePage(clockList.number + 1)">></a>-->
+                  <!--                  </li>-->
+                  <li class="page-item" [ngClass]="clockList.last ? 'disabled': ''">
+                    <a role="button" class="page-link"
+                       (click)="changePage(clockList.totalPages - 1)">
+                      Trang cuối
+                    </a>
+                  </li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+        </div>
+        <ng-template #elseBlockPagination></ng-template>
+      </div>
+
+
     </div>
   </div>
 </div>

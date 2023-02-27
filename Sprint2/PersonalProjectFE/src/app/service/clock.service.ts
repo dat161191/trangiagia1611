@@ -10,16 +10,16 @@ import {ClockHome} from '../enity/clock/clock-home';
 })
 export class ClockService {
   urlClockList = 'http://localhost:8080/api/pulic/clock';
-  urlImgListByIdClock = 'http://localhost:8080/api/img'
-  urlClockListByTradeId = 'http://localhost:8080/api/pulic/clock/detail'
+  urlImgListByIdClock = 'http://localhost:8080/api/img';
+  urlClockListByTradeId = 'http://localhost:8080/api/pulic/clock/detail';
 
   constructor(private httpClient: HttpClient) {
   }
 
-  getListClock(request: any): Observable<any> {
+  getListClock(request: any, search: string): Observable<any> {
     const params = request;
-    // console.log(this.urlClockList,this.urlClockList, {params});
-    return this.httpClient.get(this.urlClockList, {params});
+    console.log(this.urlClockList + '?search=' + search, {params});
+    return this.httpClient.get(this.urlClockList + '?search=' + search, {params});
   }
 
   findById(id: number): Observable<ClockDetail> {

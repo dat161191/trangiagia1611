@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 import java.util.List;
 
 public interface IClockService {
-    Page<ClockHomeDto> getListClock(Pageable pageable);
+    Page<ClockHomeDto> getListClock(Pageable pageable,String search);
 
     List<ClockHomeDto> getListByTrademarkId(@Param("tradeMarkId") Long tradeMarkId);
 

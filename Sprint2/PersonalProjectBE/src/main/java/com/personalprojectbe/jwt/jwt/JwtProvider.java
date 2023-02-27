@@ -15,6 +15,16 @@ public class JwtProvider {
     private String jwtSecret = "quocdat.tran453@gmail.com"; // chữ ký của token
     private int jwtExpiration = 86400; // thời gian sống token 1 ngày
 
+    /**
+     * Phương thức createToken() được sử dụng để tạo mã thông báo xác thực (JWT) sau khi người dùng đăng nhập thành công.
+     * Sau khi tạo đối tượng AccountPrinciple, phương thức createToken() sử dụng thư viện Jwts của JWT để tạo ra một JWT
+     * Phương thức setSubject() để thiết lập tên người dùng (username) là thông tin chủ đề của JWT.
+     * Phương thức gọi setIssuedAt() và setExpiration() để thiết lập thời gian phát hành và thời gian hết hạn của JWT.
+     * Phương thức signWith() để ký JWT bằng thuật toán mã hóa HS512 và khóa bí mật (jwtSecret).
+     * Phương thức compact() được gọi để tạo chuỗi JWT và trả về chuỗi JWT được tạo.
+     * @param authentication Đối tượng Authentication được truyền vào phương thức này để truy xuất đối tượng AccountPrinciple của người dùng đã xác thực.
+     * @return mã thông báo xác thực (JWT).
+     */
     public String createToken(Authentication authentication) {
         AccountPrinciple accountPrinciple = (AccountPrinciple) authentication.getPrincipal();
 
@@ -28,6 +38,11 @@ public class JwtProvider {
 
     public boolean validateToken(String token) { // valid token
         try {
+            /**
+             * Giải mã token và lấy ra các claims (thông tin chứa trong token) được đính kèm.
+             * Sau đó, phương thức getBody() trả về một đối tượng chứa các claims đã được giải mã và có thể sử dụng để xác thực người dùng.
+             * Nếu quá trình giải mã và lấy thông tin thành công, phương thức trả về giá trị true, ngược lại nó sẽ ném ra một exception và phương thức sẽ trả về giá trị false
+             */
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
             return true;
 

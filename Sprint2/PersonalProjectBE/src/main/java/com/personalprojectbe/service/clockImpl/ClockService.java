@@ -17,8 +17,8 @@ public class ClockService implements IClockService {
     private IClockRepository clockRepository;
 
     @Override
-    public Page<ClockHomeDto> getListClock(Pageable pageable) {
-        return clockRepository.getListClock(pageable);
+    public Page<ClockHomeDto> getListClock(Pageable pageable,String search) {
+        return clockRepository.getListClock(pageable,search);
     }
 
     @Override

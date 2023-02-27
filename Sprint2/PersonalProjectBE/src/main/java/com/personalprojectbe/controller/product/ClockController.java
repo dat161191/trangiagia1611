@@ -47,8 +47,8 @@ public class ClockController {
     }
 
     @GetMapping("")
-    public ResponseEntity<Page<ClockHomeDto>> getList(@PageableDefault(size = 8) Pageable pageable) {
-        Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable);
+    public ResponseEntity<Page<ClockHomeDto>> getList(@PageableDefault() Pageable pageable, @RequestParam(defaultValue = "") String search) {
+        Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable, search);
         if (clockHomeDtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }

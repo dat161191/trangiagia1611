@@ -4,6 +4,7 @@ public interface ClockHomeDto {
     Long getClockId();
 
     String getClockName();
+    String getTrademarkName();
 
     Long getPrice();
 

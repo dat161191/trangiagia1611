@@ -7,4 +7,5 @@ export interface ClockHome {
   trademarkId?: number;
   machineTypeId?: number;
   gender?: boolean;
+  trademarkName?: string
 }
