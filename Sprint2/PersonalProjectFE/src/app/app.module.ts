@@ -19,6 +19,8 @@ import {DetailClockComponent} from './clock/detail-clock/detail-clock.component'
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {ClockEditComponent} from './clock/clock-edit/clock-edit.component';
 import {RegisterComponent} from './security/register/register.component';
+import { PersonalPageComponent } from './personal-page/personal-page.component';
+import { StatisticalComponent } from './clock/statistical/statistical.component';
 
 
 @NgModule({
@@ -31,7 +33,7 @@ import {RegisterComponent} from './security/register/register.component';
     InfoComponent,
     CartComponent,
     ClockCreateComponent,
-    ClockEditComponent, DetailClockComponent, RegisterComponent
+    ClockEditComponent, DetailClockComponent, RegisterComponent, PersonalPageComponent, StatisticalComponent
   ],
   imports: [
     BrowserModule,

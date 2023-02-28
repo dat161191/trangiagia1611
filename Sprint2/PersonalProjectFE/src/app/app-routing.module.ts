@@ -6,13 +6,22 @@ import {InfoComponent} from './info/info.component';
 import {DetailClockComponent} from './clock/detail-clock/detail-clock.component';
 import {CartComponent} from './cart/cart.component';
 import {RegisterComponent} from './security/register/register.component';
+import {AuthGuard} from './canactive/auth.guard';
+import {AdminGuard} from './canactive/admin.guard';
+import {UserGuard} from './canactive/user.guard';
+import {StatisticalComponent} from './clock/statistical/statistical.component';
+import {PersonalPageComponent} from './personal-page/personal-page.component';
+import {ClockCreateComponent} from './clock/create-clock/clock-create.component';
 
 const routes: Routes = [{path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'info', component: InfoComponent},
   {path: 'detail/:id', component: DetailClockComponent},
-  {path: 'cart', component: CartComponent},
+  {path: 'cart', component: CartComponent, canActivate: [AuthGuard]},
+  {path: 'personal-page', component: PersonalPageComponent, canActivate: [AuthGuard]},
+  {path: 'statistical', component: StatisticalComponent, canActivate: [AuthGuard, AdminGuard]},
+  {path: 'create', component: ClockCreateComponent, canActivate: [AuthGuard, AdminGuard]},
 ];
 
 @NgModule({

@@ -1,5 +1,6 @@
 package com.personalprojectbe.service;
 
+import com.personalprojectbe.dto.clock.ClockCreateDto;
 import com.personalprojectbe.dto.clock.ClockHomeDto;
 import com.personalprojectbe.entity.Clock;
 import org.springframework.data.domain.Page;
@@ -14,4 +15,6 @@ public interface IClockService {
     List<ClockHomeDto> getListByTrademarkId(@Param("tradeMarkId") Long tradeMarkId);
 
     Clock findById(Long id);
+
+    void save(Clock clock);
 }

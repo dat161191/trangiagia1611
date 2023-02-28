@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ClockService} from '../../service/clock.service';
 import {ClockInfoJson} from '../../clock-info-json';
 import {ToastrService} from 'ngx-toastr';
+import {Trademark} from '../../enity/clock/trademark';
+import {MachineType} from '../../enity/clock/machine-type';
 
 @Component({
   selector: 'app-home',
@@ -11,6 +13,8 @@ import {ToastrService} from 'ngx-toastr';
 export class HomeComponent implements OnInit {
   clockList!: ClockInfoJson;
   request = {page: 0, size: 8};
+  trademarks: Trademark[] = [];
+  machineTypes: MachineType[] = [];
   pageNumber = 0;
   search = '';
 
@@ -23,8 +27,12 @@ export class HomeComponent implements OnInit {
 
   getAllList(request: { page: number; size: number } | undefined): void {
     this.clockService.getListClock(request, this.search).subscribe(data => {
-      this.clockList = data;
-      console.log(this.clockList);
+      // console.log(data);
+      this.clockList = data[0];
+      this.trademarks = data[1];
+      this.machineTypes = data[2];
+      // console.log(this.trademarks, this.machineTypes);
+      // console.log(this.clockList);
     }, error => {
       this.clockList.content = [];
       this.toastrService.error('Không tìm ra sản phẩm', 'Lỗi', {timeOut: 2000});

@@ -6,7 +6,7 @@
       <form [formGroup]="customerForm" (ngSubmit)="register()"
             style="color: white;border-radius: 10px;  background: linear-gradient(to right, rgba(71,73,72,0.8), rgba(0,0,0,0.8))">
         <br>
-        <h3 style="font-size: 20px;text-align: center"><b>ĐĂNG KÝ TÀI KHOẢN</b></h3>
+        <h1 style="text-align: center"><b>ĐĂNG KÝ TÀI KHOẢN</b></h1>
         <div class="row mt-1">
           <div class="col-6">
             <div class="row mb-1 form-group ms-1 me-1">
@@ -148,7 +148,7 @@
                   <option [value]=false>Nữ</option>
                 </select>
                 <div class="text-danger"
-                     *ngIf="customerForm.controls.gender.invalid && (customerForm.controls.gender.touched || customerForm.controls.gender.pristine) else elseBlock">
+                     *ngIf="customerForm.controls.gender.invalid && (customerForm.controls.gender.touched) else elseBlock">
                   <small *ngIf="customerForm.controls.gender.hasError('required')"><i
                     class="fa-solid fa-triangle-exclamation"></i>&nbsp;Giới tính không được để trống.</small>
                 </div>
@@ -159,7 +159,7 @@
           </div>
         </div>
         <div class="text-center mb-1">
-          <button type="submit" [disabled]="customerForm.invalid" class="btn btn-outline-light">Đăng ký</button>
+          <button type="submit" *ngIf="customerForm.valid" class="btn btn-outline-light">Đăng ký</button>
         </div>
         <br>
       </form>

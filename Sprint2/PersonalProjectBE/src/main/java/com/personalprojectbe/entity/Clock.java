@@ -4,8 +4,11 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @AllArgsConstructor
@@ -31,6 +34,14 @@ public class Clock {
     private String countryRegistration;//Quốc gia đăng ký thương hiệu
     @Column(columnDefinition = "TEXT")
     private String note;
+    @CreationTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "create_date")
+    private Date createDate;
+    @UpdateTimestamp
+    @Temporal(TemporalType.TIMESTAMP)
+    @Column(name = "edit_date")
+    private Date editDate;
     @Column(columnDefinition = "bit default false")
     private boolean flag = false;
     @ManyToOne

@@ -1,6 +1,5 @@
 <div class="row">
   <div class="container teal borderYtoX">
-    <a href="#"><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png" style="width: 70px;height: 35px" alt=""></a>
     <a routerLink="" class="text-decoration-none"><i class="bi bi-house-fill"></i> TRANG CHỦ</a>
     <a routerLink="/info" class="text-decoration-none"><i class="bi bi-info-square-fill"></i> GIỚI THIỆU</a>
     <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>
@@ -11,28 +10,29 @@
       ĐĂNG NHẬP</a>
     <a *ngIf="!checkLogin" routerLink="/register" class="text-decoration-none"><i
       class="fa-solid fa-registered"></i> ĐĂNG KÝ</a>
-    <a routerLink="" class="text-decoration-none">
+    <a class="text-decoration-none">
       <span class="dropdown">
         <span class="nut_dropdown" *ngIf="!checkLogin" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false"><i class="bi bi-person-bounding-box"></i>
+              aria-expanded="false"><i class="bi bi-person-bounding-box"></i> Bạn chưa đăng nhập!
         </span>
         <span class="nut_dropdown" *ngIf="checkLogin" data-bs-toggle="dropdown"
               aria-expanded="false" style="text-decoration: none;"
               aria-label="Angular Audio Player"
               tabindex="0" aria-disabled="false">
                    <img alt="angular" style="border-radius: 50%;width: 50px;height: 50px" class=" mb-2"
-                        [src]=avatar> Xin chào! {{name}}
+                        [src]=avatar> Xin chào! {{name}} .
 
         </span>
         <span class="noidung_dropdown">
-            <a routerLink="/personal-page" *ngIf="roles[0]=='ADMIN'||roles[0]=='USER'">Trang cá nhân</a>
-            <a class="text-danger" routerLink="/customer" *ngIf="roles[0]=='ADMIN'">Danh sách khách hàng</a>
-            <a class="text-danger" routerLink="/create" *ngIf="roles[0]=='ADMIN'">Thêm mới sản phẩm</a>
+            <a routerLink="/personal-page" *ngIf="roles[0]=='ADMIN'|| roles[0]=='USER'">Trang cá nhân</a>
+            <a routerLink="/customer" *ngIf="roles[0]=='ADMIN'">Danh sách khách hàng</a>
+            <a data-bs-toggle="modal" data-bs-target="#create" *ngIf="roles[0]=='ADMIN'">Thêm mới sản phẩm</a>
             <a *ngIf="checkLogin" data-bs-toggle="modal" data-bs-target="#logout" class="text-decoration-none"><i
               class="fa-solid fa-right-from-bracket"></i> ĐĂNG XUẤT</a></span>
         </span>
     </a>
-    <div><h1 style="color: white">clockshop.com.vn</h1></div>
+    <div class="mt-3"><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png" style="width: 120px" alt="">
+      <p style="color: white;font-size: 50px">clockshop.com.vn</p></div>
   </div>
   <!--Modal logout-->
   <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
@@ -53,3 +53,4 @@
     </div>
   </div>
 </div>
+<app-clock-create (emit)="creatClock($event)"></app-clock-create>

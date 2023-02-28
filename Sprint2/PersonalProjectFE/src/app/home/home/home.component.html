@@ -65,7 +65,7 @@
       <h1 class="text-primary mt-1">Sản phẩm</h1>
       <hr>
       <div class="row mt-1 mb-1">
-        <div class="col-3 mt-2 mb-1" *ngIf="clockList.content?.length == 0; else elseBlock"><h6>Không có sản phẩm cần
+        <div class="col-3 mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h6>Không có sản phẩm cần
           tìm.</h6></div>
         <ng-template #elseBlock>
           <div class="col-3 mt-2 mb-1" *ngFor="let clock of clockList?.content">
@@ -87,7 +87,7 @@
       </div>
 
       <div style="min-height: 60px">
-        <div *ngIf="clockList.content?.length != 0; else elseBlockPagination">
+        <div *ngIf="clockList?.content?.length != 0; else elseBlockPagination">
           <div *ngIf="clockList" class="d-flex justify-content-center" id="last-row">
             <div>
               <nav aria-label="Page navigation example">

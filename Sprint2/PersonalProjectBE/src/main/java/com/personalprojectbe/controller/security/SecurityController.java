@@ -32,7 +32,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @RestController
-@RequestMapping("api/public")
+@RequestMapping("api")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
 public class SecurityController {
     @Autowired
@@ -56,7 +56,7 @@ public class SecurityController {
     @Autowired
     private ICustomerService customerService;
 
-    @PostMapping(value = "register")
+    @PostMapping(value = "public/register")
     public ResponseEntity<Customer> register(@Valid @RequestBody CustomerDto customerDto,
                                              BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
@@ -79,7 +79,7 @@ public class SecurityController {
         message.setFrom("quocdat.tran453@gmail.com");
         message.setTo(customerDto.getEmail());
         String mailSubject = customerDto.getCustomerName() + "đã gửi một tin nhắn";
-        String mailContent = "Người gửi: " + "Camera Store" + "\n";
+        String mailContent = "Người gửi: " + "Shop Clock" + "\n";
         mailContent += "Sender E-mail: " + "letahaphuong@gmail.com" + "\n";
         mailContent += "Subject: " + "Thư phản hồi" + "\n";
         mailContent += "Content: " + "Chào mừng quí khách đã đến với Camera Store" + "\n";
@@ -99,7 +99,7 @@ public class SecurityController {
 
     }
 
-    @PostMapping("/signin")
+    @PostMapping("public/signin")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getEmail(), signInForm.getPassword())

@@ -30,4 +30,9 @@ public class ClockService implements IClockService {
     public Clock findById(Long id) {
         return clockRepository.findById(id).get();
     }
+
+    @Override
+    public void save(Clock clock) {
+        clockRepository.save(clock);
+    }
 }

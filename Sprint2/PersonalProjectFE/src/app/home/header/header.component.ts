@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
       this.checkLogin = true;
       this.name = this.tokenService.getName();
       this.roles = this.tokenService.getRole();
-      console.log(this.roles);
+      // console.log(this.roles);
       this.avatar = this.tokenService.getAvatar();
     }
   }
@@ -41,4 +41,8 @@ export class HeaderComponent implements OnInit {
       extendedTimeOut: 1500
     });
   };
+
+  creatClock($event: any) {
+
+  }
 }

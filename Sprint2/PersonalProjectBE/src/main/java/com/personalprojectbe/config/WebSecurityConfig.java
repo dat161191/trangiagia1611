@@ -46,10 +46,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.cors().and().csrf().disable()// huỷ CrossOrigin
                 .authorizeRequests()
-                .antMatchers("/**") // cho tất cả các role vào
-                .permitAll()
-                .anyRequest()
-                .authenticated()// khi có account đăng nhập
+                .antMatchers("/api/public/**").permitAll()//// cho tất cả các role vào
+                .antMatchers("/api/user/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .anyRequest().authenticated()// Tất cả các request khác đều cần phải xác thực mới được truy cập
                 .and()
                 .exceptionHandling()
                 .authenticationEntryPoint(jwtEntryPoint) // lớp gác cổng
