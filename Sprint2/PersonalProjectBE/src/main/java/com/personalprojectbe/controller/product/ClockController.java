@@ -52,15 +52,6 @@ public class ClockController {
         return new ResponseEntity<>(machineTypeList, HttpStatus.OK);
     }
 
-//    @GetMapping("public/clock/list")
-//    public ResponseEntity<Page<ClockHomeDto>> getList(@PageableDefault() Pageable pageable, @RequestParam(defaultValue = "") String search) {
-//        Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable, search);
-//        if (clockHomeDtos.isEmpty()) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
-//        return new ResponseEntity<>(clockHomeDtos, HttpStatus.OK);
-//    }
-
     @GetMapping("public/clock/list")
     public ResponseEntity<?> getList(@PageableDefault() Pageable pageable, @RequestParam(defaultValue = "") String search) {
         Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable, search);
@@ -74,6 +65,14 @@ public class ClockController {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(objects, HttpStatus.OK);
+    }
+    @GetMapping("public/clock/header")
+    public ResponseEntity<?> getListCarousel() {
+        List<ClockHomeDto> clockHeaders = clockService.getListCarousel();
+        if (clockHeaders.isEmpty()) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        return new ResponseEntity<>(clockHeaders, HttpStatus.OK);
     }
 
     /**
@@ -100,10 +99,10 @@ public class ClockController {
         return new ResponseEntity<>(clockHomeDtos, HttpStatus.OK);
     }
 
-    @PostMapping("admin/create-clock")
+    @PostMapping("/admin/create-clock")
     public ResponseEntity<Clock> createClock(@Valid @RequestBody ClockCreateDto clockCreateDto, BindingResult bindingResult) {
         if (bindingResult.hasErrors()) {
-            return new ResponseEntity<>( HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
         Clock clock = new Clock();
         BeanUtils.copyProperties(clockCreateDto, clock);

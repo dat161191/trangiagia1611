@@ -8,7 +8,6 @@ import {CartComponent} from './cart/cart.component';
 import {RegisterComponent} from './security/register/register.component';
 import {AuthGuard} from './canactive/auth.guard';
 import {AdminGuard} from './canactive/admin.guard';
-import {UserGuard} from './canactive/user.guard';
 import {StatisticalComponent} from './clock/statistical/statistical.component';
 import {PersonalPageComponent} from './personal-page/personal-page.component';
 import {ClockCreateComponent} from './clock/create-clock/clock-create.component';

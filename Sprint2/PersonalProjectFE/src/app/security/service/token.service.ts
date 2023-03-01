@@ -6,13 +6,14 @@ const ROLE_KEY = 'Role_key';
 const ID_KEY = 'Id_key';
 const EMAIL_KEY = 'Email_key';
 const AVATAR_KEY = 'Avatar_key';
+const ENCODER_KEY = 'Encoder_key';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
-  public roles = [];
+  private _roles = [];
 
   constructor() {
   }
@@ -58,6 +59,14 @@ export class TokenService {
     localStorage.setItem(NAME_KEY, name);
   }
 
+  public getEncoder(): string | null {
+    return localStorage.getItem(ENCODER_KEY);
+  }
+
+  public setEncoder(encoder: string): void {
+    localStorage.removeItem(ENCODER_KEY);
+    localStorage.setItem(ENCODER_KEY, encoder);
+  }
   public getName(): string | null {
     return localStorage.getItem(NAME_KEY);
   }
@@ -70,16 +79,17 @@ export class TokenService {
 
 
   public getRole(): string[] {
-    this.roles = [];
+    this._roles = [];
     if (this.getToken()) {
       // @ts-ignore
       JSON.parse(localStorage.getItem(ROLE_KEY)).forEach(role => {
         // @ts-ignore
-        this.roles.push(role.authority);
+        this._roles.push(role.authority);
       });
     }
-    return this.roles;
+    return this._roles;
   }
+
 
   public rememberMe(roles: string[], name: string, token: string): void {
     this.setRole(roles);

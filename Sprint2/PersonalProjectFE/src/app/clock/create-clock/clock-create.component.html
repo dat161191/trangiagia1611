@@ -1,18 +1,19 @@
 <div class="modal fade" id="create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog modal-xl">
-    <form [formGroup]="clockForm" (ngSubmit)="createClock()"
-          style="color: white;border-radius: 10px;  background: linear-gradient(to right, rgba(71,73,72,0.8), rgba(0,0,0,0.8))">
-      <div class="modal-content text-danger">
-        <div class="modal-header text-danger"><h1 style="text-align: center"><b>Thêm Sản phẩm</b></h1></div>
-        <div class="modal-body">
+    <form [formGroup]="clockForm" (ngSubmit)="createClock()">
+      <div class="modal-content">
+        <div class="modal-header" style="color:blue;"><h1 style="text-align: center"><b>Thêm Sản phẩm</b></h1></div>
+        <div class="modal-body"
+             style="background-color: #a4a4f3;color: blue ">
           <br>
           <div class="row mt-1">
             <div class="col-6">
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="name" class="form-label"><b>Tên sản phẩm:</b></label></div>
-                <div class="col-8">
-                  <input type="text" formControlName="name" class="form-control" placeholder=""
+                <div class="col-5"><label for="name" class="form-label"><b>Tên sản phẩm:</b></label></div>
+                <div class="col-7">
+                  <input type="text" formControlName="name" class="form-control"
+                         placeholder="ĐỒNG HỒ NAM AOUKE AK05-1"
                          id="name">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.name.invalid && (clockForm.controls.name.touched) else elseBlock">
@@ -32,9 +33,9 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="quanlity" class="form-label"><b>Số Lượng:</b></label></div>
-                <div class="col-8">
-                  <input type="number" min="1" formControlName="quanlity" class="form-control"
+                <div class="col-5"><label for="quanlity" class="form-label"><b>Số Lượng:</b></label></div>
+                <div class="col-7">
+                  <input type="number" min="1" formControlName="quanlity" class="form-control" placeholder="15"
                          id="quanlity">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.quanlity.invalid && (clockForm.controls.quanlity.touched)else elseBlock">
@@ -48,10 +49,10 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="price" class="form-label"><b>Giá:</b></label>
+                <div class="col-5"><label for="price" class="form-label"><b>Giá:</b></label>
                 </div>
-                <div class="col-8">
-                  <input type="number" formControlName="price" class="form-control" id="price">
+                <div class="col-7">
+                  <input type="number" formControlName="price" class="form-control" placeholder="6500000" id="price">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.price.invalid && (clockForm.controls.price.touched)else elseBlock">
                     <small *ngIf="clockForm.controls.price.hasError('required')"><i
@@ -64,9 +65,9 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="origin" class="form-label"><b>Nơi sản xuất:</b></label>
+                <div class="col-5"><label for="origin" class="form-label"><b>Nơi sản xuất:</b></label>
                 </div>
-                <div class="col-8">
+                <div class="col-7">
                   <input type="text" formControlName="origin" class="form-control" placeholder="Việt Nam"
                          id="origin">
                   <div class="text-danger"
@@ -87,25 +88,25 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="countryRegistration" class="form-label"><b>Quốc gia đăng ký thương
+                <div class="col-5"><label for="countryRegistration" class="form-label"><b>Nơi đăng ký thương
                   hiệu:</b></label></div>
-                <div class="col-8">
+                <div class="col-7">
                   <input type="text" formControlName="countryRegistration" class="form-control" placeholder=""
                          id="countryRegistration">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.countryRegistration.invalid && clockForm.controls.countryRegistration.touched else elseBlock">
                     <small *ngIf="clockForm.controls.countryRegistration.hasError('required')"><i
-                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Quốc gia đăng ký thương hiệu không được để
+                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Nơi đăng ký thương hiệu không được để
                       trống.</small>
                     <small *ngIf="clockForm.controls.countryRegistration.hasError('pattern')"><i
-                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Quốc gia đăng ký thương hiệu không đúng định
+                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Nơi đăng ký thương hiệu không đúng định
                       dạng.</small>
                     <small *ngIf="clockForm.controls.countryRegistration.hasError('minlength')"><i
-                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Quốc gia đăng ký thương hiệu không được nhỏ hơn
+                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Nơi đăng ký thương hiệu không được nhỏ hơn
                       3 ký
                       tự.</small>
                     <small *ngIf="clockForm.controls.countryRegistration.hasError('maxlength')"><i
-                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Quốc gia đăng ký thương hiệu không được lớn hơn
+                      class="fa-solid fa-triangle-exclamation"></i>&nbsp;Nơi đăng ký thương hiệu không được lớn hơn
                       100 ký
                       tự.</small>
                   </div>
@@ -113,10 +114,10 @@
                 </div>
               </div>
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="gender" class="form-label"><b>Giới tính:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="gender" class="form-label"><b>Giới tính:</b></label></div>
+                <div class="col-7">
                   <select formControlName="gender" class="form-select" id="gender">
-                    <option [selected]="true" [value]="null">--Xin chọn giới tính--</option>
+                    <option value="">----- Chọn giới tính -----</option>
                     <option [value]=true>Nam</option>
                     <option [value]=false>Nữ</option>
                   </select>
@@ -131,10 +132,10 @@
 
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="machineType" class="form-label"><b>Kiểu máy:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="machineType" class="form-label"><b>Kiểu máy:</b></label></div>
+                <div class="col-7">
                   <select formControlName="machineType" class="form-select" id="machineType">
-                    <option [selected]="true" [value]="null">--Xin chọn kiểu máy--</option>
+                    <option value="">------ Chọn kiểu máy-----</option>
                     <option *ngFor="let item of machineTypes" [ngValue]="item">{{item.name}}</option>
                   </select>
                   <div class="text-danger"
@@ -149,8 +150,8 @@
 
             <div class="col-6">
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="faceDiameter" class="form-label"><b>Đường kính mặt:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="faceDiameter" class="form-label"><b>Đường kính mặt:</b></label></div>
+                <div class="col-7">
                   <input type="text" formControlName="faceDiameter" class="form-control" placeholder="41 mm"
                          id="faceDiameter">
                   <div class="text-danger"
@@ -171,8 +172,8 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="thick" class="form-label"><b>Độ dày:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="thick" class="form-label"><b>Độ dày:</b></label></div>
+                <div class="col-7">
                   <input type="text" formControlName="thick" class="form-control" placeholder="11 mm" id="thick">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.thick.invalid && clockForm.controls.thick.touched else elseBlock">
@@ -190,9 +191,10 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="resistanceWater" class="form-label"><b>Độ chống nước:</b></label></div>
-                <div class="col-8">
-                  <input type="text" formControlName="resistanceWater" class="form-control" placeholder="11 mm" id="resistanceWater">
+                <div class="col-5"><label for="resistanceWater" class="form-label"><b>Độ chống nước:</b></label></div>
+                <div class="col-7">
+                  <input type="text" formControlName="resistanceWater" class="form-control" placeholder="11 mm"
+                         id="resistanceWater">
                   <div class="text-danger"
                        *ngIf="clockForm.controls.resistanceWater.invalid && clockForm.controls.resistanceWater.touched else elseBlock">
                     <small *ngIf="clockForm.controls.resistanceWater.hasError('required')"><i
@@ -209,8 +211,8 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="shellMaterial" class="form-label"><b>Chất liệu vỏ:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="shellMaterial" class="form-label"><b>Chất liệu vỏ:</b></label></div>
+                <div class="col-7">
                   <input type="text" formControlName="shellMaterial" class="form-control" placeholder="Thép không gỉ"
                          id="shellMaterial">
                   <div class="text-danger"
@@ -231,8 +233,8 @@
               </div>
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="ropeMaterial" class="form-label"><b>Chất liệu dây:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="ropeMaterial" class="form-label"><b>Chất liệu dây:</b></label></div>
+                <div class="col-7">
                   <input type="text" formControlName="ropeMaterial" class="form-control" placeholder="Thép không gỉ"
                          id="ropeMaterial">
                   <div class="text-danger"
@@ -252,8 +254,8 @@
                 </div>
               </div>
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="glassMaterial" class="form-label"><b>Chất liệu kính:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="glassMaterial" class="form-label"><b>Chất liệu kính:</b></label></div>
+                <div class="col-7">
                   <input type="text" formControlName="glassMaterial" class="form-control" placeholder=""
                          id="glassMaterial">
                   <div class="text-danger"
@@ -275,10 +277,10 @@
 
 
               <div class="row mb-1 form-group ms-1 me-1">
-                <div class="col-4"><label for="trademark" class="form-label"><b>Hãng sản xuất:</b></label></div>
-                <div class="col-8">
+                <div class="col-5"><label for="trademark" class="form-label"><b>Hãng sản xuất:</b></label></div>
+                <div class="col-7">
                   <select formControlName="trademark" class="form-select" id="trademark">
-                    <option [selected]="true" [value]="null">--Xin chọn hãng sản xuất--</option>
+                    <option value="">----- Chọn hãng sản xuất -----</option>
                     <option *ngFor="let item of trademarks" [ngValue]="item">{{item.name}}</option>
                   </select>
                   <div class="text-danger"
@@ -292,11 +294,11 @@
 
             </div>
           </div>
-          <div class="text-center mb-1">
-            <button type="submit" *ngIf="clockForm.valid" class="btn btn-primary me-2">Đăng ký</button>
-            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Đóng</button>
-          </div>
-          <br>
+
+        </div>
+        <div class="text-center mb-1 modal-footer">
+          <button type="submit" *ngIf="clockForm.valid" class="btn btn-primary me-2">Đăng ký</button>
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
         </div>
       </div>
     </form>

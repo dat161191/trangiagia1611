@@ -2,9 +2,8 @@ var imgFeature = document.querySelector('.img-feature');
 var listImg = document.querySelectorAll('.list-img img');
 var prevBtn = document.querySelector('.prev');
 var nextBtn = document.querySelector('.next');
-// console.log(listImg,imgFeature)
 var currentIndex = 0;
-
+console.log(listImg);
 function updateImgByIndex(index) {
   /* remove active class */
   document.querySelectorAll('.list-img div').forEach(item => {

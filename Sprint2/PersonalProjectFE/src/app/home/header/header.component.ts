@@ -2,6 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {TokenService} from '../../security/service/token.service';
+import {ClockHome} from '../../enity/clock/clock-home';
+import {ClockService} from '../../service/clock.service';
 
 @Component({
   selector: 'app-header',
@@ -15,9 +17,11 @@ export class HeaderComponent implements OnInit {
   avatar: string | null = '';
   idCustomer: any;
 
+
   constructor(private toast: ToastrService,
               private router: Router,
-              private tokenService: TokenService) {
+              private tokenService: TokenService,
+              private clockService: ClockService) {
     this.idCustomer = this.tokenService.getId();
   }
 

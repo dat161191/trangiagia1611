@@ -17,6 +17,7 @@ export class ClockService {
   urlTrademarks = 'http://localhost:8080/api/public/trademark';
   urlMachineTypes = 'http://localhost:8080/api/public/machine';
   urlClockCreate = 'http://localhost:8080/api/admin/create-clock';
+  urlClockHeader = 'http://localhost:8080/api/public/clock/header';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -27,6 +28,9 @@ export class ClockService {
     return this.httpClient.get(this.urlClockList + '?search=' + search, {params});
   }
 
+  getListHeader():Observable<any>{
+    return this.httpClient.get(this.urlClockHeader);
+  }
   findById(id: number): Observable<ClockDetail> {
     // console.log(this.urlClockList + '/' + id);
     return this.httpClient.get<ClockDetail>(this.urlClockDetail + '/' + id);

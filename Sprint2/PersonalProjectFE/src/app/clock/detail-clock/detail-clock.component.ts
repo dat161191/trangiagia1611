@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnChanges, OnDestroy, OnInit, SimpleChanges} from '@angular/core';
 import {ClockService} from '../../service/clock.service';
 import {ActivatedRoute, Route, Router} from '@angular/router';
 import {Title} from '@angular/platform-browser';
@@ -8,9 +8,8 @@ import {ImgDto} from '../../enity/clock/img-dto';
 import {ClockHome} from '../../enity/clock/clock-home';
 import {OwlOptions} from 'ngx-owl-carousel-o';
 
-
 @Component({
-  selector: 'app-detail-product',
+  selector: 'app-detail-clock',
   templateUrl: './detail-clock.component.html',
   styleUrls: ['./detail-clock.component.css']
 })
@@ -27,7 +26,7 @@ export class DetailClockComponent implements OnInit {
     touchDrag: true,
     pullDrag: false,
     dots: false,
-    margin: 5,
+    // margin: 5,
     autoplay: true,
     navSpeed: 200,
     navText: ['', ''],
@@ -39,7 +38,7 @@ export class DetailClockComponent implements OnInit {
         items: 2
       },
       740: {
-        items: 3
+        items: 4
       }
     },
     nav: true
@@ -47,13 +46,6 @@ export class DetailClockComponent implements OnInit {
 
   constructor(private clockService: ClockService, private activatedRoute: ActivatedRoute,
               private title: Title, private router: Router, private toastrService: ToastrService) {
-    const script = document.createElement('script');
-    script.src = 'assets/jshtml/detail-clock.js';
-    document.body.appendChild(script);
-  }
-
-
-  ngOnInit(): void {
     this.activatedRoute.paramMap.subscribe(data => {
       // @ts-ignore
       this.idClock = +data.get('id');
@@ -64,6 +56,17 @@ export class DetailClockComponent implements OnInit {
     });
   }
 
+
+  ngOnInit(): void {
+
+  }
+
+  private static resetJS() {
+    const script = document.createElement('script');
+    script.src = 'assets/jshtml/detail-clock.js';
+    document.body.appendChild(script);
+  }
+
   getClockDetai() {
     this.clockService.findById(this.idClock).subscribe(result => {
       this.clockDetail = result;
@@ -71,9 +74,11 @@ export class DetailClockComponent implements OnInit {
       // @ts-ignore
       this.idTrademark = this.clockDetail.trademark.id;
       // @ts-ignore
-      // console.log(this.idTrademark);
       this.getClockListByTrademark();
+      DetailClockComponent.resetJS();
     }, error => {
+      this.router.navigateByUrl('');
+      this.toastrService.error('Không có sản phẩm này trong danh sách.', 'Lỗi.', {timeOut: 2000});
     }, () => {
     });
   }
@@ -82,7 +87,6 @@ export class DetailClockComponent implements OnInit {
     this.clockService.findImgByIdClock(this.idClock).subscribe(result => {
       this.imgList = result;
       console.log(this.imgList);
-      console.log(this.imgList[0].url);
     }, error => {
     }, () => {
     });
@@ -92,9 +96,10 @@ export class DetailClockComponent implements OnInit {
     // @ts-ignore
     this.clockService.getListByTrademarkId(this.idTrademark).subscribe(data => {
       this.clockListByTrademark = data;
-      console.log(this.clockListByTrademark);
+      // console.log(this.clockListByTrademark);
     }, error => {
     }, () => {
     });
   }
+
 }

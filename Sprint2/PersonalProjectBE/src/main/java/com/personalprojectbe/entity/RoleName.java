@@ -1,6 +1,6 @@
 package com.personalprojectbe.entity;
 
 public enum RoleName {
-    ADMIN,
-    USER
+    ROLE_ADMIN,
+    ROLE_USER
 }

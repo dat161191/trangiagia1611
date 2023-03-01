@@ -73,7 +73,7 @@ public class SecurityController {
         }
         account.setEncryptPassword(passwordEncoder.encode(customerDto.getEncryptPassword()));
         Set<Role> roles = new HashSet<>();
-        Role customerRole = roleService.findByName(RoleName.USER).orElse(new Role());
+        Role customerRole = roleService.findByName(RoleName.ROLE_USER).orElse(new Role());
 
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("quocdat.tran453@gmail.com");
@@ -113,6 +113,8 @@ public class SecurityController {
                 accountPrinciple.getAuthorities(),
                 accountPrinciple.getId(),
                 accountPrinciple.getEmail(),
-                accountPrinciple.getAvatar()));
+                accountPrinciple.getAvatar(),
+                accountPrinciple.getEncoder()
+                ));
     }
 }

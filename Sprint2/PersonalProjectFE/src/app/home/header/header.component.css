@@ -6,11 +6,13 @@
   /*font-size: 16px;*/
   border: none;
 }
+
 /* Thiết lập vị trí cho thẻ div với class dropdown*/
 .dropdown {
   position: relative;
   display: inline-block;
 }
+
 /* Nội dung Dropdown */
 .noidung_dropdown {
   /*Ẩn nội dung các đường dẫn*/
@@ -21,6 +23,7 @@
   /*box-shadow: 0 0 10px 5px rgb(3, 22, 114);*/
   z-index: 1;
 }
+
 /* Thiết kế style cho các đường dẫn trong Dropdown */
 .noidung_dropdown a {
   color: white;
@@ -31,17 +34,22 @@
   display: block;
   background: black;
 }
+
 /* thay đổi màu background khi hover vào đường dẫn */
-.noidung_dropdown a:hover {background-color: #ddd; color: red}
+.noidung_dropdown a:hover {
+  background-color: #ddd;
+  color: red
+}
+
 /* hiển thị nội dung dropdown khi hover */
-.dropdown:hover .noidung_dropdown {display: block;}
-
-
+.dropdown:hover .noidung_dropdown {
+  display: block;
+}
 
 
 div.container {
   margin: 0 auto;
-  padding: 2em 1em;
+  padding: 1.5em 1em;
   text-align: center;
 }
 
@@ -83,4 +91,81 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after {
 
 .teal {
   background: black;
+}
+
+/* runcaroulsel*/
+.runcarousel {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  font-size: 16px;
+}
+
+.Marquee {
+  /*background: linear-gradient(-135deg, #008ed9, #8b00db);*/
+  width: 95%;
+  box-sizing: border-box;
+  color: black;
+  font-weight: 200;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+.Marquee-content {
+  display: flex;
+  animation: marquee 10s linear infinite running
+}
+
+.Marquee-content:hover {
+  animation-play-state: paused
+}
+
+.Marquee-tag {
+  width: 100px;
+  /*background: black;*/
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 1s ease
+}
+
+.Marquee-tag:hover {
+  background: rgba(236, 6, 6, 1);
+  transform: scale(1.1);
+  cursor: pointer
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(0)
+  }
+  100% {
+    transform: translate(-50%)
+  }
+}
+
+/*TẠO HIỆU ỨNG CHỮ*/
+
+@keyframes filling {
+  from {
+    background-position: center 25%;
+  }
+  to {
+    background-position: center 50%;
+  }
+}
+
+.container-text {
+  background-image: url(https://zenwatch.vn/thumb/crop/7730/1920/950/);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+  color: #FFFFFF;
+  /*padding-top: 20px;*/
+  font-size: 150px;
+  font-family: 'Bungee';
+  animation: filling 5s ease forwards infinite running
 }

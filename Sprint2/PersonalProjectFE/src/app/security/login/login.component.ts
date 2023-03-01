@@ -46,7 +46,9 @@ export class LoginComponent implements OnInit {
     const signInForm = this.signInForm?.value;
     console.log(this.signInForm);
     this.securityService.signIn(signInForm).subscribe(data => {
-        if (data.token !== undefined) {
+      console.log(data);
+
+      if (data.token !== undefined) {
           if (this.signInForm?.value.rememberMe) {
             this.tokenService.rememberMe(data.roles, data.name, data.token);
             location.href = 'http://localhost:4200/';
@@ -58,7 +60,8 @@ export class LoginComponent implements OnInit {
             this.tokenService.setEmail(data.email);
             this.tokenService.setId(data.id);
             this.tokenService.setAvatar(data.avatar);
-            location.href = 'http://localhost:4200/';
+            this.tokenService.setEncoder(data.encoder);
+            // location.href = 'http://localhost:4200/';
             this.toast.info('Đăng nhập thành công.', 'Thông báo', {
               timeOut: 3000
             });

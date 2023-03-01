@@ -4,6 +4,7 @@ import {ClockInfoJson} from '../../clock-info-json';
 import {ToastrService} from 'ngx-toastr';
 import {Trademark} from '../../enity/clock/trademark';
 import {MachineType} from '../../enity/clock/machine-type';
+import {ClockHome} from '../../enity/clock/clock-home';
 
 @Component({
   selector: 'app-home',
@@ -17,8 +18,12 @@ export class HomeComponent implements OnInit {
   machineTypes: MachineType[] = [];
   pageNumber = 0;
   search = '';
+  clockCarousel: ClockHome[] = [];
 
   constructor(private clockService: ClockService, private toastrService: ToastrService) {
+    this.clockService.getListHeader().subscribe(clocs => {
+      this.clockCarousel = clocs;
+    });
   }
 
   ngOnInit(): void {

@@ -13,11 +13,22 @@ public class JwtResponse {
     private String avatar;
     private String email;
     private Collection<? extends GrantedAuthority> roles;
+    //TEST=============================
+    private String encoder;
 
+    public String getEncoder() {
+        return encoder;
+    }
+
+    public void setEncoder(String encoder) {
+        this.encoder = encoder;
+    }
+
+    //========================================
     public JwtResponse() {
     }
 
-    public JwtResponse(Long id, String token, String type, String name, String avatar, String email, Collection<? extends GrantedAuthority> roles) {
+    public JwtResponse(Long id, String token, String type, String name, String avatar, String email, Collection<? extends GrantedAuthority> roles, String encoder) {
         this.id = id;
         this.token = token;
         this.type = type;
@@ -25,15 +36,17 @@ public class JwtResponse {
         this.avatar = avatar;
         this.email = email;
         this.roles = roles;
+        this.encoder = encoder;
     }
 
-    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities, Long id, String email, String avatar) {
+    public JwtResponse(String token, String name, Collection<? extends GrantedAuthority> authorities, Long id, String email, String avatar,String encoder) {
         this.token = token;
         this.name = name;
         this.roles = authorities;
         this.id = id;
         this.email = email;
         this.avatar = avatar;
+        this.encoder=encoder;
     }
 
     public Long getId() {

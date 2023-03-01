@@ -1,10 +1,12 @@
 <div class="row">
   <div class="container teal borderYtoX">
+    <a routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png" style="width: 100px" alt=""> </a>
     <a routerLink="" class="text-decoration-none"><i class="bi bi-house-fill"></i> TRANG CHỦ</a>
     <a routerLink="/info" class="text-decoration-none"><i class="bi bi-info-square-fill"></i> GIỚI THIỆU</a>
     <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>
     <!--    <a href="#"><i class="bi bi-newspaper"></i> TIN TỨC</a>-->
-    <a routerLink="/statistical" *ngIf="roles[0]=='ADMIN'"><i class="bi bi-graph-up-arrow"></i> THỐNG KÊ</a>
+    <a routerLink="/statistical" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-graph-up-arrow"></i> THỐNG KÊ</a>
+    <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-list-stars"></i> DANH SÁCH KHÁCH HÀNG</a>
     <a routerLink="/cart" class="text-decoration-none"><i class="bi bi-cart4"></i> GIỎ HÀNG</a>
     <a *ngIf="!checkLogin" routerLink="/login" class="text-decoration-none"><i class="fa-solid fa-right-to-bracket"></i>
       ĐĂNG NHẬP</a>
@@ -24,16 +26,17 @@
 
         </span>
         <span class="noidung_dropdown">
-            <a routerLink="/personal-page" *ngIf="roles[0]=='ADMIN'|| roles[0]=='USER'">Trang cá nhân</a>
-            <a routerLink="/customer" *ngIf="roles[0]=='ADMIN'">Danh sách khách hàng</a>
-            <a data-bs-toggle="modal" data-bs-target="#create" *ngIf="roles[0]=='ADMIN'">Thêm mới sản phẩm</a>
+            <a routerLink="/personal-page" *ngIf="roles[0]=='ROLE_ADMIN'|| roles[0]=='ROLE_ROLE_USER'">TRANG CÁ NHÂN</a>
+            <a data-bs-toggle="modal" data-bs-target="#create" *ngIf="roles[0]=='ROLE_ADMIN'">THÊM MỚI SẢN PHẨM</a>
             <a *ngIf="checkLogin" data-bs-toggle="modal" data-bs-target="#logout" class="text-decoration-none"><i
               class="fa-solid fa-right-from-bracket"></i> ĐĂNG XUẤT</a></span>
         </span>
     </a>
-    <div class="mt-3"><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png" style="width: 120px" alt="">
-      <p style="color: white;font-size: 50px">clockshop.com.vn</p></div>
+    <div class="container-text">
+      <b>CLOCKSHOP.COM</b>
+    </div>
   </div>
+
   <!--Modal logout-->
   <div class="modal fade" id="logout" tabindex="-1" aria-labelledby="exampleModalLabel1" aria-hidden="true">
     <div class="modal-dialog">

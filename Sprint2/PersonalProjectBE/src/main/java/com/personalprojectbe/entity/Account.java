@@ -1,8 +1,7 @@
 package com.personalprojectbe.entity;
 
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "Account", uniqueConstraints = {
@@ -31,11 +30,24 @@ public class Account {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(name = "account_role", joinColumns = @JoinColumn(name = "account_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> roles = new HashSet<>();
-
+    //test
+    private String encoder;
+    //
     public Account() {
     }
 
-    public Account(Long idAccount, String name, String email, String avatar, String encryptPassword, boolean flagDelete, Set<Role> roles) {
+//    public Account(Long idAccount, String name, String email, String avatar, String encryptPassword, boolean flagDelete, Set<Role> roles) {
+//        this.idAccount = idAccount;
+//        this.name = name;
+//        this.avatar = avatar;
+//        this.email = email;
+//        this.encryptPassword = encryptPassword;
+//        this.flagDelete = flagDelete;
+//        this.roles = roles;
+//    }
+
+
+    public Account(Long idAccount, String name, String avatar, String email, String encryptPassword, boolean flagDelete, Set<Role> roles, String encoder) {
         this.idAccount = idAccount;
         this.name = name;
         this.avatar = avatar;
@@ -43,8 +55,18 @@ public class Account {
         this.encryptPassword = encryptPassword;
         this.flagDelete = flagDelete;
         this.roles = roles;
+        this.encoder = encoder;
     }
 
+    //Test
+    public String getEncoder() {
+        return encoder;
+    }
+
+    public void setEncoder(String encoder) {
+        this.encoder = encoder;
+    }
+//Test
     public Account(String name, String email, String encode) {
         this.name = name;
         this.email = email;

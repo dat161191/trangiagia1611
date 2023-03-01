@@ -17,4 +17,6 @@ public interface IClockService {
     Clock findById(Long id);
 
     void save(Clock clock);
+
+    List<ClockHomeDto> getListCarousel();
 }

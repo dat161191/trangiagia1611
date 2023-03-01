@@ -35,4 +35,9 @@ public class ClockService implements IClockService {
     public void save(Clock clock) {
         clockRepository.save(clock);
     }
+
+    @Override
+    public List<ClockHomeDto> getListCarousel() {
+        return clockRepository.getListCarousel();
+    }
 }

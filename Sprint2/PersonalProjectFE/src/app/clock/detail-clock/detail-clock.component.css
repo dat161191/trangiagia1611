@@ -16,14 +16,14 @@ hr {
 
 .list-img {
   width: 100%;
-  height: 20%;
+  height: 23%;
   display: flex;
   justify-content: space-between;
 }
 
 .list-img div {
   flex: 1;
-  padding: 5px;
+  padding: 3px;
   cursor: pointer;
 }
 
@@ -87,7 +87,6 @@ img {
 
 .img-detail {
   border: 1px solid crimson;
-  min-height: 100%
 }
 
 h2 {

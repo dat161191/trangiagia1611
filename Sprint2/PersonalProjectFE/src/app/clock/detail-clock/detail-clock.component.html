@@ -11,8 +11,8 @@
             <div class="control next "><i class="bi bi-arrow-right-square-fill"></i></div>
           </div>
           <div class="list-img">
-            <div *ngFor="let img of imgList "><img
-              src="{{img.url}}" alt="">
+            <div *ngFor="let img of imgList ">
+              <img src="{{img.url}}" alt="">
             </div>
           </div>
         </div>
@@ -20,14 +20,18 @@
         <div class="col col-5">
           <div class="card-body">
             <ul>
-              <li class="card-title"><p class="card-title"><b>{{clockDetail?.name}}</b></p>
+              <li class="card-title"><p class="card-title"><b class="text-bg-warning"
+                                                              style="border-radius: 5px;padding: 2px">{{clockDetail?.name}}</b>
+              </p>
                 <hr>
               </li>
-              <li><h6 class="card-title"><span>Quốc gia đăng ký thương hiệu: </span><span
-                class="badge text-bg-warning">{{clockDetail?.countryRegistration}}</span></h6>
+              <li><h6 class="card-title"><span>Quốc gia đăng ký thương hiệu: </span>
+                <span class="text-bg-primary" style="border-radius: 5px;padding: 2px">
+                {{clockDetail?.countryRegistration}}</span></h6>
                 <hr>
               </li>
-              <li><h6 class="card-title">Bảo Hành : <span class="badge  text-bg-success">90 ngày</span>
+              <li><h6 class="card-title">Bảo Hành : <span class="text-bg-success"
+                                                          style="border-radius: 5px;padding: 2px">90 ngày</span>
               </h6>
                 <hr>
               </li>
@@ -35,11 +39,12 @@
                 <hr>
               </li>
               <li><h6 class="card-title"><span>Giá: </span> <span
-                class="badge  text-bg-danger">{{clockDetail?.price|number}} VNĐ </span>
+                class="text-bg-danger" style="border-radius: 5px;padding: 2px">{{clockDetail?.price|number}} VNĐ </span>
               </h6>
                 <hr>
               </li>
-              <li><h6 class="card-title"><span>Tình trạng: </span><span class="badge  text-bg-primary"
+              <li><h6 class="card-title"><span>Tình trạng: </span><span class="text-bg-primary"
+                                                                        style="border-radius: 5px;padding: 2px"
               >{{clockDetail.quanlity != undefined && clockDetail.quanlity > 0 ? 'Còn hàng' : 'Hết Hàng'}} </span>
               </h6>
                 <hr>
@@ -183,19 +188,19 @@
         <div class="col-1"></div>
         <div class="col-10">
           <!--          Owl-Carousel-->
-          <owl-carousel-o [options]="customOptions">
+          <owl-carousel-o [options]="customOptions" style="height: 200px">
             <ng-container *ngFor="let clock of clockListByTrademark">
               <ng-template carouselSlide>
                 <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">
-                  <div class="card img-detail mt-1 mb-1 ms-2 me-2" style="min-height: 100%">
+                  <div class="card img-detail mt-1 mb-1 ms-2 me-2">
                     <div>
                       <img src="{{clock.url}}" class="card-img-top" alt="...">
                     </div>
-                    <div class="card-body text-center content bg-dark text-light" style="border-radius: 2px">
-                      <p class="card-text">{{clock.clockName}}</p>
-                      <h4 class="card-title"><span class="badge text-bg-primary">{{clock.price |number: '1.0-0'}}
-                        VNĐ</span>
-                      </h4>
+                    <div class="card-body text-center content text-light" style="background-color: black">
+                      <p class="card-text text-danger" style="font-size: 13px">{{clock.clockName}}</p>
+                      <!--                      <p class="card-title"><span class="text-bg-primary"-->
+                      <!--                                                  style="border-radius: 5px;padding: 2px">{{clock.price |number: '1.0-0'}}-->
+                      <!--                        VNĐ</span></p>-->
                     </div>
                   </div>
                 </a>

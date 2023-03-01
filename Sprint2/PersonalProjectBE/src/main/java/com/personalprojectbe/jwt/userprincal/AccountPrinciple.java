@@ -2,9 +2,11 @@ package com.personalprojectbe.jwt.userprincal;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.personalprojectbe.entity.Account;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Collection;
 import java.util.List;
@@ -17,8 +19,20 @@ public class AccountPrinciple implements UserDetails {
     @JsonIgnore
     private String encryptPassword;
     private String avatar;
-
     private Collection<? extends GrantedAuthority> roles;
+
+    //Test===============================
+    private String encoder;
+
+    public String getEncoder() {
+        return encoder;
+    }
+
+    public void setEncoder(String encoder) {
+        this.encoder = encoder;
+    }
+//====================================
+
 
     /**
      * Về mặt chức năng, đoạn mã này chuyển đổi các đối tượng Role thành các đối tượng GrantedAuthority, và trả về danh sách các đối tượng GrantedAuthority này.
@@ -30,6 +44,7 @@ public class AccountPrinciple implements UserDetails {
      * Điều này cho phép Spring Security biết các quyền được cấp cho người dùng và xác định xem người dùng có được phép truy cập vào các tài nguyên nào trong ứng dụng.
      * Trong phương thức getAuthorities() này có thể trả về danh sách các đối tượng GrantedAuthority được lưu trữ trong một thuộc tính của đối tượng người dùng.
      * Nó cũng có thể được thay đổi để lấy danh sách GrantedAuthority từ bất kỳ nguồn dữ liệu nào, chẳng hạn như cơ sở dữ liệu hoặc tệp cấu hình.
+     *
      * @return
      */
     @Override
@@ -40,13 +55,14 @@ public class AccountPrinciple implements UserDetails {
     public AccountPrinciple() {
     }
 
-    public AccountPrinciple(Long id, String name, String email, String encryptPassword, String avatar, Collection<? extends GrantedAuthority> roles) {
+    public AccountPrinciple(Long id, String name, String email, String encryptPassword, String avatar, Collection<? extends GrantedAuthority> roles, String encoder) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.encryptPassword = encryptPassword;
         this.avatar = avatar;
         this.roles = roles;
+        this.encoder = encoder;
     }
 
     /*Build Account mới dưới DB*/
@@ -55,6 +71,7 @@ public class AccountPrinciple implements UserDetails {
      * Nhận đối tượng Account và trả về một đối tượng AccountPrinciple.
      * Đối tượng AccountPrinciple là một lớp được định nghĩa trong ứng dụng của bạn để đại diện cho người dùng đăng nhập vào hệ thống.
      * Thuộc tính authorities này được sử dụng để xác định quyền truy cập của người dùng đến các tài nguyên khác nhau trong ứng dụng.
+     *
      * @param account
      * @return Phương thức trả về một đối tượng AccountPrinciple được khởi tạo từ các thuộc tính của đối tượng Account và danh sách authorities được tạo ra từ danh sách các vai trò của người dùng trong đối tượng Account.
      */
@@ -81,7 +98,8 @@ public class AccountPrinciple implements UserDetails {
                 account.getEmail(),
                 account.getEncryptPassword(),
                 account.getAvatar(),
-                authorities
+                authorities,
+                account.getEncoder()
         );
     }
 
@@ -132,6 +150,7 @@ public class AccountPrinciple implements UserDetails {
     public void setRoles(Collection<? extends GrantedAuthority> roles) {
         this.roles = roles;
     }
+
 
     @Override
     public String getPassword() {

@@ -20,7 +20,7 @@ export class UserGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
 
     if (this.tokenService.getToken()) {
-      if (JSON.stringify(this.tokenService.getRole()) === JSON.stringify(['USER'])) {
+      if (JSON.stringify(this.tokenService.getRole()) === JSON.stringify(['ROLE_USER'])) {
         return true;
       } else {
         this.toast.warning('Bạn không đủ quyền để sử dụng chức năng này.','USER',{timeOut:2000});
