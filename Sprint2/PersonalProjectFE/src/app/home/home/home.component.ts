@@ -1,10 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ClockService} from '../../service/clock.service';
 import {ClockInfoJson} from '../../clock-info-json';
 import {ToastrService} from 'ngx-toastr';
 import {Trademark} from '../../enity/clock/trademark';
 import {MachineType} from '../../enity/clock/machine-type';
 import {ClockHome} from '../../enity/clock/clock-home';
+import {SearchService} from '../../service/search.service';
 
 @Component({
   selector: 'app-home',
@@ -20,7 +21,8 @@ export class HomeComponent implements OnInit {
   search = '';
   clockCarousel: ClockHome[] = [];
 
-  constructor(private clockService: ClockService, private toastrService: ToastrService) {
+  constructor(private clockService: ClockService, private toastrService: ToastrService,
+              private searchService: SearchService) {
     this.clockService.getListHeader().subscribe(clocs => {
       this.clockCarousel = clocs;
     });
@@ -28,16 +30,12 @@ export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllList(this.request);
+    this.getValueHeader();
   }
 
   getAllList(request: { page: number; size: number } | undefined): void {
     this.clockService.getListClock(request, this.search).subscribe(data => {
-      // console.log(data);
-      this.clockList = data[0];
-      this.trademarks = data[1];
-      this.machineTypes = data[2];
-      // console.log(this.trademarks, this.machineTypes);
-      // console.log(this.clockList);
+      this.clockList = data;
     }, error => {
       this.clockList.content = [];
       this.toastrService.error('Không tìm ra sản phẩm', 'Lỗi', {timeOut: 2000});
@@ -50,11 +48,10 @@ export class HomeComponent implements OnInit {
     this.ngOnInit();
   }
 
-  searchClock(search: string, flag: boolean) {
-    if (!flag) {
-      this.request.page = 0;
-    }
-    this.search = search;
-    this.ngOnInit();
+  private getValueHeader() {
+    this.searchService.getValue().subscribe(data => {
+      this.search = data;
+      this.getAllList(this.request);
+    });
   }
 }

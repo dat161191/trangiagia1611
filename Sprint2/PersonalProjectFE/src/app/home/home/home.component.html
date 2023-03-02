@@ -36,28 +36,6 @@
   </div>
 
 
-  <div class="row mt-2">
-    <div class="col-3"></div>
-    <div class="col-6 mt-2">
-      <form>
-        <div class="row">
-          <div class="col-9">
-            <label style="width: 100%">
-              <input #search type="text" class="form-control mb-1" placeholder="VD:LINING,KUMPOO" style="width: 100%">
-            </label>
-          </div>
-          <div class="col-3">
-            <button style="width: 100%" class="btn btn-primary ms-1 mb-1" (click)="searchClock(search.value,false)"
-                    type="button">
-              <i class="bi bi-search"></i> Tìm kiếm
-            </button>
-          </div>
-        </div>
-      </form>
-    </div>
-    <div class="col-3"></div>
-
-  </div>
   <div class="body row mt-3 ms-1">
     <div class="col-2">
     </div>
@@ -91,7 +69,8 @@
                 <div class="card-body text-center content" style="background-color: black">
                   <p class="card-text" style="color: white">{{clock.clockName}}</p>
                   <h4 class="card-title text-hiden">
-                    <span style="background-color:blue;border-radius: 5px;padding: 2px; color: white">{{clock.price |number: '1.0-0'}}
+                    <span
+                      style="background-color:blue;border-radius: 5px;padding: 2px; color: white">{{clock.price |number: '1.0-0'}}
                       VNĐ</span>
                   </h4>
                 </div>
@@ -164,8 +143,6 @@
         </div>
         <ng-template #elseBlockPagination></ng-template>
       </div>
-
-
     </div>
   </div>
 </div>

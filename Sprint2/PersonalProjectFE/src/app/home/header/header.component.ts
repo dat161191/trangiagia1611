@@ -1,9 +1,11 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
 import {Router} from '@angular/router';
 import {TokenService} from '../../security/service/token.service';
 import {ClockHome} from '../../enity/clock/clock-home';
 import {ClockService} from '../../service/clock.service';
+import {SearchService} from '../../service/search.service';
+import {Trademark} from '../../enity/clock/trademark';
 
 @Component({
   selector: 'app-header',
@@ -16,13 +18,18 @@ export class HeaderComponent implements OnInit {
   roles: string[] = [];
   avatar: string | null = '';
   idCustomer: any;
-
+  trademarks: Trademark[] = [];
 
   constructor(private toast: ToastrService,
               private router: Router,
               private tokenService: TokenService,
-              private clockService: ClockService) {
+              private clockService: ClockService,
+              private searchService: SearchService,) {
     this.idCustomer = this.tokenService.getId();
+    this.clockService.getTrademarks().subscribe(data => {
+      this.trademarks = data;
+      console.log(this.trademarks);
+    });
   }
 
   ngOnInit(): void {
@@ -48,5 +55,10 @@ export class HeaderComponent implements OnInit {
 
   creatClock($event: any) {
 
+  }
+
+  searchNameClock(search: any) {
+    this.searchService.setValue(search);
+    this.router.navigateByUrl('');
   }
 }

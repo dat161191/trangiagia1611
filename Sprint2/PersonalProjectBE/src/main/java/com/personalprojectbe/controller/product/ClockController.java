@@ -55,16 +55,10 @@ public class ClockController {
     @GetMapping("public/clock/list")
     public ResponseEntity<?> getList(@PageableDefault() Pageable pageable, @RequestParam(defaultValue = "") String search) {
         Page<ClockHomeDto> clockHomeDtos = clockService.getListClock(pageable, search);
-        List<Trademark> trademarks = trademarkService.findAll();
-        List<MachineType> machineTypes = machineTypeService.findAll();
-        List<Object> objects = new ArrayList<>();
-        objects.add(clockHomeDtos);
-        objects.add(trademarks);
-        objects.add(machineTypes);
         if (clockHomeDtos.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
-        return new ResponseEntity<>(objects, HttpStatus.OK);
+        return new ResponseEntity<>(clockHomeDtos, HttpStatus.OK);
     }
     @GetMapping("public/clock/header")
     public ResponseEntity<?> getListCarousel() {
@@ -75,12 +69,6 @@ public class ClockController {
         return new ResponseEntity<>(clockHeaders, HttpStatus.OK);
     }
 
-    /**
-     * Method findById(@PathVariable("id") Long id) use to find Clock in DB
-     *
-     * @param id
-     * @return
-     */
     @GetMapping("public/clock/detail/{id}")
     public ResponseEntity<Clock> findById(@PathVariable("id") Long id) {
         Clock clock = clockService.findById(id);

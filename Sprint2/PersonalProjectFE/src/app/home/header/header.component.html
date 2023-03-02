@@ -1,12 +1,27 @@
 <div class="row">
   <div class="container teal borderYtoX">
-    <a routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png" style="width: 100px" alt=""> </a>
-    <a routerLink="" class="text-decoration-none"><i class="bi bi-house-fill"></i> TRANG CHỦ</a>
+    <a (click)="searchNameClock('')" routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png"
+                                                        style="width: 100px" alt=""> </a>
+    <a (click)="searchNameClock('')" routerLink="" class="text-decoration-none"><i class="bi bi-house-fill"></i> TRANG
+      CHỦ</a>
     <a routerLink="/info" class="text-decoration-none"><i class="bi bi-info-square-fill"></i> GIỚI THIỆU</a>
     <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>
     <!--    <a href="#"><i class="bi bi-newspaper"></i> TIN TỨC</a>-->
     <a routerLink="/statistical" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-graph-up-arrow"></i> THỐNG KÊ</a>
     <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-list-stars"></i> DANH SÁCH KHÁCH HÀNG</a>
+
+    <a class="text-decoration-none">
+      <span class="dropdown">
+        <span class="nut_dropdown" type="button" data-bs-toggle="dropdown"
+              aria-expanded="false"> SẢN PHẨM
+        </span>
+        <span class="noidung_dropdown">
+          <a *ngFor="let item of trademarks" (click)="searchNameClock(item.name)">{{item.name}}</a>
+        </span>
+      </span>
+
+    </a>
+
     <a routerLink="/cart" class="text-decoration-none"><i class="bi bi-cart4"></i> GIỎ HÀNG</a>
     <a *ngIf="!checkLogin" routerLink="/login" class="text-decoration-none"><i class="fa-solid fa-right-to-bracket"></i>
       ĐĂNG NHẬP</a>
@@ -32,6 +47,29 @@
               class="fa-solid fa-right-from-bracket"></i> ĐĂNG XUẤT</a></span>
         </span>
     </a>
+
+    <div class="row mt-2">
+      <div class="col-3"></div>
+      <div class="col-6 mt-2">
+        <form>
+          <div class="row">
+            <div class="col-9">
+              <label style="width: 100%">
+                <input #search type="text" class="form-control mb-1" placeholder="VD:LINING,KUMPOO" style="width: 100%">
+              </label>
+            </div>
+            <div class="col-3">
+              <button style="width: 100%" class="btn btn-primary ms-1 mb-1" (click)="searchNameClock(search.value)"
+                      type="button">
+                <i class="bi bi-search"></i> Tìm kiếm
+              </button>
+            </div>
+          </div>
+        </form>
+      </div>
+      <div class="col-3"></div>
+    </div>
+
     <div class="container-text">
       <b>CLOCKSHOP.COM</b>
     </div>
