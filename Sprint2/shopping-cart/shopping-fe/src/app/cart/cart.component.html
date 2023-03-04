@@ -1,0 +1,85 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col col-9 mt-2 mb-2">
+      <div class="d-flex justify-content-center">
+        <table class="table table-light table-hover" style="width: 98%">
+          <thead>
+          <tr>
+            <th><input type="checkbox" class="form-check-input"></th>
+            <th>Tổng sản phẩm: <span> 2</span></th>
+            <th>Số lượng</th>
+            <th>Giá</th>
+            <th>Thành tiền</th>
+            <th>Xóa sản phẩm</th>
+          </tr>
+          </thead>
+
+          <tbody>
+          <tr *ngFor="let ele of cartListByIdAccount" style="min-height: 10%">
+            <th>
+              <input type="checkbox" class="form-check-input">
+            </th>
+            <td>
+              <div class="row">
+                <div class="col-2"><img
+                  src="{{ele.url}}" class="card-img-top" alt="..."></div>
+                <div class="col-10">
+                  <p class="card-text">{{ele.clockName}}</p>
+                </div>
+              </div>
+            </td>
+            <td>
+              <div class="d-flex align-items-center">
+                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1"
+                        (click)="subQuanlity(ele.cartId)">-
+                </button>
+                <input #minmax class="form-control-sm mx-1" *ngIf="ele.cartId!=undefined"
+                       style="width: 20%;text-align: center; border: solid 1px #3167eb"
+                       type="text" (change)="change(+minmax.value,ele.cartId)" value="{{ele.quanlityCart}}">
+                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addQuanlity(ele.cartId)">+
+                </button>
+              </div>
+            </td>
+            <td>
+              <div>{{ele.clockPrince|number}} VNĐ</div>
+            </td>
+
+            <td>
+              <!--              <div *ngIf="ele.quanlityCart!=undefined && ele.clockPrince !=undefined">{{ele?.quanlityCart * ele?.clockPrince|number}} VNĐ</div>-->
+              <div
+                *ngIf="ele.quanlityCart!=undefined && ele.clockPrince !=undefined">{{ele.quanlityCart * ele.clockPrince|number}}
+                VNĐ
+              </div>
+            </td>
+            <td class="text-center"><a class="btn btn-danger btn-sm me-2"><i class="bi bi-trash3-fill"></i></a>
+            </td>
+          </tr>
+
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+    <div class="col-3 mt-2">
+      <div class="row address">
+        <h5 class="text-center"><b>Giao tới</b></h5>
+        <p style="font-size: 20px">Khách Hàng: <span class="badge text-bg-warning">Nguyễn Văn An</span></p>
+        <p style="font-size: 20px">Số điện thoại: <span class="badge text-bg-primary">0909.999.999</span></p>
+        <p><i class="bi bi-geo-alt-fill"></i>: 68 Lê Duẫn, P.Bắc Mỹ An, Q.Hải Châu, TP. Đà Nẵng </p>
+      </div>
+
+      <div class="row pay mt-2">
+        <h5 class="mt-2">Tạm tính: <span class="badge text-bg-warning">15,750,000 VND</span></h5>
+        <h5>Giảm giá: <span class="badge rounded-pill text-bg-secondary">0 VND</span></h5>
+        <hr>
+        <h4>Tổng tiền: <span class="badge rounded-pill text-bg-success"> 15,750,000 VND</span></h4>
+      </div>
+      <div class="row btnPay mt-2 mb-1">
+        <button type="submit" class="btn btn-primary">
+          <i class="bi bi-credit-card"></i> Thanh toán
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

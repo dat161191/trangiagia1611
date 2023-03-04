@@ -48,6 +48,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/public/**").permitAll()//// cho tất cả các role vào
                 .antMatchers("/api/admin/**").hasRole("ADMIN")
+                .antMatchers("/api/user/**").hasAnyRole("USER","ADMIN")// 4/3/2023
                 .anyRequest().authenticated()// Tất cả các request khác đều cần phải xác thực mới được truy cập
                 .and()
                 .exceptionHandling()

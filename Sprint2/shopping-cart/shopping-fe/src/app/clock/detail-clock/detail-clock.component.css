@@ -1,0 +1,112 @@
+hr {
+  color: red;
+}
+
+.main {
+  height: 72%;
+  margin-bottom: 5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.main img {
+  border: 2px solid blue;
+  height: 300px;
+}
+
+.list-img {
+  width: 100%;
+  height: 23%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.list-img div {
+  flex: 1;
+  padding: 3px;
+  cursor: pointer;
+}
+
+img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 5px;
+}
+
+.control {
+  position: absolute;
+  top: 50%;
+  font-size: 20px;
+  color: rgb(12, 2, 2);
+  /*Di chuyển lên phía trên 1 đoạn bằng chính nó: transform*/
+  transform: translateY(-50%);
+  cursor: pointer;
+
+}
+
+.active {
+  border: 2px solid red;
+  border-radius: 5px;
+}
+
+.prev {
+  left: 5px;
+  color: red;
+  font-size: 30px;
+}
+
+.next {
+  right: 5px;
+  color: red;
+  font-size: 30px;
+}
+
+.img-feature {
+  transition: 1s;
+}
+
+@keyframes slideleft {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+@keyframes slideright {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
+
+.img-detail {
+  border: 1px solid crimson;
+}
+
+h2 {
+  color: orangered;
+}
+
+
+.img-detail:hover {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+  /*transform: scale(1.1) rotate(-2deg)*/
+}
+
+.img-body {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+}
+
+.container-fluid {
+  background: linear-gradient(to right, #d9f5db, #739a96)
+}
+
+.tskt:hover {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+}

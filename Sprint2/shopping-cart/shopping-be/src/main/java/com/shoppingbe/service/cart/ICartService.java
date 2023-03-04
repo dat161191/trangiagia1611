@@ -1,0 +1,32 @@
+package com.shoppingbe.service.cart;
+
+import com.shoppingbe.dto.cart.CartListByIdAccount;
+import com.shoppingbe.entity.Cart;
+import org.springframework.data.repository.query.Param;
+
+import java.util.List;
+
+public interface ICartService {
+    /**
+     * 04/03/2023
+     * @param idAccount
+     * @return
+     */
+    List<CartListByIdAccount> getListByAccountId(@Param("idAccount") Long idAccount);
+
+    /**
+     * 04/03/2023
+     * @param cart
+     */
+    void save(Cart cart);
+
+    Cart findById(Long id);
+
+    /**
+     * 04/03/2023
+     * @param idCustomer
+     * @param idClock
+     * @return
+     */
+    Cart findByCustomer_IdAndClock_Id(Long idCustomer, Long idClock);
+}

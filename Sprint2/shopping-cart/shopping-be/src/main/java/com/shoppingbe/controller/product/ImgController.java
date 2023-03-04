@@ -1,7 +1,7 @@
 package com.shoppingbe.controller.product;
 
 import com.shoppingbe.dto.clock.ImgDto;
-import com.shoppingbe.service.IImgService;
+import com.shoppingbe.service.clock.IImgService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,5 @@
 package com.shoppingbe.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,7 +32,8 @@ public class Cart {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
     private Date modifyDate;
-
+    private boolean flag = false;
+    private boolean status = false;
     @ManyToOne
     private Clock clock;
 
