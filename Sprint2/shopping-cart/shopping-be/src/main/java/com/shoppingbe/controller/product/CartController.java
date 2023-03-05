@@ -2,6 +2,7 @@ package com.shoppingbe.controller.product;
 
 import com.shoppingbe.dto.cart.CartCreate;
 import com.shoppingbe.dto.cart.CartListByIdAccount;
+import com.shoppingbe.dto.cart.RequestCart;
 import com.shoppingbe.entity.Cart;
 import com.shoppingbe.entity.Clock;
 import com.shoppingbe.entity.Customer;
@@ -15,7 +16,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @CrossOrigin("*")
@@ -29,6 +33,8 @@ public class CartController {
     private ICustomerService customerService;
     @Autowired
     private IAccountService accountService;
+    private Object idCart;
+    private Object object;
 
     /**
      * 04/03/2023 by BossTran
@@ -81,27 +87,34 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+
     /**
-     * 05/03/2023
+     * 06/03/2023 update
      * @param idAcount
      * @return
      */
-//    @PatchMapping("/user/cart/pay-cart/{idAcount}")
-//    public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
-//        Customer customer = customerService.findByAccount_IdAccount(idAcount);
-//        if (customer != null) {
-//            cartService.payCart(customer.getId());
-//            String mess = "";
-//            return new ResponseEntity<>(mess, HttpStatus.OK);
-//        }
-//        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//    }
     @PatchMapping("/user/cart/pay-cart/{idAcount}")
     public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
         Customer customer = customerService.findByAccount_IdAccount(idAcount);
         if (customer != null) {
             cartService.payCart(customer.getId());
             List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAcount);
+            return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    /**
+     * 06/03/2023 update
+     * @param requestCart
+     * @return
+     */
+    @PatchMapping("/user/cart/change-quanlity")
+    public ResponseEntity<?> changeQuanlityCart(@RequestBody RequestCart requestCart) {
+        Cart cart = cartService.findById(requestCart.getIdCart());
+        if (cart != null) {
+            cartService.changeQuanlityCart(requestCart.getIdCart(), requestCart.getQuanlityUpdate());
+            List<CartListByIdAccount> cartListByIdAccounts=cartService.getListByAccountId(requestCart.getIdAccount());
             return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

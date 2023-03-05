@@ -48,4 +48,14 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Transactional
     @Modifying
     void payCart(@Param("idCustomer") Long idCustomer);
+
+    /**
+     * 06/03/2023
+     * @param idCart
+     * @param quanlityUpdate
+     */
+    @Query(value = "update cart set quantity_purchased=:quanlityUpdate where id=:idCart and flag=false",nativeQuery = true)
+    @Transactional
+    @Modifying
+    void changeQuanlityCart(@Param("idCart") Long idCart,@Param("quanlityUpdate") Integer quanlityUpdate);
 }

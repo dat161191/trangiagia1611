@@ -37,4 +37,12 @@ public interface ICartService {
      * @param idCustomer
      */
     void payCart(@Param("idCustomer") Long idCustomer);
+
+    /**
+     * 06/03/2023
+     * @param idCart
+     * @param quanlityUpdate
+     */
+    void changeQuanlityCart(@Param("idCart") Long idCart,@Param("quanlityUpdate") Integer quanlityUpdate);
+
 }

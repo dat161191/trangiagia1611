@@ -43,4 +43,9 @@ public class CartService implements ICartService {
     public void payCart(Long idCustomer) {
         cartRepository.payCart(idCustomer);
     }
+
+    @Override
+    public void changeQuanlityCart(Long idCart, Integer quanlityUpdate) {
+        cartRepository.changeQuanlityCart(idCart, quanlityUpdate);
+    }
 }
