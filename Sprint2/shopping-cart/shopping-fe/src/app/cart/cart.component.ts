@@ -15,6 +15,13 @@ import {CartListByIdAccount} from '../enity/cart/cart-list-by-id-account';
 export class CartComponent implements OnInit {
   idAccount: number = -1;
   cartListByIdAccount: CartListByIdAccount[] = [];
+  temp: CartListByIdAccount = {};
+  totalProduct = 0;
+  totalPay = 0;
+  sale = 0;
+  idCustomer = -1;
+  messPay = '';
+  request = {idCard: -1,quanlityCart: -1};
 
   constructor(private toastrService: ToastrService,
               private router: Router,
@@ -36,6 +43,8 @@ export class CartComponent implements OnInit {
   getListCart() {
     this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
       this.cartListByIdAccount = data;
+      this.getTotalProduct();
+      this.getTotalPay();
     });
   }
 
@@ -86,8 +95,39 @@ export class CartComponent implements OnInit {
           this.toastrService.error('Bạn cố tình nhập sai', 'Cảnh cáo', {timeOut: 2000});
         }
       }
-
+      this.request={idCard: cartId,quanlityCart: value}
+      this.cartService.changeQuanlity(this.request)
     }
 
+  }
+
+  delete() {
+    this.cartService.deleteById(this.temp).subscribe(data => {
+      this.ngOnInit();
+      this.toastrService.success('Bạn đã xoá: ' + this.temp.clockName, 'Thông Báo.', {timeOut: 2000});
+    });
+  }
+
+  private getTotalProduct() {
+    this.totalProduct = 0;
+    for (let i = 0; i < this.cartListByIdAccount.length; i++) {
+      this.totalProduct += 1;
+    }
+  }
+
+  private getTotalPay() {
+    this.totalPay = 0;
+    for (let i = 0; i < this.cartListByIdAccount.length; i++) {
+      // @ts-ignore
+      this.totalPay += this.cartListByIdAccount[i].clockPrince * this.cartListByIdAccount[i].quanlityCart;
+    }
+  }
+
+  payProduct() {
+    this.idAccount = Number(this.tokenService.getId());
+    this.cartService.payCart(this.idAccount).subscribe(data => {
+      this.cartListByIdAccount = data;
+      this.toastrService.success('Bạn đã thanh toán thành công.Xin cảm ơn!', 'Thông báo', {timeOut: 2000});
+    });
   }
 }

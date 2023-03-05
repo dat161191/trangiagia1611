@@ -4,11 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.DynamicUpdate;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 
 import javax.persistence.*;
+import javax.persistence.Entity;
 import java.util.Date;
 import java.util.Set;
 
@@ -18,6 +17,8 @@ import java.util.Set;
 @Setter
 @AllArgsConstructor
 @DynamicUpdate
+@SQLDelete(sql = "UPDATE cart SET flag = true WHERE id=?")
+@Where(clause = "flag=false")
 public class Cart {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

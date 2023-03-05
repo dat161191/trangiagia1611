@@ -33,4 +33,14 @@ public class CartService implements ICartService {
     public Cart findByCustomer_IdAndClock_Id(Long idCustomer, Long idClock) {
         return cartRepository.findByCustomer_IdAndClock_Id(idCustomer, idClock);
     }
+
+    @Override
+    public void removeCart(Long id) {
+        cartRepository.deleteById(id);
+    }
+
+    @Override
+    public void payCart(Long idCustomer) {
+        cartRepository.payCart(idCustomer);
+    }
 }

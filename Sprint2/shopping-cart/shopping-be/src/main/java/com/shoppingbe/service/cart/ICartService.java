@@ -29,4 +29,12 @@ public interface ICartService {
      * @return
      */
     Cart findByCustomer_IdAndClock_Id(Long idCustomer, Long idClock);
+
+    void removeCart(Long id);
+
+    /**
+     * 05/03/2023
+     * @param idCustomer
+     */
+    void payCart(@Param("idCustomer") Long idCustomer);
 }

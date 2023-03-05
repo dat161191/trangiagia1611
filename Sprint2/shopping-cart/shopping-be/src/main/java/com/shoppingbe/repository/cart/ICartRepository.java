@@ -3,9 +3,11 @@ package com.shoppingbe.repository.cart;
 import com.shoppingbe.dto.cart.CartListByIdAccount;
 import com.shoppingbe.entity.Cart;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ICartRepository extends JpaRepository<Cart, Long> {
@@ -31,10 +33,19 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
 
     /**
      * 04/03/2023
+     *
      * @param idCustomer
      * @param idClock
      * @return
      */
     Cart findByCustomer_IdAndClock_Id(Long idCustomer, Long idClock);
 
+    /**
+     * 05/03/2023
+     * @param idCustomer
+     */
+    @Query(value = "update cart set status=true where customer_id=:idCustomer and flag=false", nativeQuery = true)
+    @Transactional
+    @Modifying
+    void payCart(@Param("idCustomer") Long idCustomer);
 }

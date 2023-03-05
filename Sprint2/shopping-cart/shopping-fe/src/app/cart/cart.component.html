@@ -1,24 +1,26 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col col-9 mt-2 mb-2">
-      <div class="d-flex justify-content-center">
+      <div class="d-flex justify-content-center" *ngIf="cartListByIdAccount.length!=0,else block">
         <table class="table table-light table-hover" style="width: 98%">
           <thead>
           <tr>
-            <th><input type="checkbox" class="form-check-input"></th>
-            <th>Tổng sản phẩm: <span> 2</span></th>
-            <th>Số lượng</th>
-            <th>Giá</th>
-            <th>Thành tiền</th>
-            <th>Xóa sản phẩm</th>
+            <!--            <th><input type="checkbox" class="form-check-input"></th>-->
+            <th style="width: 2%">STT</th>
+            <th style="width: 50%">Tổng sản phẩm: <span> {{totalProduct}}</span></th>
+            <th style="width: 17%">Số lượng</th>
+            <th style="width: 15%">Giá</th>
+            <th style="width: 15%">Thành tiền</th>
+            <th style="width: 3%">Xóa</th>
           </tr>
           </thead>
 
           <tbody>
-          <tr *ngFor="let ele of cartListByIdAccount" style="min-height: 10%">
-            <th>
-              <input type="checkbox" class="form-check-input">
-            </th>
+          <tr *ngFor="let ele of cartListByIdAccount,index as i" style="min-height: 10%">
+            <!--            <th>-->
+            <!--              <input type="checkbox" class="form-check-input">-->
+            <!--            </th>-->
+            <th>{{i + 1}}</th>
             <td>
               <div class="row">
                 <div class="col-2"><img
@@ -28,6 +30,7 @@
                 </div>
               </div>
             </td>
+            <!--Chỗ đây nè-->
             <td>
               <div class="d-flex align-items-center">
                 <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1"
@@ -36,10 +39,12 @@
                 <input #minmax class="form-control-sm mx-1" *ngIf="ele.cartId!=undefined"
                        style="width: 20%;text-align: center; border: solid 1px #3167eb"
                        type="text" (change)="change(+minmax.value,ele.cartId)" value="{{ele.quanlityCart}}">
-                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addQuanlity(ele.cartId)">+
+                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 25px"
+                        (click)="addQuanlity(ele.cartId)">+
                 </button>
               </div>
             </td>
+
             <td>
               <div>{{ele.clockPrince|number}} VNĐ</div>
             </td>
@@ -51,33 +56,64 @@
                 VNĐ
               </div>
             </td>
-            <td class="text-center"><a class="btn btn-danger btn-sm me-2"><i class="bi bi-trash3-fill"></i></a>
+            <td class="text-center">
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                      (click)="(temp=ele)"><i class="bi bi-trash3-fill"></i>
+              </button>
             </td>
           </tr>
 
           </tbody>
         </table>
-
       </div>
+      <ng-template #block>
+        <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống!</h2></div>
+      </ng-template>
     </div>
 
     <div class="col-3 mt-2">
       <div class="row address">
         <h5 class="text-center"><b>Giao tới</b></h5>
-        <p style="font-size: 20px">Khách Hàng: <span class="badge text-bg-warning">Nguyễn Văn An</span></p>
-        <p style="font-size: 20px">Số điện thoại: <span class="badge text-bg-primary">0909.999.999</span></p>
+        <p>Khách Hàng: <span class="text-bg-warning" style="border-radius: 7px;padding: 3px">Nguyễn Văn An</span>
+        </p>
+        <p>Số điện thoại: <span class="text-bg-primary" style="border-radius: 7px;padding: 3px">0909.999.999</span></p>
         <p><i class="bi bi-geo-alt-fill"></i>: 68 Lê Duẫn, P.Bắc Mỹ An, Q.Hải Châu, TP. Đà Nẵng </p>
       </div>
 
       <div class="row pay mt-2">
-        <h5 class="mt-2">Tạm tính: <span class="badge text-bg-warning">15,750,000 VND</span></h5>
-        <h5>Giảm giá: <span class="badge rounded-pill text-bg-secondary">0 VND</span></h5>
+        <p class="mt-2">Tạm tính: <span class="text-bg-warning"
+                                        style="border-radius: 7px;padding: 3px">{{totalPay | number}} VNĐ</span></p>
+        <p>Giảm giá: <span class="text-bg-secondary" style="border-radius: 7px;padding: 3px">{{totalPay * sale}}
+          VND</span></p>
         <hr>
-        <h4>Tổng tiền: <span class="badge rounded-pill text-bg-success"> 15,750,000 VND</span></h4>
+        <h6>Tổng tiền: <span class="text-bg-success"
+                             style="border-radius: 7px;padding: 3px"> {{(totalPay - totalPay * sale)|number}} VNĐ</span>
+        </h6>
       </div>
       <div class="row btnPay mt-2 mb-1">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" (click)="payProduct()">
           <i class="bi bi-credit-card"></i> Thanh toán
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content" style="background: linear-gradient(to right, #d9f5db, #07af9e);color: blue">
+      <div class="modal-header"><h4 class="text-center">XOÁ SẢN PHẨM</h4></div>
+
+      <div class="modal-body">
+        <h5 class="text-center">Bạn có chắc muốn xoá????</h5>
+        <div class="row  text-center">
+          <div class="col-3"><h6>Sản Phẩm:</h6></div>
+          <div class="col-9"><h6>{{temp.clockName}}</h6></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Đóng</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="delete()">Xóa
         </button>
       </div>
     </div>

@@ -70,4 +70,40 @@ public class CartController {
         }
         return ResponseEntity.ok(cartListByIdAccounts);
     }
+
+    @DeleteMapping("/user/cart/delete/{id}")
+    public ResponseEntity<Cart> deletePackage(@PathVariable("id") Long id) {
+        Cart cart = cartService.findById(id);
+        if (cart == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
+        cartService.removeCart(id);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    /**
+     * 05/03/2023
+     * @param idAcount
+     * @return
+     */
+//    @PatchMapping("/user/cart/pay-cart/{idAcount}")
+//    public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
+//        Customer customer = customerService.findByAccount_IdAccount(idAcount);
+//        if (customer != null) {
+//            cartService.payCart(customer.getId());
+//            String mess = "";
+//            return new ResponseEntity<>(mess, HttpStatus.OK);
+//        }
+//        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//    }
+    @PatchMapping("/user/cart/pay-cart/{idAcount}")
+    public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
+        Customer customer = customerService.findByAccount_IdAccount(idAcount);
+        if (customer != null) {
+            cartService.payCart(customer.getId());
+            List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAcount);
+            return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
 }
