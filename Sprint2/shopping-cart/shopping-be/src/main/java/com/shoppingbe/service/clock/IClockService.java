@@ -18,4 +18,7 @@ public interface IClockService {
     void save(Clock clock);
 
     List<ClockHomeDto> getListCarousel();
+
+    List<Clock> findByCustomerId(@Param("idCustomer") Long idCustomer);
+
 }

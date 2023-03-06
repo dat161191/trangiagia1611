@@ -19,10 +19,12 @@
           <a *ngFor="let item of trademarks" (click)="searchNameClock(item.name)">{{item.name}}</a>
         </span>
       </span>
-
     </a>
 
-    <a [routerLink]="['/cart',idAccount]" class="text-decoration-none"><i class="bi bi-cart4"></i> GIỎ HÀNG</a>
+<!--    <a [routerLink]="['/cart',idAccount]" class="text-decoration-none"><i class="bi bi-cart4"></i><sup-->
+<!--      class="badge badge-pill badge-danger notify">0</sup> GIỎ HÀNG</a>-->
+    <a routerLink="/cart" class="text-decoration-none"><i class="bi bi-cart4"></i><sup
+      class="badge badge-pill badge-danger notify">{{totalProduct}}</sup> </a>
     <a *ngIf="!checkLogin" routerLink="/login" class="text-decoration-none"><i class="fa-solid fa-right-to-bracket"></i>
       ĐĂNG NHẬP</a>
     <a *ngIf="!checkLogin" routerLink="/register" class="text-decoration-none"><i

@@ -5,7 +5,7 @@ import {ToastrService} from 'ngx-toastr';
 import {Trademark} from '../../enity/clock/trademark';
 import {MachineType} from '../../enity/clock/machine-type';
 import {ClockHome} from '../../enity/clock/clock-home';
-import {SearchService} from '../../service/search.service';
+import {BehaviorService} from '../../service/behavior.service';
 import {TokenService} from '../../security/service/token.service';
 
 @Component({
@@ -23,7 +23,7 @@ export class HomeComponent implements OnInit {
   clockCarousel: ClockHome[] = [];
 
   constructor(private clockService: ClockService, private toastrService: ToastrService,
-              private searchService: SearchService,private tokenService:TokenService) {
+              private behaviorService: BehaviorService, private tokenService:TokenService) {
     this.clockService.getListHeader().subscribe(clocs => {
       this.clockCarousel = clocs;
     });
@@ -51,7 +51,7 @@ export class HomeComponent implements OnInit {
   }
 
   private getValueHeader() {
-    this.searchService.getValue().subscribe(data => {
+    this.behaviorService.getValue().subscribe(data => {
       this.search = data;
       this.getAllList(this.request);
     });

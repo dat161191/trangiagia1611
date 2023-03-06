@@ -10,6 +10,8 @@ import {OwlOptions} from 'ngx-owl-carousel-o';
 import {TokenService} from '../../security/service/token.service';
 import {CartCreate} from '../../enity/cart/cart-create';
 import {CartService} from '../../service/cart.service';
+import {BehaviorService} from '../../service/behavior.service';
+import {CartListByIdAccount} from '../../enity/cart/cart-list-by-id-account';
 
 @Component({
   selector: 'app-detail-clock',
@@ -28,6 +30,7 @@ export class DetailClockComponent implements OnInit {
   idAccount: string | null | undefined;
   cartCreate: CartCreate = {};
   numberPay: number = 1;
+  cartListByIdAccount: CartListByIdAccount[] = [];
   customOptions: OwlOptions = {
     loop: true,
     mouseDrag: false,
@@ -53,7 +56,8 @@ export class DetailClockComponent implements OnInit {
   };
 
   constructor(private clockService: ClockService, private activatedRoute: ActivatedRoute, private tokenService: TokenService,
-              private title: Title, private router: Router, private toastrService: ToastrService, private cartService: CartService) {
+              private title: Title, private router: Router, private toastrService: ToastrService, private cartService: CartService,
+              private behaviorService: BehaviorService) {
     this.title.setTitle('Chi tiết sản phẩm.');
 
   }
@@ -146,6 +150,9 @@ export class DetailClockComponent implements OnInit {
       this.cartCreate.quantityPurchased = this.numberPay;
       this.cartCreate.idAccount = Number(this.idAccount);
       this.cartService.createCart(this.cartCreate).subscribe(data => {
+        // @ts-ignore
+        this.cartListByIdAccount = data;
+        this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
         this.numberPay = 1;
         this.toastrService.success('Bạn đã thêm ' + this.cartCreate.clock?.name + ' thành công.', 'Thông báo', {timeOut: 2000});
       }, error => {

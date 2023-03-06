@@ -48,4 +48,15 @@ public class CartService implements ICartService {
     public void changeQuanlityCart(Long idCart, Integer quanlityUpdate) {
         cartRepository.changeQuanlityCart(idCart, quanlityUpdate);
     }
+
+    /**
+     * 06/03/2023
+     *
+     * @param idCustomer
+     * @return
+     */
+    @Override
+    public List<Cart> findByCustomer_Id(Long idCustomer) {
+        return cartRepository.findByCustomer_Id(idCustomer);
+    }
 }

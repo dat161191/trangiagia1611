@@ -45,4 +45,12 @@ public interface ICartService {
      */
     void changeQuanlityCart(@Param("idCart") Long idCart,@Param("quanlityUpdate") Integer quanlityUpdate);
 
+    /**
+     * 06/03/2023
+     * @param idCustomer
+     * @return
+     */
+    List<Cart> findByCustomer_Id(Long idCustomer);
+
+
 }

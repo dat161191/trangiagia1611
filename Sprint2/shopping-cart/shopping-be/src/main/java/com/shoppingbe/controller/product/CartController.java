@@ -16,10 +16,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @RestController
 @CrossOrigin("*")
@@ -43,7 +40,7 @@ public class CartController {
      * @return
      */
     @PostMapping("/user/cart/create")
-    public ResponseEntity<Cart> addProductToCart(@RequestBody CartCreate cartCreate) {
+    public ResponseEntity<?> addProductToCart(@RequestBody CartCreate cartCreate) {
 //        Clock clock = clockService.findById(cartCreate.getClock().getId());
         Clock clock = cartCreate.getClock();
         Customer customer = customerService.findByAccount_IdAccount(cartCreate.getIdAccount());
@@ -52,17 +49,16 @@ public class CartController {
             if (cart != null) {
                 cart.setQuantityPurchased(cart.getQuantityPurchased() + cartCreate.getQuantityPurchased());
                 cartService.save(cart);
-                return new ResponseEntity<>(cart, HttpStatus.OK);
+                List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(cartCreate.getIdAccount());
+                return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
             } else {
                 Cart cartNew = new Cart();
                 BeanUtils.copyProperties(cartCreate, cartNew);
                 cartNew.setCustomer(customer);
                 cartNew.setClock(clock);
-//                if (cartNew.getQuantityPurchased() <= 0) {
-//                    cartNew.setQuantityPurchased(1);
-//                }
                 cartService.save(cartNew);
-                return new ResponseEntity<>(cartNew, HttpStatus.OK);
+                List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(cartCreate.getIdAccount());
+                return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
             }
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -90,12 +86,23 @@ public class CartController {
 
     /**
      * 06/03/2023 update
+     *
      * @param idAcount
      * @return
      */
     @PatchMapping("/user/cart/pay-cart/{idAcount}")
     public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
         Customer customer = customerService.findByAccount_IdAccount(idAcount);
+        List<Cart> carts = cartService.findByCustomer_Id(customer.getId());
+        List<Clock> clocks = clockService.findByCustomerId(customer.getId());
+        for (Cart cart : carts) {
+            for (Clock clock : clocks) {
+                if (Objects.equals(cart.getClock().getId(), clock.getId())) {
+                    clock.setQuanlity(clock.getQuanlity() - cart.getQuantityPurchased());
+                }
+            }
+        }
+
         if (customer != null) {
             cartService.payCart(customer.getId());
             List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAcount);
@@ -106,6 +113,7 @@ public class CartController {
 
     /**
      * 06/03/2023 update
+     *
      * @param requestCart
      * @return
      */
@@ -114,7 +122,7 @@ public class CartController {
         Cart cart = cartService.findById(requestCart.getIdCart());
         if (cart != null) {
             cartService.changeQuanlityCart(requestCart.getIdCart(), requestCart.getQuanlityUpdate());
-            List<CartListByIdAccount> cartListByIdAccounts=cartService.getListByAccountId(requestCart.getIdAccount());
+            List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(requestCart.getIdAccount());
             return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

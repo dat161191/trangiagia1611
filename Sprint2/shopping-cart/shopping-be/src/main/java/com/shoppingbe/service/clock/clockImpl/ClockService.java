@@ -18,7 +18,7 @@ public class ClockService implements IClockService {
 
     @Override
     public Page<ClockHomeDto> getListClock(Pageable pageable, String search) {
-        return clockRepository.getListClock(pageable,search);
+        return clockRepository.getListClock(pageable, search);
     }
 
     @Override
@@ -39,5 +39,10 @@ public class ClockService implements IClockService {
     @Override
     public List<ClockHomeDto> getListCarousel() {
         return clockRepository.getListCarousel();
+    }
+
+    @Override
+    public List<Clock> findByCustomerId(Long idCustomer) {
+        return clockRepository.findByCustomerId(idCustomer);
     }
 }

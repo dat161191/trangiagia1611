@@ -2,6 +2,7 @@ package com.shoppingbe.repository.cart;
 
 import com.shoppingbe.dto.cart.CartListByIdAccount;
 import com.shoppingbe.entity.Cart;
+import com.shoppingbe.entity.Clock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -42,6 +43,7 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
 
     /**
      * 05/03/2023
+     *
      * @param idCustomer
      */
     @Query(value = "update cart set status=true where customer_id=:idCustomer and flag=false", nativeQuery = true)
@@ -51,11 +53,14 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
 
     /**
      * 06/03/2023
+     *
      * @param idCart
      * @param quanlityUpdate
      */
-    @Query(value = "update cart set quantity_purchased=:quanlityUpdate where id=:idCart and flag=false",nativeQuery = true)
+    @Query(value = "update cart set quantity_purchased=:quanlityUpdate where id=:idCart and flag=false", nativeQuery = true)
     @Transactional
     @Modifying
-    void changeQuanlityCart(@Param("idCart") Long idCart,@Param("quanlityUpdate") Integer quanlityUpdate);
+    void changeQuanlityCart(@Param("idCart") Long idCart, @Param("quanlityUpdate") Integer quanlityUpdate);
+
+    List<Cart> findByCustomer_Id(Long idCustomer);
 }
