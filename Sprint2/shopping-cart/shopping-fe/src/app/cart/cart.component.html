@@ -23,8 +23,11 @@
             <th>{{i + 1}}</th>
             <td>
               <div class="row">
-                <div class="col-2"><img
-                  src="{{ele.url}}" class="card-img-top" alt="..."></div>
+                <div class="col-2">
+                  <a [routerLink]="['/detail',ele.clockId]" class="text-decoration-none">
+                    <img src="{{ele.url}}" class="card-img-top" alt="...">
+                  </a>
+                </div>
                 <div class="col-10">
                   <p class="card-text">{{ele.clockName}}</p>
                 </div>
@@ -33,13 +36,13 @@
             <!--Chỗ đây nè-->
             <td>
               <div class="d-flex align-items-center">
-                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1"
+                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 20%"
                         (click)="subQuanlity(ele.cartId)">-
                 </button>
                 <input #minmax class="form-control-sm mx-1" *ngIf="ele.cartId!=undefined"
-                       style="width: 20%;text-align: center; border: solid 1px #3167eb"
+                       style="width: 30%;text-align: center; border: solid 1px #3167eb"
                        type="text" (change)="change(+minmax.value,ele.cartId)" value="{{ele.quanlityCart}}">
-                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 25px"
+                <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 20%"
                         (click)="addQuanlity(ele.cartId)">+
                 </button>
               </div>
@@ -50,14 +53,13 @@
             </td>
 
             <td>
-              <!--              <div *ngIf="ele.quanlityCart!=undefined && ele.clockPrince !=undefined">{{ele?.quanlityCart * ele?.clockPrince|number}} VNĐ</div>-->
               <div
                 *ngIf="ele.quanlityCart!=undefined && ele.clockPrince !=undefined">{{ele.quanlityCart * ele.clockPrince|number}}
                 VNĐ
               </div>
             </td>
             <td class="text-center">
-              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+              <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete"
                       (click)="(temp=ele)"><i class="bi bi-trash3-fill"></i>
               </button>
             </td>
@@ -74,31 +76,30 @@
     <div class="col-3 mt-2">
       <div class="row address">
         <h5 class="text-center"><b>Giao tới</b></h5>
-        <p>Khách Hàng: <span class="text-bg-warning" style="border-radius: 7px;padding: 3px">Nguyễn Văn An</span>
+        <p>Khách Hàng: <span class="text-bg-warning"
+                             style="border-radius: 7px;padding: 3px">{{customer.customerName}}</span>
         </p>
-        <p>Số điện thoại: <span class="text-bg-primary" style="border-radius: 7px;padding: 3px">0909.999.999</span></p>
-        <p><i class="bi bi-geo-alt-fill"></i>: 68 Lê Duẫn, P.Bắc Mỹ An, Q.Hải Châu, TP. Đà Nẵng </p>
+        <p>Số điện thoại: <span class="text-bg-primary"
+                                style="border-radius: 7px;padding: 3px">{{customer.phone}}</span></p>
+        <p><i class="bi bi-geo-alt-fill"></i>: {{customer.addressCustomer}} </p>
       </div>
 
-      <div class="row pay mt-2">
+      <div class="row pay mt-2 mb-2">
         <p class="mt-2">Tạm tính: <span class="text-bg-warning"
-                                        style="border-radius: 7px;padding: 3px">{{totalPay | number}} VNĐ</span></p>
+                                        style="border-radius: 7px;padding: 3px">{{totalPay | number}} VNĐ <=> {{(totalPay/24000)|number: '0.2'}} USD</span></p>
         <p>Giảm giá: <span class="text-bg-secondary" style="border-radius: 7px;padding: 3px">{{totalPay * sale}}
           VND</span></p>
         <hr>
         <h6>Tổng tiền: <span class="text-bg-success"
-                             style="border-radius: 7px;padding: 3px"> {{(totalPay - totalPay * sale)|number}} VNĐ</span>
+                             style="border-radius: 7px;padding: 3px"> {{(totalPay - totalPay * sale)|number}} VNĐ <=> {{totalPay/2400|number: '0.2'}} USD</span>
         </h6>
       </div>
-      <div class="row btnPay mt-2 mb-1">
-        <button type="submit" class="btn btn-primary" (click)="payProduct()">
-          <i class="bi bi-credit-card"></i> Thanh toán
-        </button>
-      </div>
+      <div id="paypalbutton" class="mb-2"></div>
     </div>
   </div>
 </div>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+
+<div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      data-bs-keyboard="false" data-bs-backdrop="static">
   <div class="modal-dialog">
     <div class="modal-content" style="background: linear-gradient(to right, #d9f5db, #07af9e);color: blue">
@@ -119,3 +120,4 @@
     </div>
   </div>
 </div>
+

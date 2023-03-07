@@ -2,33 +2,35 @@
   <div class="container teal borderYtoX">
     <a (click)="searchNameClock('')" routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png"
                                                         style="width: 100px" alt=""> </a>
-    <a (click)="searchNameClock('')" routerLink="" class="text-decoration-none"><i class="bi bi-house-fill"></i> TRANG
-      CHỦ</a>
-    <a routerLink="/info" class="text-decoration-none"><i class="bi bi-info-square-fill"></i> GIỚI THIỆU</a>
-    <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>
+    <a (click)="searchNameClock('')" routerLink="" class="text-decoration-none">TRANG
+      CHỦ <i class="bi bi-house-fill"></i> </a>
+    <a routerLink="/info" class="text-decoration-none">GIỚI THIỆU <i class="bi bi-info-square-fill"></i> </a>
+    <!--    <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>-->
     <!--    <a href="#"><i class="bi bi-newspaper"></i> TIN TỨC</a>-->
-    <a routerLink="/statistical" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-graph-up-arrow"></i> THỐNG KÊ</a>
-    <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'"><i class="bi bi-list-stars"></i> DANH SÁCH KHÁCH HÀNG</a>
+    <a routerLink="/statistical" *ngIf="roles[0]=='ROLE_ADMIN'">THỐNG KÊ <i class="bi bi-graph-up-arrow"></i> </a>
+    <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'">DANH SÁCH KHÁCH HÀNG <i class="bi bi-list-stars"></i></a>
 
     <a class="text-decoration-none">
       <span class="dropdown">
         <span class="nut_dropdown" type="button" data-bs-toggle="dropdown"
-              aria-expanded="false"> SẢN PHẨM
+              aria-expanded="false"> HÃNG SẢN XUẤT <i class="fa-brands fa-product-hunt"></i>
         </span>
-        <span class="noidung_dropdown">
-          <a *ngFor="let item of trademarks" (click)="searchNameClock(item.name)">{{item.name}}</a>
-        </span>
+                <span class="noidung_dropdown">
+                  <a *ngFor="let item of trademarks" (click)="searchNameClock(item.name)">{{item.name}}</a>
+                </span>
       </span>
     </a>
 
-<!--    <a [routerLink]="['/cart',idAccount]" class="text-decoration-none"><i class="bi bi-cart4"></i><sup-->
-<!--      class="badge badge-pill badge-danger notify">0</sup> GIỎ HÀNG</a>-->
-    <a routerLink="/cart" class="text-decoration-none"><i class="bi bi-cart4"></i><sup
-      class="badge badge-pill badge-danger notify">{{totalProduct}}</sup> </a>
+    <a routerLink="/cart" class="text-decoration-none">GIỎ HÀNG <i class="bi bi-cart4"></i><sup
+      *ngIf="totalProduct>0"><b style="font-size: 15px;margin-left: 2px;color: blue">{{totalProduct}}</b></sup>
+    </a>
+
     <a *ngIf="!checkLogin" routerLink="/login" class="text-decoration-none"><i class="fa-solid fa-right-to-bracket"></i>
       ĐĂNG NHẬP</a>
+
     <a *ngIf="!checkLogin" routerLink="/register" class="text-decoration-none"><i
       class="fa-solid fa-registered"></i> ĐĂNG KÝ</a>
+
     <a class="text-decoration-none">
       <span class="dropdown">
         <span class="nut_dropdown" *ngIf="!checkLogin" type="button" data-bs-toggle="dropdown"
@@ -38,7 +40,7 @@
               aria-expanded="false" style="text-decoration: none;"
               aria-label="Angular Audio Player"
               tabindex="0" aria-disabled="false">
-                   <img alt="angular" style="border-radius: 50%;width: 100px;height: 100px" class=" mb-2"
+                   <img alt="angular" style="border-radius: 50%;width: 30px;height: 30px" class=" mb-2"
                         [src]=avatar> Xin chào! {{name}} .
 
         </span>
@@ -46,8 +48,9 @@
             <a routerLink="/personal-page" *ngIf="roles[0]=='ROLE_ADMIN'|| roles[0]=='ROLE_USER'">TRANG CÁ NHÂN</a>
             <a data-bs-toggle="modal" data-bs-target="#create" *ngIf="roles[0]=='ROLE_ADMIN'">THÊM MỚI SẢN PHẨM</a>
             <a *ngIf="checkLogin" data-bs-toggle="modal" data-bs-target="#logout" class="text-decoration-none"><i
-              class="fa-solid fa-right-from-bracket"></i> ĐĂNG XUẤT</a></span>
+              class="fa-solid fa-right-from-bracket"></i> ĐĂNG XUẤT</a>
         </span>
+      </span>
     </a>
 
     <div class="row mt-2">

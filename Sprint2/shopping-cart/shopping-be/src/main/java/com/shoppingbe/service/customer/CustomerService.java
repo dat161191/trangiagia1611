@@ -28,4 +28,9 @@ public class CustomerService implements ICustomerService {
     public Customer findByAccount_IdAccount(Long idAccount) {
         return customerrRpository.findByAccount_IdAccount(idAccount);
     }
+
+    @Override
+    public Customer findById(Long id) {
+        return customerrRpository.findById(id).get();
+    }
 }

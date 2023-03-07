@@ -34,19 +34,19 @@ export class LoginComponent implements OnInit {
     this.signInForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.minLength(3)]],
       password: ['', [Validators.required, Validators.minLength(5)]],
-      // rememberMe: [false]
+      // rememberMe: false
     });
   }
 
-  future(): void {
-    this.toast.info('Chức năng đăng đang được xây dựng.');
-  }
+  // future(): void {
+  //   this.toast.info('Chức năng đăng đang được xây dựng.');
+  // }
 
   login(): void {
-    const signInForm = this.signInForm?.value;
-    this.securityService.signIn(signInForm).subscribe(data => {
-      if (data.token !== undefined) {
-          if (this.signInForm?.value.rememberMe) {
+    // const signInForm = this.signInForm?.value;
+    this.securityService.signIn(this.signInForm.value).subscribe(data => {
+        if (data.token !== undefined) {
+          if (this.signInForm.value.rememberMe) {
             this.tokenService.rememberMe(data.roles, data.name, data.token);
             location.href = 'http://localhost:4200/';
           } else {
@@ -78,8 +78,7 @@ export class LoginComponent implements OnInit {
           this.toast.error('Đăng nhập thất bại, vui lòng nhập lại.', 'Thông báo');
         }
       }
-    )
-    ;
+    );
   }
 
 }

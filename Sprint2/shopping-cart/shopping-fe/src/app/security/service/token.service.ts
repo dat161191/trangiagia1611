@@ -98,7 +98,7 @@ export class TokenService {
     }
     return this._roles;
   }
-  
+
   public rememberMe(roles: string[], name: string, token: string): void {
     this.setRole(roles);
     this.setName(name);

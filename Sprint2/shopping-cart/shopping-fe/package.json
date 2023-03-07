@@ -21,6 +21,7 @@
     "@angular/router": "~11.0.9",
     "bootstrap": "^5.2.3",
     "bootstrap-icons": "^1.10.3",
+    "creditcardpayments": "^1.0.3",
     "date-fns": "^2.29.3",
     "ngx-owl-carousel-o": "^5.1.1",
     "ngx-pagination": "^5.1.1",

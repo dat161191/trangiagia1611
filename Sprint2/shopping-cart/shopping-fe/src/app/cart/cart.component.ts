@@ -7,7 +7,9 @@ import {Title} from '@angular/platform-browser';
 import {CartListByIdAccount} from '../enity/cart/cart-list-by-id-account';
 import {RequestCart} from '../enity/cart/request-cart';
 import {BehaviorService} from '../service/behavior.service';
-
+import {render} from 'creditcardpayments/creditCardPayments';
+import {Customer} from '../enity/customer/customer';
+import {CustomerService} from '../service/customer.service';
 
 @Component({
   selector: 'app-cart',
@@ -23,40 +25,80 @@ export class CartComponent implements OnInit {
   sale = 0;
   idCustomer = -1;
   requestCart: RequestCart = {};
+  customer: Customer = {};
 
   constructor(private toastrService: ToastrService,
               private router: Router,
               private tokenService: TokenService,
               private cartService: CartService,
-              private title: Title, private activatedRoute: ActivatedRoute,
-              private behaviorService: BehaviorService) {
+              private title: Title,
+              private activatedRoute: ActivatedRoute,
+              private behaviorService: BehaviorService,
+              private customerService: CustomerService) {
+
     this.title.setTitle('Giỏ Hàng');
   }
 
-  // ngOnInit(): void {
-  //   this.activatedRoute.paramMap.subscribe(data => {
-  //     this.idAccount = Number(data.get('id'));
-  //     if (this.idAccount != null) {
-  //       this.getListCart();
-  //     }
-  //   });
-  // }
 
   ngOnInit(): void {
     this.idAccount = Number(this.tokenService.getId());
-    if (this.idAccount != null) {
-      this.getListCart();
-    }
+    this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
+      this.cartListByIdAccount = data;
+      this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
+      for (let i = 0; i < this.cartListByIdAccount.length; i++) {
+        this.totalProduct += 1;
+      }
+      for (let i = 0; i < this.cartListByIdAccount.length; i++) {
+        // @ts-ignore
+        this.totalPay += (this.cartListByIdAccount[i].clockPrince * this.cartListByIdAccount[i].quanlityCart);
+      }
+      render({
+        id: '#paypalbutton',
+        currency: 'USD',
+        value: (this.totalPay / 24000).toFixed(0),
+        onApprove: (details => {
+          this.payProduct();
+        })
+      });
+    });
+
+    // this.getListCart();
+    this.getCustomerByIdAccount();
+
   }
 
   getListCart() {
     this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
       this.cartListByIdAccount = data;
       this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
-      console.log(data);
-      this.getTotalProduct();
-      this.getTotalPay();
+    }, error => {
+    }, () => {
+      render({
+        id: '#paypalbutton',
+        currency: 'USD',
+        value: (this.totalPay / 24000).toFixed(2),
+        onApprove: (details => {
+          this.payProduct();
+        })
+      });
     });
+  }
+
+  getTotalPay() {
+    this.totalPay = 0;
+    for (let i = 0; i < this.cartListByIdAccount.length; i++) {
+      // @ts-ignore
+      this.totalPay += (this.cartListByIdAccount[i].clockPrince * this.cartListByIdAccount[i].quanlityCart);
+    }
+
+    // render({
+    //   id: '#paypalbutton',
+    //   currency: 'USD',
+    //   value: (this.totalPay / 24000).toFixed(0),
+    //   onApprove: (details => {
+    //     this.payProduct();
+    //   })
+    // });
   }
 
   /**
@@ -82,7 +124,7 @@ export class CartComponent implements OnInit {
     this.requestCart.idAccount = Number(this.tokenService.getId());
     this.cartService.changeQuanlity(this.requestCart).subscribe(data => {
       this.cartListByIdAccount = data;
-      this.ngOnInit();
+      this.getTotalPay();
     });
   }
 
@@ -109,7 +151,7 @@ export class CartComponent implements OnInit {
     this.requestCart.idAccount = Number(this.tokenService.getId());
     this.cartService.changeQuanlity(this.requestCart).subscribe(data => {
       this.cartListByIdAccount = data;
-      this.ngOnInit();
+      this.getTotalPay();
     });
 
   }
@@ -149,8 +191,8 @@ export class CartComponent implements OnInit {
     this.requestCart.quanlityUpdate = value;
     this.requestCart.idAccount = Number(this.tokenService.getId());
     this.cartService.changeQuanlity(this.requestCart).subscribe(data => {
-      // this.cartListByIdAccount = data;
-      this.ngOnInit();
+      this.cartListByIdAccount = data;
+      this.getTotalPay();
     });
 
   }
@@ -161,7 +203,12 @@ export class CartComponent implements OnInit {
    */
   delete() {
     this.cartService.deleteById(this.temp).subscribe(data => {
-      this.ngOnInit();
+      this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
+        this.cartListByIdAccount = data;
+        this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
+        this.getTotalProduct();
+        this.getTotalPay();
+      });
       this.toastrService.success('Bạn đã xoá: ' + this.temp.clockName, 'Thông Báo.', {timeOut: 2000});
     });
   }
@@ -177,17 +224,6 @@ export class CartComponent implements OnInit {
     }
   }
 
-  /**
-   * 06/03/2023 update
-   * @param cartId
-   */
-  private getTotalPay() {
-    this.totalPay = 0;
-    for (let i = 0; i < this.cartListByIdAccount.length; i++) {
-      // @ts-ignore
-      this.totalPay += this.cartListByIdAccount[i].clockPrince * this.cartListByIdAccount[i].quanlityCart;
-    }
-  }
 
   /**
    * 06/03/2023 update
@@ -197,7 +233,16 @@ export class CartComponent implements OnInit {
     this.idAccount = Number(this.tokenService.getId());
     this.cartService.payCart(this.idAccount).subscribe(data => {
       this.cartListByIdAccount = data;
+      this.getTotalPay();
+      // this.ngOnInit();
       this.toastrService.success('Bạn đã thanh toán thành công.Xin cảm ơn!', 'Thông báo', {timeOut: 2000});
     });
+  }
+
+  getCustomerByIdAccount() {
+    this.customerService.getCustomerByIdAccount(this.idAccount).subscribe(data => {
+      this.customer = data;
+    });
+
   }
 }

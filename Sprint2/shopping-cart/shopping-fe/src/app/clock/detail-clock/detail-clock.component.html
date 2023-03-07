@@ -20,50 +20,60 @@
         <div class="col col-5">
           <div class="card-body">
             <ul>
-              <li class="card-title"><p class="card-title"><b class="text-bg-warning"
-                                                              style="border-radius: 5px;padding: 2px">{{clockDetail?.name}}</b>
+              <li class="card-title"><p class="card-title">
+                <span class="text-bg-warning"
+                      style="border-radius: 5px;padding: 3px"><b>{{clockDetail?.name}}</b></span>
               </p>
                 <hr>
               </li>
               <li><h6 class="card-title"><span>Quốc gia đăng ký thương hiệu: </span>
-                <span class="text-bg-primary" style="border-radius: 5px;padding: 2px">
-                {{clockDetail?.countryRegistration}}</span></h6>
+                <span class="text-bg-primary"
+                      style="border-radius: 5px;padding: 3px"><b>{{clockDetail?.countryRegistration}}</b>
+                </span></h6>
                 <hr>
               </li>
               <li><h6 class="card-title">Bảo Hành : <span class="text-bg-success"
-                                                          style="border-radius: 5px;padding: 2px">90 ngày</span>
+                                                          style="border-radius: 5px;padding: 3px"><b>90 ngày</b></span>
               </h6>
                 <hr>
               </li>
               <li><h6 class="card-title">Thanh toán khi nhận hàng, giao hàng miễn phí toàn quốc</h6>
                 <hr>
               </li>
-              <li><h6 class="card-title"><span>Giá: </span> <span
-                class="text-bg-danger" style="border-radius: 5px;padding: 2px">{{clockDetail?.price|number}} VNĐ </span>
+              <li><h6 class="card-title"><span>Giá: </span>
+                <span class="text-bg-danger"
+                      style="border-radius: 5px;padding: 2px"><b>{{clockDetail?.price|number}}</b> VNĐ </span>
               </h6>
                 <hr>
               </li>
-              <li><h6 class="card-title"><span>Tình trạng: </span><span class="text-bg-primary"
-                                                                        style="border-radius: 5px;padding: 2px"
-              >{{clockDetail.quanlity != undefined && clockDetail.quanlity > 0 ? 'Còn hàng' : 'Hết Hàng'}} </span>
+              <li><h6 class="card-title">
+                <span>Tình trạng: </span>
+                <span class="text-bg-primary"
+                      style="border-radius: 5px;padding: 2px"><b>{{clockDetail.quanlity != undefined && clockDetail.quanlity > 0 ? 'Còn hàng' : 'Hết Hàng'}}</b>
+              </span>
               </h6>
                 <hr>
               </li>
             </ul>
-            <div class="d-flex align-items-center justify-content-center my-3">
+            <div class="d-flex align-items-center justify-content-center my-3" *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0">
               <span>Số lượng: </span>
               <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="subQuanlity()">-</button>
-              <input #minmax (change)="change(+minmax.value)" class="form-control-sm mx-1" style="width: 20%;text-align: center; border: solid 1px #3167eb"
+              <input #minmax (change)="change(+minmax.value)" class="form-control-sm mx-1"
+                     style="width: 20%;text-align: center; border: solid 1px #3167eb"
                      type="text" [(ngModel)]="numberPay">
               <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addQuanlity()">+</button>
             </div>
 
-            <div class="text-center">
+            <div class="text-center" *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0,else block">
               <a class="btn btn-primary me-2 mt-1 mb-1" (click)="addToCart(clockDetail)"><i
                 class="bi bi-bag-plus-fill"></i> Thêm vào giỏ Hàng </a>
               <a class="btn btn-primary "><i
                 class="fa-solid fa-file-invoice-dollar"></i> Mua ngay </a>
             </div>
+            <ng-template #block>
+              <div class="text-center text-primary"><b>Cảm ơn quý khách đã quan tâm đến sản phẩm.Hàng đang về mong quý
+                khách ghé lại sau!!!</b></div>
+            </ng-template>
           </div>
         </div>
 

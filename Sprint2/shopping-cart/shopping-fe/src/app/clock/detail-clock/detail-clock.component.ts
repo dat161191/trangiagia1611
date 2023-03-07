@@ -150,7 +150,6 @@ export class DetailClockComponent implements OnInit {
       this.cartCreate.quantityPurchased = this.numberPay;
       this.cartCreate.idAccount = Number(this.idAccount);
       this.cartService.createCart(this.cartCreate).subscribe(data => {
-        // @ts-ignore
         this.cartListByIdAccount = data;
         this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
         this.numberPay = 1;

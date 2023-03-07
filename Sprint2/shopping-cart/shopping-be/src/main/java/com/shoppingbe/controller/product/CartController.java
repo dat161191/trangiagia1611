@@ -64,9 +64,9 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @GetMapping("/user/cart/list/{idAcount}")
-    public ResponseEntity<List<CartListByIdAccount>> getListCart(@PathVariable("idAcount") Long idAcount) {
-        List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAcount);
+    @GetMapping("/user/cart/list/{idAccount}")
+    public ResponseEntity<List<CartListByIdAccount>> getListCart(@PathVariable("idAccount") Long idAccount) {
+        List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAccount);
         if (cartListByIdAccounts.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }
@@ -87,25 +87,29 @@ public class CartController {
     /**
      * 06/03/2023 update
      *
-     * @param idAcount
+     * @param idAccount
      * @return
      */
-    @PatchMapping("/user/cart/pay-cart/{idAcount}")
-    public ResponseEntity<?> payCart(@PathVariable("idAcount") Long idAcount) {
-        Customer customer = customerService.findByAccount_IdAccount(idAcount);
+    @PatchMapping("/user/cart/pay-cart/{idAccount}")
+    public ResponseEntity<?> payCart(@PathVariable("idAccount") Long idAccount) {
+        Customer customer = customerService.findByAccount_IdAccount(idAccount);
         List<Cart> carts = cartService.findByCustomer_Id(customer.getId());
         List<Clock> clocks = clockService.findByCustomerId(customer.getId());
         for (Cart cart : carts) {
             for (Clock clock : clocks) {
                 if (Objects.equals(cart.getClock().getId(), clock.getId())) {
-                    clock.setQuanlity(clock.getQuanlity() - cart.getQuantityPurchased());
+                    if (clock.getQuanlity() - cart.getQuantityPurchased() >= 0) {
+                        clock.setQuanlity(clock.getQuanlity() - cart.getQuantityPurchased());
+                    } else if(clock.getQuanlity() - cart.getQuantityPurchased() < 0) {
+                        clock.setQuanlity(0);
+                    }
                 }
             }
         }
 
         if (customer != null) {
             cartService.payCart(customer.getId());
-            List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAcount);
+            List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAccount);
             return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

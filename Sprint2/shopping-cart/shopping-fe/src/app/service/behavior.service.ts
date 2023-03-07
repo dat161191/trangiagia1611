@@ -22,7 +22,15 @@ export class BehaviorService {
   setCartTotal(value: string): void {
     this.cartTotal.next(value);
   }
-  getCartTotal():Observable<any>{
+
+  getCartTotal(): Observable<any> {
+    return this.cartTotal.asObservable();
+  }
+
+  setToTalPay(value: number): void {
+    this.cartTotal.next(value);
+  }
+  getToTalPay(): Observable<number> {
     return this.cartTotal.asObservable();
   }
 }
