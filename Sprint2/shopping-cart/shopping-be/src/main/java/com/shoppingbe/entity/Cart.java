@@ -33,6 +33,8 @@ public class Cart {
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "modify_date")
     private Date modifyDate;
+
+    private Date payDate;
     private boolean flag = false;
     private boolean status = false;
     @ManyToOne
@@ -49,6 +51,16 @@ public class Cart {
         this.quantityPurchased = quantityPurchased;
         this.createDate = createDate;
         this.modifyDate = modifyDate;
+        this.clock = clock;
+        this.customer = customer;
+    }
+
+    public Cart(Long id, Integer quantityPurchased, Date createDate, Date modifyDate, Date payDate, Clock clock, Customer customer) {
+        this.id = id;
+        this.quantityPurchased = quantityPurchased;
+        this.createDate = createDate;
+        this.modifyDate = modifyDate;
+        this.payDate = payDate;
         this.clock = clock;
         this.customer = customer;
     }

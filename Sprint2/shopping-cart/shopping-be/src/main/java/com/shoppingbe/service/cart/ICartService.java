@@ -9,6 +9,7 @@ import java.util.List;
 public interface ICartService {
     /**
      * 04/03/2023
+     *
      * @param idAccount
      * @return
      */
@@ -16,6 +17,7 @@ public interface ICartService {
 
     /**
      * 04/03/2023
+     *
      * @param cart
      */
     void save(Cart cart);
@@ -24,6 +26,7 @@ public interface ICartService {
 
     /**
      * 04/03/2023
+     *
      * @param idCustomer
      * @param idClock
      * @return
@@ -34,23 +37,31 @@ public interface ICartService {
 
     /**
      * 05/03/2023
+     *
      * @param idCustomer
      */
     void payCart(@Param("idCustomer") Long idCustomer);
 
     /**
      * 06/03/2023
+     *
      * @param idCart
      * @param quanlityUpdate
      */
-    void changeQuanlityCart(@Param("idCart") Long idCart,@Param("quanlityUpdate") Integer quanlityUpdate);
+    void changeQuanlityCart(@Param("idCart") Long idCart, @Param("quanlityUpdate") Integer quanlityUpdate);
 
     /**
      * 06/03/2023
+     *
      * @param idCustomer
      * @return
      */
     List<Cart> findByCustomer_Id(Long idCustomer);
 
+    Cart findByCustomer_IdAndClock_IdAndStatus(Long idCustomer, Long idClock, boolean status);
+
+    List<Cart> findByCustomer_IdAndStatus(Long idCustomer, boolean status);
+
+    List<CartListByIdAccount> historyCart(@Param("idCustomer") Long idCustomer);
 
 }

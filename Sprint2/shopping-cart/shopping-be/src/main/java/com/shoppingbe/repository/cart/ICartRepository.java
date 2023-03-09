@@ -34,6 +34,7 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
 
     /**
      * 04/03/2023
+     * Tìm cart theo id customer, id clock và status =false để thêm vào giỏ hàng
      *
      * @param idCustomer
      * @param idClock
@@ -41,12 +42,14 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
      */
     Cart findByCustomer_IdAndClock_Id(Long idCustomer, Long idClock);
 
+    Cart findByCustomer_IdAndClock_IdAndStatus(Long idCustomer, Long idClock, boolean status);
+
     /**
      * 05/03/2023
      *
      * @param idCustomer
      */
-    @Query(value = "update cart set status=true where customer_id=:idCustomer and flag=false", nativeQuery = true)
+    @Query(value = "update cart set status=true,pay_date=current_timestamp() where customer_id=:idCustomer and flag=false and status=false", nativeQuery = true)
     @Transactional
     @Modifying
     void payCart(@Param("idCustomer") Long idCustomer);
@@ -63,4 +66,36 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     void changeQuanlityCart(@Param("idCart") Long idCart, @Param("quanlityUpdate") Integer quanlityUpdate);
 
     List<Cart> findByCustomer_Id(Long idCustomer);
+
+    /**
+     * 07/03/2023 lấy list cart để update số lượng sản phẩm sau khi thanh toán
+     *
+     * @param idCustomer
+     * @param status
+     * @return
+     */
+    List<Cart> findByCustomer_IdAndStatus(Long idCustomer, boolean status);
+
+    /**
+     * 09/03/2023 lấy list giao dịch theo id customer
+     *
+     * @param idCustomer
+     * @return
+     */
+    @Query(value = "select c.id                 cartId,\n" +
+            "       c.status             status,\n" +
+            "       c.create_date        createDate,\n" +
+            "       c.pay_date           payDate,\n" +
+            "       c.quantity_purchased quanlityCart,\n" +
+            "       c2.price             clockPrince,\n" +
+            "       c2.name              clockName\n" +
+            "from cart c\n" +
+            "         join clock c2\n" +
+            "              on c2.id = c.clock_id\n" +
+            "         join customer c3\n" +
+            "              on c3.id = c.customer_id\n" +
+            "where c3.id = :idCustomer\n" +
+            "  and c.flag = false\n" +
+            "  and c2.flag = false", nativeQuery = true)
+    List<CartListByIdAccount> historyCart(@Param("idCustomer") Long idCustomer);
 }

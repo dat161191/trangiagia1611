@@ -1,9 +1,11 @@
 package com.shoppingbe.controller.security;
 
+import com.shoppingbe.dto.ChangeAvatar.ChangeAvatar;
 import com.shoppingbe.dto.customer.CustomerDto;
 import com.shoppingbe.dto.customer.GetIdCustomer;
 import com.shoppingbe.dto.request.SignInForm;
 import com.shoppingbe.dto.respone.JwtResponse;
+import com.shoppingbe.dto.respone.ResponseMessage;
 import com.shoppingbe.entity.Account;
 import com.shoppingbe.entity.Customer;
 import com.shoppingbe.entity.Role;
@@ -24,10 +26,12 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 import java.util.HashSet;
 import java.util.Optional;
@@ -119,6 +123,26 @@ public class SecurityController {
                 accountPrinciple.getAvatar(),
                 accountPrinciple.getEncoder(),
                 idCustomer
-                ));
+        ));
+    }
+
+    @PutMapping("/pulic/change-avatar")
+    public ResponseEntity<?> changeAvatar(HttpServletRequest request, @Valid @RequestBody ChangeAvatar changeAvatar) {
+        String jwt = jwtTokenFilter.getJwt(request);
+        String email = jwtProvider.getUserNameFromToken(jwt);
+        Account account;
+        try {
+            if (changeAvatar.getAvatar() == null) {
+                return new ResponseEntity<>(new ResponseMessage("no"), HttpStatus.ACCEPTED);
+            }
+            account = accountService.findByEmail(email).orElseThrow(() -> new UsernameNotFoundException("email không tồn tại" + email));
+            account.setAvatar(changeAvatar.getAvatar());
+            accountService.save(account);
+
+            return new ResponseEntity<>(new ResponseMessage("yes"), HttpStatus.OK);
+
+        } catch (UsernameNotFoundException exception) {
+            return new ResponseEntity<>(new ResponseMessage(exception.getMessage()), HttpStatus.NOT_FOUND);
+        }
     }
 }

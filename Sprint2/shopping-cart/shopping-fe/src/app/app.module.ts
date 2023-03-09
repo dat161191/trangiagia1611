@@ -19,8 +19,16 @@ import {DetailClockComponent} from './clock/detail-clock/detail-clock.component'
 import {CarouselModule} from 'ngx-owl-carousel-o';
 import {ClockEditComponent} from './clock/clock-edit/clock-edit.component';
 import {RegisterComponent} from './security/register/register.component';
-import { PersonalPageComponent } from './personal-page/personal-page.component';
-import { StatisticalComponent } from './clock/statistical/statistical.component';
+import {PersonalPageComponent} from './personal-page/personal-page.component';
+import {StatisticalComponent} from './clock/statistical/statistical.component';
+import {PayClockComponent} from './pay-clock/pay-clock.component';
+import {AngularFireStorageModule} from '@angular/fire/storage';
+import {AngularFireModule} from '@angular/fire';
+import {environment} from '../environments/environment.prod';
+import {UploadAvatarComponent} from './upload/upload-avatar/upload-avatar.component';
+import {PhonePipe} from './pipes/phone-pipe';
+import {CCCDPipe} from './pipes/CCCD-Pipe';
+import {NgxPaginationModule} from 'ngx-pagination';
 
 
 @NgModule({
@@ -33,7 +41,14 @@ import { StatisticalComponent } from './clock/statistical/statistical.component'
     InfoComponent,
     CartComponent,
     ClockCreateComponent,
-    ClockEditComponent, DetailClockComponent, RegisterComponent, PersonalPageComponent, StatisticalComponent
+    ClockEditComponent,
+    DetailClockComponent,
+    RegisterComponent,
+    PersonalPageComponent,
+    StatisticalComponent,
+    PayClockComponent,
+    UploadAvatarComponent,
+    PhonePipe,CCCDPipe
   ],
     imports: [
         BrowserModule,
@@ -41,7 +56,8 @@ import { StatisticalComponent } from './clock/statistical/statistical.component'
         ToastrModule.forRoot(),
         HttpClientModule,
         BrowserAnimationsModule,
-        ReactiveFormsModule, CarouselModule, FormsModule
+        ReactiveFormsModule, CarouselModule, FormsModule,
+        AngularFireStorageModule, AngularFireModule.initializeApp(environment.firebaseConfig), NgxPaginationModule
     ],
   providers: [{
     provide: HTTP_INTERCEPTORS,

@@ -45,7 +45,8 @@ public class CartController {
         Clock clock = cartCreate.getClock();
         Customer customer = customerService.findByAccount_IdAccount(cartCreate.getIdAccount());
         if (clock != null && customer != null) {
-            Cart cart = cartService.findByCustomer_IdAndClock_Id(customer.getId(), clock.getId());
+//            Cart cart = cartService.findByCustomer_IdAndClock_Id(customer.getId(), clock.getId());
+            Cart cart = cartService.findByCustomer_IdAndClock_IdAndStatus(customer.getId(), clock.getId(), false);
             if (cart != null) {
                 cart.setQuantityPurchased(cart.getQuantityPurchased() + cartCreate.getQuantityPurchased());
                 cartService.save(cart);
@@ -93,26 +94,26 @@ public class CartController {
     @PatchMapping("/user/cart/pay-cart/{idAccount}")
     public ResponseEntity<?> payCart(@PathVariable("idAccount") Long idAccount) {
         Customer customer = customerService.findByAccount_IdAccount(idAccount);
-        List<Cart> carts = cartService.findByCustomer_Id(customer.getId());
+//        if (customer != null) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+        List<Cart> carts = cartService.findByCustomer_IdAndStatus(customer.getId(), false);
         List<Clock> clocks = clockService.findByCustomerId(customer.getId());
         for (Cart cart : carts) {
             for (Clock clock : clocks) {
                 if (Objects.equals(cart.getClock().getId(), clock.getId())) {
                     if (clock.getQuanlity() - cart.getQuantityPurchased() >= 0) {
-                        clock.setQuanlity(clock.getQuanlity() - cart.getQuantityPurchased());
-                    } else if(clock.getQuanlity() - cart.getQuantityPurchased() < 0) {
+                        int quanlity = clock.getQuanlity() - cart.getQuantityPurchased();
+                        clock.setQuanlity(quanlity);
+                    } else if (clock.getQuanlity() - cart.getQuantityPurchased() < 0) {
                         clock.setQuanlity(0);
                     }
                 }
             }
         }
-
-        if (customer != null) {
-            cartService.payCart(customer.getId());
-            List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAccount);
-            return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        cartService.payCart(customer.getId());
+        List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAccount);
+        return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
     }
 
     /**
@@ -128,6 +129,18 @@ public class CartController {
             cartService.changeQuanlityCart(requestCart.getIdCart(), requestCart.getQuanlityUpdate());
             List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(requestCart.getIdAccount());
             return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/user/cart/history/{idAccount}")
+    public ResponseEntity<List<CartListByIdAccount>> historyCart(@PathVariable("idAccount") Long idAccount) {
+        Customer customer = customerService.findByAccount_IdAccount(idAccount);
+        if (customer != null) {
+            List<CartListByIdAccount> historyCarts = cartService.historyCart(customer.getId());
+            if (historyCarts != null) {
+                return new ResponseEntity<>(historyCarts, HttpStatus.OK);
+            }
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }

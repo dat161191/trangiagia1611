@@ -1,0 +1,12 @@
+<div class="d-flex d-flex justify-content-center align-items-center">
+  <input type="file" style="color: red" (change)="fileChange($event)">
+  <button class="btn btn-primary" type="button"  disabled *ngIf="checkUpload">
+    <div mode="determinate" value="40">Đang tải...</div>
+<!--    <span class="spinner-grow spinner-grow-sm" role="status" aria-hidden="true"></span>-->
+<!--    Đang tải...-->
+  </button>
+  <button *ngIf="downloadURL? !selectedFire : selectedFire && !checkUpload" class="btn-primary btn" (click)="onUpload()"> Tải lên</button>
+<!--  <div *ngIf="downloadURL" style="margin-bottom: 10px; margin-top: 10px">-->
+<!--    <img [src]="downloadURL" style="width: 300px; height: 300px;border-radius: 50%;box-shadow: 0 0 10px 10px white" alt="nocomment">-->
+<!--  </div>-->
+</div>

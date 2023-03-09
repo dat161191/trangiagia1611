@@ -87,6 +87,8 @@ img {
 
 .img-detail {
   border: 1px solid crimson;
+  border-radius: 3px;
+  transition: all 1s ease
 }
 
 h2 {
@@ -96,17 +98,42 @@ h2 {
 
 .img-detail:hover {
   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
-  /*transform: scale(1.1) rotate(-2deg)*/
+  transform: scale(1.1)
 }
 
 .img-body {
   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
 }
 
-.container-fluid {
-  background: linear-gradient(to right, #d9f5db, #739a96)
-}
+/*.container-fluid {*/
+/*  background: linear-gradient(to right, #d9f5db, #739a96)*/
+/*}*/
 
 .tskt:hover {
   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+}
+
+/*button scrollbar*/
+#btnScrollToTop {
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: black;
+  box-shadow: 0 0 5px 5px white;
+  border: none;
+  color: red;
+  outline: none;
+  cursor: pointer;
+  transition: all 1s ease
+}
+
+#btnScrollToTop:active {
+  background: honeydew;
+}
+
+#btnScrollToTop:hover {
+  transform: scale(1.1);
 }

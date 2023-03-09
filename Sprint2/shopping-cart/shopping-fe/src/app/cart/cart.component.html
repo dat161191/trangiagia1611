@@ -69,32 +69,93 @@
         </table>
       </div>
       <ng-template #block>
-        <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống!</h2></div>
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-10">
+            <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống!Hẹn gặp bạn lần sau!</h2>
+              <div id="carouselExampleInterval" class="carousel slide  mt-2" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active" data-bs-interval="2000">
+                    <img src="https://zenwatch.vn/thumb/crop/12984/1920/950/"
+                         style="border-radius: 10px;border: 5px solid red"
+                         class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="https://zenwatch.vn/thumb/crop/7730/1920/950/"
+                         style="border-radius: 10px;border: 5px solid red"
+                         class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="https://zenwatch.vn/thumb/crop/5690/1920/950/"
+                         style="border-radius: 10px;border: 5px solid red "
+                         class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="https://zenwatch.vn/thumb/crop/7862/1920/950/"
+                         style="border-radius: 10px;border: 5px solid red"
+                         class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item" data-bs-interval="2000">
+                    <img src="https://zenwatch.vn/thumb/crop/5692/1920/950/"
+                         style="border-radius: 10px;border: 5px solid red" class=" d-block
+                         w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" style="border-radius: 10px" data-bs-target="
+                        #carouselExampleInterval" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                        data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+
+            </div>
+          </div>
+          <div class="col-1"></div>
+        </div>
       </ng-template>
     </div>
 
     <div class="col-3 mt-2">
-      <div class="row address">
-        <h5 class="text-center"><b>Giao tới</b></h5>
-        <p>Khách Hàng: <span class="text-bg-warning"
-                             style="border-radius: 7px;padding: 3px">{{customer.customerName}}</span>
-        </p>
-        <p>Số điện thoại: <span class="text-bg-primary"
-                                style="border-radius: 7px;padding: 3px">{{customer.phone}}</span></p>
-        <p><i class="bi bi-geo-alt-fill"></i>: {{customer.addressCustomer}} </p>
-      </div>
+      <div style="width: 98%">
+        <div class="row address">
+          <h5 class="text-center"><b>Giao tới</b></h5>
+          <p>Khách Hàng: <span class="text-bg-d"
+                               style="border-radius: 7px;padding: 3px"><b>{{customer.customerName}}</b></span>
+          </p>
+          <p>Số điện thoại: <span class="text-bg-primary"
+                                  style="border-radius: 7px;padding: 3px"><b>{{customer.phone|phoneNumber}}</b></span>
+          </p>
+          <p>Email: <span class="text-bg-success"
+                          style="border-radius: 7px;padding: 3px"><b>{{customer.email}}</b></span></p>
 
-      <div class="row pay mt-2 mb-2">
-        <p class="mt-2">Tạm tính: <span class="text-bg-warning"
-                                        style="border-radius: 7px;padding: 3px">{{totalPay | number}} VNĐ <=> {{(totalPay/24000)|number: '0.2'}} USD</span></p>
-        <p>Giảm giá: <span class="text-bg-secondary" style="border-radius: 7px;padding: 3px">{{totalPay * sale}}
-          VND</span></p>
-        <hr>
-        <h6>Tổng tiền: <span class="text-bg-success"
-                             style="border-radius: 7px;padding: 3px"> {{(totalPay - totalPay * sale)|number}} VNĐ <=> {{totalPay/2400|number: '0.2'}} USD</span>
-        </h6>
+          <p><i class="bi bi-geo-alt-fill"></i>: <b>{{customer.addressCustomer}}</b></p>
+        </div>
+
+        <div class="row pay mt-2 mb-2">
+          <p class="mt-2">Tạm tính: <span class="text-bg-warning"
+                                          style="border-radius: 7px;padding: 3px"><b>{{totalPay | number}}
+            VNĐ <=> {{(totalPay / 24000)|number: '0.1'}} USD</b>
+           </span></p>
+          <p>Giảm giá: <span class="text-bg-secondary"
+                             style="border-radius: 7px;padding: 3px"><b>{{totalPay * sale}} VND</b>
+            </span></p>
+          <hr>
+          <h6>Tổng tiền: <span class="text-bg-success"
+                               style="border-radius: 7px;padding: 3px"><b>{{(totalPay - totalPay * sale)|number}}
+            VNĐ <=> {{(totalPay / 24000 - (totalPay / 24000) * sale)|number: '0.1'}} USD</b> </span>
+          </h6>
+        </div>
+        <div class="mb-2 d-flex justify-content-center align-items-center" *ngIf="cartListByIdAccount.length != 0">
+          <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"
+                  (click)="payClock()"><b>THANH TOÁN</b>
+          </button>
+        </div>
       </div>
-      <div id="paypalbutton" class="mb-2"></div>
     </div>
   </div>
 </div>
@@ -120,4 +181,23 @@
     </div>
   </div>
 </div>
+
+<div class="modal fade" id="payPal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background: linear-gradient(to right, #d9f5db, #07af9e);color: blue">
+      <div class="modal-header"><h4 class="text-center">THANH TOÁN</h4></div>
+      <div class="modal-body">
+        <form>
+
+        </form>
+        <div id="paypalbutton" class="mb-2"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="reset()" data-bs-dismiss="modal">Đóng</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 

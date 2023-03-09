@@ -40,7 +40,12 @@ export class CartService {
    * @param request
    */
   changeQuanlity(requestCart: RequestCart) :Observable<any>{
-    console.log('http://localhost:8080/api/user/cart/change-quanlity', requestCart);
+    // console.log('http://localhost:8080/api/user/cart/change-quanlity', requestCart);
     return this.httpClient.patch('http://localhost:8080/api/user/cart/change-quanlity', requestCart);
+  }
+
+  historyPay(idAccount: number):Observable<any>{
+    console.log('http://localhost:8080/api/user/cart/history' + '/' + idAccount);
+    return this.httpClient.get('http://localhost:8080/api/user/cart/history' + '/' + idAccount)
   }
 }

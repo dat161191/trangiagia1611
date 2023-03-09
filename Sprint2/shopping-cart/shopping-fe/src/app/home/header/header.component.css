@@ -32,7 +32,7 @@
   /*padding: 12px 16px;*/
   text-decoration: none;
   display: block;
-  background: black;
+  background: #4c39f6;
 }
 
 /* thay đổi màu background khi hover vào đường dẫn */
@@ -56,7 +56,7 @@ div.container {
 div.container a {
   color: #FFF;
   text-decoration: none;
-  /*margin: 0px 10px;*/
+  margin: 0px 3px;
   padding: 10px 10px;
   position: relative;
   z-index: 0;
@@ -92,51 +92,54 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after {
 .teal {
   background: black;
 }
-
-/* runcaroulsel*/
-.runcarousel {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: black;
-  font-size: 16px;
+.teal a:active{
+  background: #739a96;
 }
 
-.Marquee {
-  /*background: linear-gradient(-135deg, #008ed9, #8b00db);*/
-  width: 95%;
-  box-sizing: border-box;
-  color: black;
-  font-weight: 200;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
+/*!* runcaroulsel*!*/
+/*.runcarousel {*/
+/*  width: 100%;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  background: blue;*/
+/*  font-size: 16px;*/
+/*}*/
 
-.Marquee-content {
-  display: flex;
-  animation: marquee 10s linear infinite running
-}
+/*.Marquee {*/
+/*  !*background: linear-gradient(-135deg, #008ed9, #8b00db);*!*/
+/*  width: 95%;*/
+/*  box-sizing: border-box;*/
+/*  color: black;*/
+/*  font-weight: 200;*/
+/*  display: flex;*/
+/*  align-items: center;*/
+/*  overflow: hidden;*/
+/*}*/
 
-.Marquee-content:hover {
-  animation-play-state: paused
-}
+/*.Marquee-content {*/
+/*  display: flex;*/
+/*  animation: marquee 10s linear infinite running*/
+/*}*/
 
-.Marquee-tag {
-  width: 100px;
-  /*background: black;*/
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 1s ease
-}
+/*.Marquee-content:hover {*/
+/*  animation-play-state: paused*/
+/*}*/
 
-.Marquee-tag:hover {
-  background: rgba(236, 6, 6, 1);
-  transform: scale(1.1);
-  cursor: pointer
-}
+/*.Marquee-tag {*/
+/*  width: 100px;*/
+/*  !*background: black;*!*/
+/*  display: inline-flex;*/
+/*  align-items: center;*/
+/*  justify-content: center;*/
+/*  transition: all 1s ease*/
+/*}*/
+
+/*.Marquee-tag:hover {*/
+/*  background: rgba(236, 6, 6, 1);*/
+/*  transform: scale(1.1);*/
+/*  cursor: pointer*/
+/*}*/
 
 
 @keyframes marquee {
@@ -160,13 +163,13 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after {
 }
 
 .container-text {
-  /*background-image: url(https://zenwatch.vn/thumb/crop/7730/1920/950/);*/
   background-image: url(https://c4.wallpaperflare.com/wallpaper/157/130/452/time-style-retro-watch-wallpaper-preview.jpg);
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
   color: #FFFFFF;
-  /*padding-top: 20px;*/
   font-size: 140px;
   font-family: 'Bungee';
   animation: filling 5s ease forwards infinite running
 }
+
+

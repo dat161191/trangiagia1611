@@ -9,61 +9,62 @@ import {CartService} from '../../service/cart.service';
 import {CartListByIdAccount} from '../../enity/cart/cart-list-by-id-account';
 
 @Component({
-    selector: 'app-header',
-    templateUrl: './header.component.html',
-    styleUrls: ['./header.component.css']
+  selector: 'app-header',
+  templateUrl: './header.component.html',
+  styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-    checkLogin = false;
-    name: string | null = '';
-    roles: string[] = [];
-    avatar: string | null = '';
-    idAccount: number = -1;
-    trademarks: Trademark[] = [];
-    totalProduct = 0;
+  checkLogin = false;
+  name: string | null = '';
+  roles: string[] = [];
+  avatar: string | null = '';
+  idAccount: number = -1;
+  trademarks: Trademark[] = [];
+  totalProduct = 0;
 
-    constructor(private toast: ToastrService,
-                private router: Router,
-                private tokenService: TokenService,
-                private clockService: ClockService,
-                private behaviorService: BehaviorService) {
-        this.clockService.getTrademarks().subscribe(data => {
-            this.trademarks = data;
-        });
+  constructor(private toast: ToastrService,
+              private router: Router,
+              private tokenService: TokenService,
+              private clockService: ClockService,
+              private behaviorService: BehaviorService) {
+    this.clockService.getTrademarks().subscribe(data => {
+      this.trademarks = data;
+    });
+  }
+
+  ngOnInit(): void {
+    this.behaviorService.getCartTotal().subscribe(data => {
+      this.totalProduct = data;
+    });
+    if (this.tokenService.getToken()) {
+      this.checkLogin = true;
+      this.name = this.tokenService.getName();
+      this.roles = this.tokenService.getRole();
+      // console.log(this.roles);
+      this.avatar = this.tokenService.getAvatar();
+      console.log(this.avatar);
+      this.idAccount = Number(this.tokenService.getId());
     }
 
-    ngOnInit(): void {
-        this.behaviorService.getCartTotal().subscribe(data => {
-            this.totalProduct = data;
-        });
-        if (this.tokenService.getToken()) {
-            this.checkLogin = true;
-            this.name = this.tokenService.getName();
-            this.roles = this.tokenService.getRole();
-            // console.log(this.roles);
-            this.avatar = this.tokenService.getAvatar();
-            this.idAccount = Number(this.tokenService.getId());
-        }
+  }
 
-    }
+  logOut(): void {
+    window.localStorage.clear();
+    this.router.navigateByUrl('/').then(() => {
+      location.reload();
+    });
+    this.toast.info('Đăng xuất thành công.', ' Thông báo', {
+      timeOut: 3000,
+      extendedTimeOut: 1500
+    });
+  };
 
-    logOut(): void {
-        window.localStorage.clear();
-        this.router.navigateByUrl('/').then(() => {
-            location.reload();
-        });
-        this.toast.info('Đăng xuất thành công.', ' Thông báo', {
-            timeOut: 3000,
-            extendedTimeOut: 1500
-        });
-    };
-
-    creatClock($event: any) {
+  creatClock($event: any) {
 // modal create
-    }
+  }
 
-    searchNameClock(search: any) {
-        this.behaviorService.setValue(search);
-        this.router.navigateByUrl('');
-    }
+  searchNameClock(search: any) {
+    this.behaviorService.setValue(search);
+    this.router.navigateByUrl('');
+  }
 }

@@ -68,6 +68,13 @@ export class HomeComponent implements OnInit {
     this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
       this.cartListByIdAccount = data;
       this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
+    }, error => {
+      this.cartListByIdAccount.length = 0;
+      this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
     });
+  }
+
+  scroll() {
+    window.scrollTo(0, 0);
   }
 }

@@ -1,4 +1,6 @@
 package com.shoppingbe.entity;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -28,16 +31,19 @@ public class Orders {
     private String phone;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
+    @Column(name = "create_date",columnDefinition = "DATE")
     private Date createDate;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date")
+    @Column(name = "modify_date",columnDefinition = "DATE")
     private Date modifyDate;
     @ManyToOne
     private Customer customer;
     @ManyToOne
     private Cart cart;
+    @OneToMany(mappedBy = "orders")
+    @JsonBackReference
+    private Set<OrderDetail> orderDetails;
 
     public Orders(Long id, Long codeOrders, String bookingDate, boolean paymentStatus, String deliveryAddress, String phone, Date createDate, Date modifyDate, Customer customer) {
         this.id = id;

@@ -14,6 +14,17 @@ img {
   border: 1px solid blue;
   border-radius: 5px;
 }
+
 .container-fluid {
   background: linear-gradient(to right, #d9f5db, #739a96)
+}
+
+.buttonPayPal {
+  transition: all 2s ease
+}
+
+.buttonPayPal:hover {
+  box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+  transform: scale(1.1);
+  cursor: pointer
 }

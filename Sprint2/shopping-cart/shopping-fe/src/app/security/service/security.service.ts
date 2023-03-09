@@ -12,6 +12,7 @@ export class SecurityService {
 
   private API_SIGNIN = 'http://localhost:8080/api/public/signin';
   private API_REGISTER = 'http://localhost:8080/api/public/register';
+  private API_CHANGE_AVATAR = 'http://localhost:8080/api/pulic/change-avatar';
 
   constructor(private httpClient: HttpClient) {
   }
@@ -22,5 +23,10 @@ export class SecurityService {
 
   resister(customer: Customer): Observable<Customer> {
     return this.httpClient.post<Customer>(this.API_REGISTER, customer);
+  }
+
+  changeAvatar(info: any): Observable<JwtResponse> {
+    console.log(this.API_CHANGE_AVATAR, info);
+    return this.httpClient.put<JwtResponse>(this.API_CHANGE_AVATAR, info);
   }
 }

@@ -1,4 +1,7 @@
-<div class="container-fluid">
+<button id="btnScrollToTop" (click)="scroll()">
+   <i class="fa-solid fa-angles-up"></i>
+</button>
+<div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
   <div class="row">
     <div class="col-1"></div>
     <div class="col-10">
@@ -56,6 +59,7 @@
         </div>
       </div>
       <hr>
+
       <div class="row mt-1 mb-1">
         <div class="col-3 mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h6>Không có sản phẩm cần
           tìm.</h6></div>

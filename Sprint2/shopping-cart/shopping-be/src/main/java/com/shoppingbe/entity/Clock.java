@@ -1,4 +1,5 @@
 package com.shoppingbe.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,6 +10,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -51,4 +53,7 @@ public class Clock {
     @ManyToOne
     @JoinColumn(name = "machineType_id", referencedColumnName = "id")
     private MachineType machineType;//Kiểu máy
+    @OneToMany(mappedBy = "clock")
+    @JsonBackReference
+    private Set<OrderDetail> orderDetails;
 }

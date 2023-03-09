@@ -14,6 +14,7 @@ img {
 hr {
   color: blue;
 }
+
 .text-hiden {
   visibility: hidden;
   /*transition: all 2s ease*/
@@ -22,6 +23,7 @@ hr {
 .img-detail:hover .text-hiden {
   visibility: visible;
 }
+
 .img-detail {
   min-height: 100%;
   transition: all 0.5s ease
@@ -136,4 +138,26 @@ div.borderYtoX a:hover:before, div.borderYtoX a:hover:after {
   }
 }
 
+/*button scrollbar*/
+#btnScrollToTop {
+  position: fixed;
+  right: 10px;
+  bottom: 15px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: black;
+  box-shadow: 0 0 5px 5px white;
+  border: none;
+  color: red;
+  outline: none;
+  cursor: pointer;
+  transition: all 1s ease
+}
 
+#btnScrollToTop:active {
+  background: honeydew;
+}
+#btnScrollToTop:hover {
+  transform: scale(1.1);
+}

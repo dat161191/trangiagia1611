@@ -7,13 +7,14 @@ const ID_KEY = 'Id_key';
 const EMAIL_KEY = 'Email_key';
 const AVATAR_KEY = 'Avatar_key';
 const ENCODER_KEY = 'Encoder_key';
-const ID_CUSTOMER= 'Id_customer_key'
+const ID_CUSTOMER = 'Id_customer_key';
+
 @Injectable({
   providedIn: 'root'
 })
 export class TokenService {
 
-  private _roles = [];
+  private _roles: [] = [];
 
   constructor() {
   }
@@ -76,6 +77,7 @@ export class TokenService {
     localStorage.removeItem(ID_CUSTOMER);
     localStorage.setItem(ID_CUSTOMER, idCustomer);
   }
+
   public getName(): string | null {
     return localStorage.getItem(NAME_KEY);
   }

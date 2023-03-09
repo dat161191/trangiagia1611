@@ -1,4 +1,8 @@
-<div class="container-fluid mt-1">
+<button id="btnScrollToTop" (click)="scroll()">
+  <i class="fa-solid fa-angles-up"></i>
+</button>
+
+<div class="container-fluid" style=" background: linear-gradient(to right, #d9f5db, #739a96)">
   <div class="row mb-1 p-5">
     <div class="col-1"></div>
     <div class="card col-10 img-body">
@@ -55,21 +59,25 @@
                 <hr>
               </li>
             </ul>
-            <div class="d-flex align-items-center justify-content-center my-3" *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0">
-              <span>Số lượng: </span>
-              <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="subQuanlity()">-</button>
-              <input #minmax (change)="change(+minmax.value)" class="form-control-sm mx-1"
-                     style="width: 20%;text-align: center; border: solid 1px #3167eb"
-                     type="text" [(ngModel)]="numberPay">
-              <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addQuanlity()">+</button>
-            </div>
+            <div *ngIf="roles[0]=='ROLE_USER',else block2">
+              <div class="d-flex align-items-center justify-content-center my-3"
+                   *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0">
+                <span>Số lượng: </span>
+                <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="subQuanlity()">-</button>
+                <input #minmax (change)="change(+minmax.value)" class="form-control-sm mx-1"
+                       style="width: 20%;text-align: center; border: solid 1px #3167eb"
+                       type="text" [(ngModel)]="numberPay">
+                <button class="btn btn-sm btn-primary mx-1" style="width: 25px" (click)="addQuanlity()">+</button>
+              </div>
 
-            <div class="text-center" *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0,else block">
-              <a class="btn btn-primary me-2 mt-1 mb-1" (click)="addToCart(clockDetail)"><i
-                class="bi bi-bag-plus-fill"></i> Thêm vào giỏ Hàng </a>
-              <a class="btn btn-primary "><i
-                class="fa-solid fa-file-invoice-dollar"></i> Mua ngay </a>
+              <div class="text-center" *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0,else block">
+                <a class="btn btn-primary me-2 mt-1 mb-1" (click)="addToCart(clockDetail)"><i
+                  class="bi bi-bag-plus-fill"></i> Thêm vào giỏ Hàng </a>
+              </div>
             </div>
+            <ng-template #block2>
+              <b class="text-danger">Cảm ơn quý khách đã quan tâm đến sản phẩm.Quý khách cần đăng ký để thực hiện chức năng thêm vào giỏ hàng và thanh toán!!!</b>
+            </ng-template>
             <ng-template #block>
               <div class="text-center text-primary"><b>Cảm ơn quý khách đã quan tâm đến sản phẩm.Hàng đang về mong quý
                 khách ghé lại sau!!!</b></div>
@@ -101,7 +109,7 @@
       <div class="col-1"></div>
     </div>
 
-    <div class="container-fluid mt-2">
+    <div class="mt-2">
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10"><h2><b>Thông số kỹ thuật</b></h2>
@@ -194,7 +202,7 @@
       </div>
     </div>
 
-    <div class="container-fluid mt-2 mb-2">
+    <div class="mt-2 mb-2">
       <div class="row">
         <div class="col-1"></div>
         <div class="col-10"><h2><b>Sản phẩm liên quan</b></h2>
@@ -206,7 +214,7 @@
         <div class="col-1"></div>
         <div class="col-10">
           <!--          Owl-Carousel-->
-          <owl-carousel-o [options]="customOptions" style="height: 200px">
+          <owl-carousel-o [options]="customOptions" >
             <ng-container *ngFor="let clock of clockListByTrademark">
               <ng-template carouselSlide>
                 <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">

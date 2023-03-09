@@ -7,4 +7,7 @@ export interface CartListByIdAccount {
   quanlityClock?: number;
   url?: string;
   clockName?: string;
+  status?: boolean;
+  createDate?: string;
+  payDate?: string;
 }

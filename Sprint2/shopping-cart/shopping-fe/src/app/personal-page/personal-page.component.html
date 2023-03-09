@@ -1,1 +1,142 @@
-<p>personal-page works!</p>
+<div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
+  <div><h1 class="text-center pt-2 text-primary"><b>TRANG CÁ NHÂN</b></h1></div>
+  <div>
+    <div class="row pb-2">
+      <div class="col-12">
+        <div class="row justify-content-center align-items-center">
+          <button class="btn btn-primary me-2" style="width: 20%" (click)="changeInfo()">Thông tin khách hàng
+          </button>
+          <button class="btn btn-success" style="width: 20%" (click)="changeHistory()">Lịch sử mua hàng</button>
+        </div>
+        <br>
+
+        <div>
+          <div class="row" *ngIf="checkInfo">
+            <div class="col-2"></div>
+            <div class="col-4">
+              <div class="card card-body" style="min-height: 100%;width: 98%">
+                <div class="change-avatar d-flex justify-content-center align-items-center">
+                  <img src="{{avatarUser}}"
+                       style="width: 300px; height: 300px;border-radius: 50%;box-shadow: 0 0 15px 15px white"
+                       alt="...">
+                </div>
+                <br>
+                <app-upload-avatar (urlCreate)="uploadAvatar($event)" class="mt-2"></app-upload-avatar>
+                <br>
+                <form class="change-avatar d-flex justify-content-center align-items-center" (ngSubmit)="onSubmit()">
+                  <button class="btn btn-primary" type="submit">Thay đổi Avatar
+                  </button>
+                </form>
+              </div>
+            </div>
+
+            <div class="col-4 text-primary">
+              <div class="card card-body" style="min-height: 100%">
+                <div>
+                  <div class="row">
+                    <div class="col-3">Khách Hàng:</div>
+                    <div class="col-9"><b class="text-bg-danger"
+                                          style="border-radius: 5px;padding: 4px">{{customer.customerName}}</b>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-3">Số điện thoại:</div>
+                    <div class="col-9">
+                      <b class="text-bg-danger"
+                         style="border-radius: 5px;padding: 4px">{{customer.phone | phoneNumber}}</b>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-3">Email:</div>
+                    <div class="col-9"><b class="text-bg-danger"
+                                          style="border-radius: 5px;padding: 4px">{{customer.email}}</b>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-3">CCCD:</div>
+                    <div class="col-9">
+                      <b class="text-bg-danger"
+                         style="border-radius: 5px;padding: 4px">{{customer.idCard | CCCD}}</b>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-3">Giới Tính:</div>
+                    <div class="col-9"><b class="text-bg-danger"
+                                          style="border-radius: 5px;padding: 4px">{{customer.gender ? 'Nam' : 'Nữ'}}</b>
+                    </div>
+                  </div>
+                  <hr>
+
+                  <div class="row">
+                    <div class="col-3">Địa chỉ:</div>
+                    <div class="col-9"><b class="text-bg-danger"
+                                          style="border-radius: 5px;padding: 4px">{{customer.addressCustomer}}</b>
+                    </div>
+                  </div>
+                  <hr>
+                  <div class="row">
+                    <div class="col-3">Ngày sinh:</div>
+                    <div class="col-9"><b class="text-bg-danger"
+                                          style="border-radius: 5px;padding: 4px">{{customer.birthday|date:'dd/MM/yyyy'}}</b>
+                    </div>
+                  </div>
+                  <hr>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+          <div *ngIf="checkHistory" >
+            <div>
+              <table class="table table-dark table-hover text-light" style="height: 35vh">
+                <thead>
+                <tr>
+                  <th style="width: 1%">STT</th>
+                  <th style="width: 27%">Tên sản phẩm</th>
+                  <th style="width: 7%;text-align: center">Số lượng</th>
+                  <th style="width: 10%">Giá (VNĐ)</th>
+                  <th style="width: 15%">Thành tiền(VNĐ)</th>
+                  <th style="width: 15%">Ngày đặt hàng</th>
+                  <th style="width: 15%">Ngày thanh toán</th>
+                  <th style="width: 10%">Tình trạng</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of historyCart| paginate:{itemsPerPage:5,currentPage:p} ;index as i">
+                  <td>{{i + 1 + itemsPerPage * (p - 1)}}</td>
+                  <td>{{item.clockName}}</td>
+                  <td class="text-center">{{item.quanlityCart}}</td>
+                  <td>{{item.clockPrince|number}}</td>
+                  <td>{{item.quanlityCart * item.clockPrince|number}}</td>
+                  <td>{{item.createDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
+                  <td>{{item.payDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
+                  <td>{{item.status == "true" ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td>
+                </tr>
+                <tr>
+                  <td colspan="8" *ngIf="historyCart.length==0" class="text-center text-danger">Không tìm thấy kết quả.
+                  </td>
+                </tr>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="historyCart.length!=0">
+              <pagination-controls class="text-center text-danger" previousLabel="Trang trước" nextLabel="Trang sau"
+                                   (pageChange)="p=$event"></pagination-controls>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+</div>

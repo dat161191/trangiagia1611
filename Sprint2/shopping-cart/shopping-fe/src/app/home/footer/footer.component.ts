@@ -13,4 +13,7 @@ export class FooterComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  uploadAvatar($event: string) {
+    console.log('Avatar=====> ' + $event);
+  }
 }

@@ -38,6 +38,6 @@ public interface IClockRepository extends JpaRepository<Clock, Long> {
      * @param idCustomer
      * @return
      */
-    @Query(value = "select c.* from cart join clock c on c.id = cart.clock_id where customer_id=:idCustomer", nativeQuery = true)
+    @Query(value = "select c.* from cart join clock c on c.id = cart.clock_id where customer_id=:idCustomer and cart.flag=false and cart.status=false", nativeQuery = true)
     List<Clock> findByCustomerId(@Param("idCustomer") Long idCustomer);
 }
