@@ -1,0 +1,45 @@
+<div class="row navbar">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="font-size: 25px;">
+    <div class="container-fluid">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link active" routerLink=""> Home <i class="fa fa-home"> | </i></a></li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown"><i class="bi bi-person-bounding-box"></i> Employee</a>
+          <ul class="dropdown-menu bg-dark " aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-danger" href=""> List Employees </a></li>
+            <li><a class="dropdown-item text-danger" href="">Create New Employees</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#"
+             role="button" data-bs-toggle="dropdown" aria-expanded="false">Facility</a>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-danger" routerLink="/facility/list"> List Facility </a></li>
+            <li><a class="dropdown-item text-danger" routerLink="/facility/create">Create New Facility</a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false"> Customer </a>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-danger" routerLink="/customer/list">List Customer </a></li>
+            <li><a class="dropdown-item text-danger" routerLink="/customer/create">Create New Customer </a></li>
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button"
+             data-bs-toggle="dropdown" aria-expanded="false"> <i class="fa-solid fa-file-signature"></i> Contract </a>
+          <ul class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item text-danger" routerLink="/contract/list">List Contract </a></li>
+            <li><a class="dropdown-item text-danger" routerLink="/contract/create">Create New Contract </a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</div>
+

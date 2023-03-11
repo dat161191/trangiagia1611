@@ -55,10 +55,10 @@ public class CartService implements ICartService {
      * @param idCustomer
      * @return
      */
-    @Override
-    public List<Cart> findByCustomer_Id(Long idCustomer) {
-        return cartRepository.findByCustomer_Id(idCustomer);
-    }
+//    @Override
+//    public List<Cart> findByCustomer_Id(Long idCustomer) {
+//        return cartRepository.findByCustomer_Id(idCustomer);
+//    }
 
     @Override
     public Cart findByCustomer_IdAndClock_IdAndStatus(Long idCustomer, Long idClock, boolean status) {

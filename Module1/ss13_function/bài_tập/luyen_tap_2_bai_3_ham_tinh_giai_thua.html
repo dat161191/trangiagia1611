@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h3>Viết hàm tính giai thừa của một số nguyên bất kỳ được đưa vào. Gọi hàm vừa xây dựng được.</h3>
+
+</body>
+<script>
+    function giaiThua(number) {
+        let giaiThua1 = 1;
+        for (let i = 1; i <= number; i++) {
+            giaiThua1 = giaiThua1 * i;
+        }
+        return giaiThua1;
+    }
+
+    let num = +prompt("nhập số");
+    alert(giaiThua(num));
+
+    //giai thừa số chẵn
+    function giaiThuaSoChan(number) {
+        let giaiThua = 1;
+        for (let i = 2; i < number; i = i + 2) {
+            giaiThua = giaiThua * i;
+        }
+        return giaiThua;
+    }
+
+    // giai thừa số lẻ
+    function giaiThuaSoLe(number) {
+        let giaiThua = 1;
+        for (let i = 1; i < number; i = i + 2) {
+            giaiThua = giaiThua * i;
+        }
+        return giaiThua;
+    }
+
+    alert(giaiThuaSoLe(num));
+    alert(giaiThuaSoChan(num));
+</script>
+</html>

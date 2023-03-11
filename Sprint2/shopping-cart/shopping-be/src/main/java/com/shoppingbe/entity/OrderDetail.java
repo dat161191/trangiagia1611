@@ -28,11 +28,12 @@ public class OrderDetail {
     private  boolean flag=false;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date",columnDefinition = "DATE")
+    @Column(name = "create_date",columnDefinition = "DATETIME")
     private Date createDate;
+    private Integer priceClock;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date",columnDefinition = "DATE")
+    @Column(name = "modify_date",columnDefinition = "DATETIME")
     private Date modifyDate;
 }

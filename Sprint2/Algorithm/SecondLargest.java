@@ -1,21 +1,24 @@
+import java.util.Arrays;
 public class SecondLargest {
-    public static int findSecondLargest(Integer[] arr) {
-        int max = Integer.MIN_VALUE;
-        int secondMax = Integer.MIN_VALUE;
-        System.out.println(max);
-        for (int j : arr) {
-            if (j > max) {
-                secondMax = max;
-                max = j;
-            } else if (j > secondMax && j != max) {
-                secondMax = j;
+    static void print2largest(int arr[], int size) {
+        int i;
+        if (size < 2) {
+            System.out.print("Không tồn tại phần tử lớn thứ  2");
+            return;
+        }
+        Arrays.sort(arr);
+        for (i = size - 2; i >= 0; i--) {
+            if (arr[i] != arr[size - 1]) {
+                System.out.printf("Phần tử lớn thứ 2: " + arr[i]);
+                return;
             }
         }
-        return secondMax;
+        System.out.print("Không tồn tại phần tử lớn thứ  2");
     }
 
     public static void main(String[] args) {
-        Integer[] array = {6, 6, 5,4};
-        System.out.println(SecondLargest.findSecondLargest(array));
+        int arr[] = {35, 35, 35, 10, 34, 35};
+        int n = arr.length;
+        print2largest(arr, n);
     }
 }

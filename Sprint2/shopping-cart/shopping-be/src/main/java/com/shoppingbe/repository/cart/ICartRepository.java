@@ -2,7 +2,6 @@ package com.shoppingbe.repository.cart;
 
 import com.shoppingbe.dto.cart.CartListByIdAccount;
 import com.shoppingbe.entity.Cart;
-import com.shoppingbe.entity.Clock;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -12,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 
 public interface ICartRepository extends JpaRepository<Cart, Long> {
-    @Query(value = "select cart.id cartId," +
+    @Query(value = "select cart.status status, cart.id cartId," +
             "c.id clockId,c.name clockName," +
             "c.price clockPrince," +
             "c2.id customerId," +
@@ -65,7 +64,7 @@ public interface ICartRepository extends JpaRepository<Cart, Long> {
     @Modifying
     void changeQuanlityCart(@Param("idCart") Long idCart, @Param("quanlityUpdate") Integer quanlityUpdate);
 
-    List<Cart> findByCustomer_Id(Long idCustomer);
+//    List<Cart> findByCustomer_Id(Long idCustomer);
 
     /**
      * 07/03/2023 lấy list cart để update số lượng sản phẩm sau khi thanh toán

@@ -17,10 +17,15 @@ public class CustomerController {
 
     @GetMapping("/public/customer/detail/{idAccount}")
     public ResponseEntity<Customer> findById(@PathVariable("idAccount") Long idAccount) {
-        Customer clock = customerService.findByAccount_IdAccount(idAccount);
-        if (clock == null) {
+        Customer customer;
+        try {
+            customer = customerService.findByAccount_IdAccount(idAccount);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        if (customer == null) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
-        return new ResponseEntity<>(clock, HttpStatus.OK);
+        return new ResponseEntity<>(customer, HttpStatus.OK);
     }
 }

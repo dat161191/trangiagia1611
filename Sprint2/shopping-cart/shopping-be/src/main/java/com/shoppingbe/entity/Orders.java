@@ -24,18 +24,18 @@ public class Orders {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long codeOrders;
-    @Column(columnDefinition = "date")
-    private String bookingDate;
-    private boolean paymentStatus;
+
+    //    private boolean paymentStatus;
     private String deliveryAddress;
     private String phone;
+    private Integer totalOrder;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date",columnDefinition = "DATE")
+    @Column(name = "create_date", columnDefinition = "DATETIME")
     private Date createDate;
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date",columnDefinition = "DATE")
+    @Column(name = "modify_date", columnDefinition = "DATETIME")
     private Date modifyDate;
     @ManyToOne
     private Customer customer;
@@ -45,15 +45,11 @@ public class Orders {
     @JsonBackReference
     private Set<OrderDetail> orderDetails;
 
-    public Orders(Long id, Long codeOrders, String bookingDate, boolean paymentStatus, String deliveryAddress, String phone, Date createDate, Date modifyDate, Customer customer) {
+    public Orders(Long id, Long codeOrders, String deliveryAddress, String phone, Integer totalOrder) {
         this.id = id;
         this.codeOrders = codeOrders;
-        this.bookingDate = bookingDate;
-        this.paymentStatus = paymentStatus;
         this.deliveryAddress = deliveryAddress;
         this.phone = phone;
-        this.createDate = createDate;
-        this.modifyDate = modifyDate;
-        this.customer = customer;
+        this.totalOrder = totalOrder;
     }
 }

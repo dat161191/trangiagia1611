@@ -1,5 +1,6 @@
 package com.shoppingbe.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,14 +27,14 @@ public class Cart {
     private Integer quantityPurchased;
     @CreationTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "create_date")
+    @Column(name = "create_date", columnDefinition = "DATETIME")
     private Date createDate;
 
     @UpdateTimestamp
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "modify_date")
+    @Column(name = "modify_date", columnDefinition = "DATETIME")
     private Date modifyDate;
-
+    @JoinColumn(columnDefinition = "DATETIME")
     private Date payDate;
     private boolean flag = false;
     private boolean status = false;
@@ -44,6 +45,7 @@ public class Cart {
     private Customer customer;
 
     @OneToMany(mappedBy = "cart")
+    @JsonBackReference
     private Set<Orders> orders;
 
     public Cart(Long id, Integer quantityPurchased, Date createDate, Date modifyDate, Clock clock, Customer customer) {

@@ -79,6 +79,7 @@ export class PersonalPageComponent implements OnInit {
   getCustomerByIdAccount() {
     this.customerService.getCustomerByIdAccount(this.idAccount).subscribe(data => {
       this.customer = data;
+      console.log(this.customer);
     });
   }
 

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>C0722G1_Trần_Quốc_Đạt</title>
+</head>
+
+<body>
+<h1>Tạo biểu mẫu cơ bản</h1>
+<!--thuộc tính action quy định nơi gởi dữ liệu đên.có thể cúng sver vs trang web hiện tại hoặc bất kỳ trang web nào khác-->
+<form action="http://google.com.vn" target="_blank">
+<!-- name="" Lưu ý rất quan trọng: Cần phải đặt tên cho các trường của biểu mẫu. Nếu một trường nào đó không được đặt tên thì dữ liệu của trường đó sẽ bị bỏ qua (không được gửi lên server).    -->
+    <fieldset><legend>Persional Imformation:</legend>
+<!--thẻ <fieldset> và thẻ <legend> để nhóm các dữ liệu của biểu mẫu lại với nhau. -->
+    First Name:<br>
+    <input type="text" name="firstname" value="Mickey">
+    <br>
+    Last Name:<br>
+    <input type="text" name="last Name" value="Mouse">
+    <br><br>
+<!--type="sumbit"Dùng để hiển thị một nút, có chức năng đẩy dữ liệu từ form lên server khi bấm vào.-->
+    <input type="submit" value="gởi biểu mãu">
+    </fieldset>
+</form>
+<form action="/action_page.php">
+    <fieldset><legend>ĐĂNG NHẬP</legend>
+    <label for="2">Acount:</label><br>
+        <input type="text" id="2" name="acount"><br>
+        Password:<br>
+        <input type="text" id="2" name="acount"><br>
+
+        Sở thích:<br/>
+<!--        type="checkbok": dùng để chọn nhiều hạng mục từ một danh sách-->
+        <label><input name="hobby" value="travel" type="checkbox"/> Du lịch</label> <br/>
+        <label><input name="hobby" value="sport" type="checkbox"/> Thể thao</label> <br/>
+        <label><input name="hobby" value="cooking" type="checkbox"/> Nấu ăn</label> <br/>
+        Sở thích:<br/>
+<!--        type="radio" dùng để chọn 1 mục từ một danh sách-->
+        <label><input name="hobby" value="travel" type="radio" /> Du lịch</label> <br/>
+        <label><input name="hobby" value="sport" type="radio"/> Thể thao</label> <br/>
+        <label><input name="hobby" value="cooking" type="radio"/> Nấu ăn</label> <br/>
+<!-- type="reset" Dùng để xoá các giá trị trong một form, đưa các trường về giá trị mặc định của chúng.       -->
+        Account: <input name="account" value="admin" type="text"/><br/>
+        <input type="reset" value="Reset"/><br>
+<!--Dùng để chứa giá trị của form nhưng không hiển thị trên giao diện người dùng. Dữ liệu này cũng được đẩy lên server như bình thường.  -->
+        <input name="secret" value="abcg124faasfjh149dfd" type="hidden"/>
+        Account: <input name="account" value="admin" type="text"/><br/>
+<!--Thẻ button được sử dụng để hiển thị một nút.-->
+        <button><img src="http://codegym.vn/wp-content/uploads/2017/03/CodeGym-3-02-copy.jpg" width="200px"/></button><br><br>
+<!--type="button"sử dụng để tạo một nút-->
+        <input type="button" onclick="alert(xinchao:xinchao)" value="chọn"><br><br>
+<!--Thẻ textarea được sử dụng để hiển thị trường nhập chuỗi dài (nhiều dòng).-->
+        <textarea cols="50" rows="6">This is a very very long text text text text text text text text text text text text </textarea>
+</form>
+    </fieldset>
+<!--Thẻ <select> được sử dụng chung với thẻ <option> để tạo một danh sách drop-down hoặc list-->
+<!--cho phép chọn một hoặc nhiều hạng mục từ một danh sách có sẵn.-->
+<select name="city">
+    <option value="HN">Hà Nội</option>
+    <option value="HP">Hải Phòng</option>
+    <option value="HU">Huế</option>
+    <option value="DN">Đà Nẵng</option>
+    <option value="SG">Sài Gòn</option>
+<!--dropdown:lựa chọn một hạng mục từ một danh sách. Chỉ hiển thị hạng mục hiện tại được chọn,-->
+</select>
+
+<select name="city" multiple>
+<!-- thuộc tính multiple hiển thị list:lựa chọn nhiều hạng mục từ một danh sách.-->
+    <option value="HN">Hà Nội</option>
+    <option value="HP">Hải Phòng</option>
+    <option value="HU">Huế</option>
+    <option value="DN">Đà Nẵng</option>
+    <option value="SG">Sài Gòn</option>
+</select>
+
+
+
+</form>
+</body>
+</html>

@@ -10,6 +10,8 @@ import {BehaviorService} from '../service/behavior.service';
 import {render} from 'creditcardpayments/creditCardPayments';
 import {Customer} from '../enity/customer/customer';
 import {CustomerService} from '../service/customer.service';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {OrdersRequest} from '../enity/order/ordersRequest';
 
 @Component({
   selector: 'app-cart',
@@ -26,6 +28,8 @@ export class CartComponent implements OnInit {
   idCustomer = -1;
   requestCart: RequestCart = {};
   customer: Customer = {};
+  formOrder: FormGroup = new FormGroup({});
+  ordersRequest: OrdersRequest = {};
 
   constructor(private toastrService: ToastrService,
               private router: Router,
@@ -37,6 +41,14 @@ export class CartComponent implements OnInit {
               private customerService: CustomerService) {
 
     this.title.setTitle('Giỏ Hàng');
+    this.formOrder = new FormGroup({
+      id: new FormControl(''),//id customer
+      customerName: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      addressCustomer: new FormControl('', Validators.required),
+      deliveryAddress: new FormControl('', Validators.required),
+    });
   }
 
 
@@ -44,7 +56,6 @@ export class CartComponent implements OnInit {
     this.idAccount = Number(this.tokenService.getId());
     this.getListCart();
     this.getCustomerByIdAccount();
-
   }
 
   getListCart() {
@@ -132,6 +143,7 @@ export class CartComponent implements OnInit {
 
   /**
    * 06/03/2023 update
+   * @param value
    * @param cartId
    */
   change(value: number, cartId: number) {
@@ -186,9 +198,9 @@ export class CartComponent implements OnInit {
 
   /**
    * 06/03/2023 update
-   * @param cartId
    */
   payProduct() {
+    this.orders();
     this.idAccount = Number(this.tokenService.getId());
     this.cartService.payCart(this.idAccount).subscribe(data => {
       this.cartListByIdAccount = data;
@@ -201,6 +213,7 @@ export class CartComponent implements OnInit {
   getCustomerByIdAccount() {
     this.customerService.getCustomerByIdAccount(this.idAccount).subscribe(data => {
       this.customer = data;
+      this.formOrder.patchValue(this.customer);
     });
 
   }
@@ -212,11 +225,6 @@ export class CartComponent implements OnInit {
       value: (this.totalPay / 24000).toFixed(0),
       onApprove: (details => {
         this.payProduct();
-      // id: '#paypalbutton',
-      // currency: 'VNĐ',
-      // value: this.totalPay.toFixed(0),
-      // onApprove: (details => {
-      //   this.payProduct();
       })
     });
   }
@@ -224,5 +232,18 @@ export class CartComponent implements OnInit {
   reset() {
     console.log('RSet payPal');
     location.reload();
+  }
+
+  orders() {
+    if (this.formOrder.value.deliveryAddress==""){
+      this.formOrder.value.deliveryAddress=this.customer.addressCustomer;
+    }
+    this.ordersRequest = this.formOrder.value;
+    this.ordersRequest.totalOrder = this.totalPay;
+    this.cartService.importOrder(this.ordersRequest).subscribe(data => {
+      // this.toastrService.success('Thên mới đơn hàng thành công', 'Thông báo', {timeOut: 2000});
+    }, error => {
+    }, () => {
+    });
   }
 }

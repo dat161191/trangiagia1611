@@ -1,12 +1,14 @@
 <div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
-  <div><h1 class="text-center pt-2 text-primary"><b>TRANG CÁ NHÂN</b></h1></div>
   <div>
     <div class="row pb-2">
+<!--      <video src="https://www.robmillsarchitects.com/files/land/city/RMA_Web_land_city_1.mp4" loop muted autoplay playsinline></video>-->
       <div class="col-12">
-        <div class="row justify-content-center align-items-center">
-          <button class="btn btn-primary me-2" style="width: 20%" (click)="changeInfo()">Thông tin khách hàng
+        <div class="row justify-content-center align-items-center pt-2">
+          <button class="custom-btn btn-1 me-3" (click)="changeInfo()" style="font-size: 20px"><span>Click!</span><span>Thông tin khách hàng</span>
           </button>
-          <button class="btn btn-success" style="width: 20%" (click)="changeHistory()">Lịch sử mua hàng</button>
+
+          <button class="custom-btn btn-2 " (click)="changeHistory()" style="font-size: 20px"><span>Click!</span><span>Lịch sử giao dịch</span>
+          </button>
         </div>
         <br>
 
@@ -14,25 +16,33 @@
           <div class="row" *ngIf="checkInfo">
             <div class="col-2"></div>
             <div class="col-4">
-              <div class="card card-body" style="min-height: 100%;width: 98%">
-                <div class="change-avatar d-flex justify-content-center align-items-center">
+              <div class="card card-body"
+                   style="min-height: 100%;width: 98%;   box-shadow: 0 20px 50px rgb(23, 32, 90); ">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
+                <div class="change-avatar text-center">
                   <img src="{{avatarUser}}"
-                       style="width: 300px; height: 300px;border-radius: 50%;box-shadow: 0 0 15px 15px white"
+                       style="width: 300px; height: 300px;border-radius: 50%"
                        alt="...">
                 </div>
                 <br>
                 <app-upload-avatar (urlCreate)="uploadAvatar($event)" class="mt-2"></app-upload-avatar>
-                <br>
-                <form class="change-avatar d-flex justify-content-center align-items-center" (ngSubmit)="onSubmit()">
-                  <button class="btn btn-primary" type="submit">Thay đổi Avatar
-                  </button>
+                <form class="d-flex justify-content-center align-items-center" (ngSubmit)="onSubmit()">
+                  <button class="snip1582" type="submit">Thay đổi Avatar</button>
                 </form>
               </div>
             </div>
 
-            <div class="col-4 text-primary">
-              <div class="card card-body" style="min-height: 100%">
+            <div class="col-4 text-primary ">
+              <div class="card card-body box gradient-border" style="min-height: 100%; width: 98%">
+                <span></span>
+                <span></span>
+                <span></span>
+                <span></span>
                 <div>
+                  <div><h1 CLASS="text-center">THÔNG TIN CÁ NHÂN</h1></div>
                   <div class="row">
                     <div class="col-3">Khách Hàng:</div>
                     <div class="col-9"><b class="text-bg-danger"
@@ -88,14 +98,13 @@
                                           style="border-radius: 5px;padding: 4px">{{customer.birthday|date:'dd/MM/yyyy'}}</b>
                     </div>
                   </div>
-                  <hr>
                 </div>
               </div>
 
             </div>
           </div>
 
-          <div *ngIf="checkHistory" >
+          <div *ngIf="checkHistory">
             <div>
               <table class="table table-dark table-hover text-light" style="height: 35vh">
                 <thead>
@@ -119,7 +128,7 @@
                   <td>{{item.quanlityCart * item.clockPrince|number}}</td>
                   <td>{{item.createDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
                   <td>{{item.payDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
-                  <td>{{item.status == "true" ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td>
+                  <td>{{item.status == true ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td>
                 </tr>
                 <tr>
                   <td colspan="8" *ngIf="historyCart.length==0" class="text-center text-danger">Không tìm thấy kết quả.

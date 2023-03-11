@@ -26,7 +26,18 @@ public class JwtTokenFilter extends OncePerRequestFilter {// tìm kím token tro
     @Autowired
     private AccountDetailService accountDetailService;
 
-    /*Lấy TOKEN từ trong request từ: ...*/
+    /**
+     * Đây là phương thức thực hiện việc kiểm tra token được gửi trong header của request và xác thực người dùng dựa trên token này.
+     * Nếu token hợp lệ, phương thức sẽ lấy tên người dùng từ token, tải chi tiết người dùng từ database bằng cách sử dụng AccountDetailService.
+     * Tạo một đối tượng UsernamePasswordAuthenticationToken và lưu trữ nó trong SecurityContextHolder để xác thực người dùng trong toàn bộ phiên làm việc.
+     * Sau đó, phương thức gọi filterChain để cho request được tiếp tục đi qua các filter khác.
+     * Nếu có bất kỳ lỗi nào xảy ra, phương thức sẽ ghi log lỗi và cho phép request tiếp tục đi qua các filter khác mà không được xác thực.
+     * @param request
+     * @param response
+     * @param filterChain
+     * @throws ServletException
+     * @throws IOException
+     */
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
@@ -46,6 +57,11 @@ public class JwtTokenFilter extends OncePerRequestFilter {// tìm kím token tro
         filterChain.doFilter(request, response);
     }
 
+    /**
+     * Phương thức này có chức năng lấy token JWT từ header của request.
+     * @param request
+     * @return
+     */
     public String getJwt(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
         if (authHeader != null && authHeader.startsWith("Bearer")) {

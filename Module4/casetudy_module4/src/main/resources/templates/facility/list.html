@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <link
+            href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"
+            rel="stylesheet"
+            integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi"
+            crossorigin="anonymous">
+
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
+            crossorigin="anonymous"></script>
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+
+    <style>
+        * {
+            font-family: "Palatino Linotype"
+        }
+
+        input {
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        span {
+            font-size: 15px;
+            color: red
+        }
+    </style>
+    <title>BossTran</title>
+</head>
+<body>
+<div class="container"
+     style="background-image: url(https://c4.wallpaperflare.com/wallpaper/9/146/335/car-mclaren-vehicle-mclaren-mp4-12c-wallpaper-preview.jpg);background-repeat: no-repeat; background-size: 100%;min-height: 100vh">
+    <div th:replace="~{layout::header}"></div>
+    <div class="row mt-1 mb-1">
+        <div class="col-4">
+            <form class="d-flex" role="search">
+                <input class="form-control text-light me-2" type="search" placeholder="Facility Name"
+                       aria-label="Search"
+                       th:value="${searchName}" name="searchName"
+                       style="background-color: rgba(101,126,246,0.3)">
+                <select style="margin-right:2px;border-radius: 20px; background-color: rgba(101,126,246,0.3)"
+                        name="searchFacilityType" class="form-select text-light" aria-label="Default select example">
+                    <option value="-1">FacilityType</option>
+                    <option th:each="facilityType:${facilityTypeList}" th:value="${facilityType.id}"
+                            th:text="${facilityType.name}"
+                            th:selected="${searchFacilityType==facilityType.id}"></option>
+                </select>
+                <button class="btn btn-outline-light" type="submit"><b>Search</b></button>
+            </form>
+        </div>
+        <div class="col col-2">
+            <a th:href="@{/facility/create}" class="btn btn-outline-light">Add Facility</a>
+        </div>
+        <div class="col col-6"></div>
+    </div>
+    <div class="row text-center text-light"><h3><b>Facility List</b></h3>
+        <h4 th:text="${mess}"></h4>
+    </div>
+    <div class="row content mt-1 mb-1">
+        <div class="row">
+            <div class="col col-12">
+                <table class="table table-hover text-center text-light"
+                       style="width: 100%;background-color: rgba(146,195,245,0.5)">
+                    <thead>
+                    <tr>
+                        <th>STT</th>
+                        <th>Facility Name</th>
+                        <th>Area(m<sup>2</sup>)</th>
+                        <th>Cost(USD)</th>
+                        <th>MaxPeople</th>
+                        <th>Standard Room</th>
+                        <th>Other Convenience</th>
+                        <th>Pool Area</th>
+                        <th>Number Floors</th>
+                        <th>Facility Free</th>
+                        <th>Rent Type</th>
+                        <th>Facility Type</th>
+                        <th colspan="2" sec:authorize="hasRole('ADMIN')">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="faci,stt : ${facilityList}">
+                        <td th:text="${stt.count}+${facilityList.number}*${facilityList.size}"></td>
+                        <td th:text="${faci.name}"></td>
+                        <td th:text="${faci.area}"></td>
+                        <td th:text="${faci.cost}"></td>
+                        <td th:text="${faci.maxPeople}"></td>
+                        <td th:text="${faci.standardRoom}"></td>
+                        <td th:text="${faci.descriptionOtherConvenience}"></td>
+                        <td th:text="${faci.poolArea}"></td>
+                        <td th:text="${faci.numberOfFloors}"></td>
+                        <td th:text="${faci.facilityFree}"></td>
+                        <td th:text="${faci.rentType.name}"></td>
+                        <td th:text="${faci.facilityType.name}"></td>
+                        <td>
+                            <a th:href="@{/facility/edit/__${faci.getId()}__ }" class="btn btn-outline-primary"
+                               sec:authorize="hasRole('ADMIN')">Edit</a>
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-outline-danger"
+                                    th:attr="onclick=|showDelete('${faci.id}','${faci.name}');|" data-bs-toggle="modal"
+                                    data-bs-target="#delete" sec:authorize="hasRole('ADMIN')">Delete
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </div>
+        <div class="d-flex justify-content-center ">
+            <nav aria-label="..." class="justify-content-center d-flex">
+                <ul class="pagination">
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number - 1},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:if="${facilityList.hasPrevious()}">
+                            &laquo;</a>
+                    </li>
+                    <li class="page-item disabled" th:unless="${facilityList.hasPrevious()}">
+                        <a class="page-link">&laquo;</a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" th:href="@{/facility/(page=${facilityList.number - 1},
+         searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                                             th:if="${facilityList.hasPrevious()}" th:text="${facilityList.number}"></a>
+                    </li>
+
+                    <li class="page-item active">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:text="${facilityList.number + 1}">
+                            <span class="sr-only">(trang hiện tại)</span></a>
+                    </li>
+
+                    <li class="page-item"><a class="page-link" th:href="@{/facility/(page=${facilityList.number + 1},
+       searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                                             th:if="${facilityList.hasNext()}" th:text="${facilityList.number + 2}"></a>
+                    </li>
+
+                    <li class="page-item">
+                        <a class="page-link" th:href="@{/facility/(page=${facilityList.number + 1}, name=${name},
+            searchName=${searchName}, searchFacilityType=${searchFacilityType})}"
+                           th:if="${facilityList.hasNext()}">&raquo;</a>
+                    </li>
+                    <li class="page-item disabled" th:unless="${facilityList.hasNext()}">
+                        <a class="page-link">&raquo;</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+    </div>
+
+    <div th:replace="~{layout::footer}"></div>
+</div>
+</body>
+<script>
+    /*==FUNCTION*/
+    function showDelete(id, name) {
+        document.getElementById("deleteId").value = id;
+        document.getElementById("deleteName").innerText = name;
+        document.getElementById("deleteName2").value = name;
+    }
+</script>
+
+<!--MODAL DELETE-->
+<div class="modal fade" id="delete" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <form th:action="@{/facility/delete}" method="get">
+                <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                    <h1>Are you sure you want to delete?</h1>
+                    <h1 id="deleteName"></h1>
+                    <input type="hidden" name="deleteName2" id="deleteName2">
+                </div>
+                <div class="modal-footer text-danger " style="background-color: rgba(132,151,241,0)">
+                    <button type="submit" class="btn btn-outline-danger" th:id="deleteId" th:name="deleteId">
+                        <b>Acept</b></button>
+                    <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!--MODAL ALERT-->
+<div class="modal fade" id="alert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${deleteAlert == 1}">
+        $(document).ready(function () {
+            $("#alert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Delete success!!!</h1>
+                <h1 th:text="${deleteName2}"></h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Edit-->
+<div class="modal fade" id="editAlert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${editAlert == 1}">
+        $(document).ready(function () {
+            $("#editAlert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Edit Facility success!!!!!!</h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+<!--Create-->
+<div class="modal fade" id="createAlert" tabindex="-1" data-bs-backdrop="static" aria-labelledby="exampleModalLabel"
+     aria-hidden="true">
+    <script th:inline="javascript" th:if="${createAlert == 1}">
+        $(document).ready(function () {
+            $("#createAlert").modal("show");
+        });
+    </script>
+    <div class="modal-dialog">
+        <div class="modal-content"
+             style="background-image: url(https://c4.wallpaperflare.com/wallpaper/592/569/318/ashar-josephine-skriver-model-women-victoria-s-secret-hd-wallpaper-thumb.jpg);background-repeat: no-repeat; background-size: 100%">
+            <div class="modal-body text-center text-danger" style="background-color: rgba(132,151,241,0)">
+                <h1>Create New Customer success!!!!!!</h1>
+            </div>
+            <div class="modal-footer text-success " style="background-color: rgba(132,151,241,0)">
+                <button type="button" class="btn btn-outline-primary" data-bs-dismiss="modal"><b>Close</b></button>
+            </div>
+        </div>
+    </div>
+</div>
+</html>

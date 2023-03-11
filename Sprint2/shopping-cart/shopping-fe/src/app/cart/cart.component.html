@@ -1,7 +1,7 @@
 <div class="container-fluid">
-  <div class="row">
+  <div class="row" *ngIf="cartListByIdAccount.length!=0,else block">
     <div class="col col-9 mt-2 mb-2">
-      <div class="d-flex justify-content-center" *ngIf="cartListByIdAccount.length!=0,else block">
+      <div class="d-flex justify-content-center">
         <table class="table table-light table-hover" style="width: 98%">
           <thead>
           <tr>
@@ -33,7 +33,6 @@
                 </div>
               </div>
             </td>
-            <!--Chỗ đây nè-->
             <td>
               <div class="d-flex align-items-center">
                 <button *ngIf="ele.cartId!=undefined" class="btn btn-sm btn-primary mx-1" style="width: 20%"
@@ -68,96 +67,118 @@
           </tbody>
         </table>
       </div>
-      <ng-template #block>
-        <div class="row">
-          <div class="col-1"></div>
-          <div class="col-10">
-            <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống!Hẹn gặp bạn lần sau!</h2>
-              <div id="carouselExampleInterval" class="carousel slide  mt-2" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                  <div class="carousel-item active" data-bs-interval="2000">
-                    <img src="https://zenwatch.vn/thumb/crop/12984/1920/950/"
-                         style="border-radius: 10px;border: 5px solid red"
-                         class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    <img src="https://zenwatch.vn/thumb/crop/7730/1920/950/"
-                         style="border-radius: 10px;border: 5px solid red"
-                         class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    <img src="https://zenwatch.vn/thumb/crop/5690/1920/950/"
-                         style="border-radius: 10px;border: 5px solid red "
-                         class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    <img src="https://zenwatch.vn/thumb/crop/7862/1920/950/"
-                         style="border-radius: 10px;border: 5px solid red"
-                         class="d-block w-100" alt="...">
-                  </div>
-                  <div class="carousel-item" data-bs-interval="2000">
-                    <img src="https://zenwatch.vn/thumb/crop/5692/1920/950/"
-                         style="border-radius: 10px;border: 5px solid red" class=" d-block
-                         w-100" alt="...">
-                  </div>
-                </div>
-                <button class="carousel-control-prev" type="button" style="border-radius: 10px" data-bs-target="
-                        #carouselExampleInterval" data-bs-slide="prev">
-                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
-                        data-bs-slide="next">
-                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-              </div>
+    </div>
+    <div class="col-3 mt-2" *ngIf="cartListByIdAccount.length!=0">
+      <div style="width: 95%" class="pb-2">
+<!--        <form [formGroup]="formOrder">-->
+          <div class="row address">
+<!--            <h4 class="text-center pt-2"><b class="text-success">Thông tin giao hàng</b></h4>-->
 
+<!--            <input hidden type="text" formControlName="id">-->
+<!--            <div class="mb-3 mt-3">-->
+<!--              <label for="customerName" class="form-label"><b class="text-danger">Họ và tên:</b> </label>-->
+<!--              <input type="text" class="form-control" id="customerName" placeholder="Nhập họ và tên"-->
+<!--                     formControlName="customerName">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--              <label for="phone" class="form-label"><b class="text-danger">Số điện thoại:</b></label>-->
+<!--              <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại"-->
+<!--                     formControlName="phone">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--              <label for="email" class="form-label"><b class="text-danger">Email:</b></label>-->
+<!--              <input type="text" class="form-control" id="email" placeholder="Nhập email" formControlName="email">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--              <label for="addressCustomer" class="form-label"><b class="text-danger">Địa chỉ khách hàng:</b></label>-->
+<!--              <input type="text" class="form-control" id="addressCustomer" placeholder="Nhập địa chỉ"-->
+<!--                     formControlName="addressCustomer">-->
+<!--            </div>-->
+
+<!--            <div class="mb-3">-->
+<!--              <label for="deliveryAddress" class="form-label"><b class="text-danger">Địa chỉ giao hàng:</b></label>-->
+<!--              <input type="text" class="form-control" id="deliveryAddress" placeholder="Nhập địa chỉ"-->
+<!--                     formControlName="deliveryAddress">-->
+<!--            </div>-->
+<!--            <br>-->
+            <p class="mt-2">Tạm tính: <span class="text-bg-warning"
+                                            style="border-radius: 7px;padding: 3px"><b>{{totalPay | number}}
+              VNĐ <=> {{(totalPay / 24000)|number: '0.1'}} USD</b>
+           </span></p>
+            <p>Giảm giá: <span class="text-bg-secondary"
+                               style="border-radius: 7px;padding: 3px"><b>{{totalPay * sale}} VND</b>
+            </span></p>
+            <h6>Tổng tiền: <span class="text-bg-success"
+                                 style="border-radius: 7px;padding: 3px"><b>{{(totalPay - totalPay * sale)|number}}
+              VNĐ <=> {{(totalPay / 24000 - (totalPay / 24000) * sale)|number: '0.1'}} USD</b> </span>
+            </h6>
+            <div class="mb-2 text-center" *ngIf="cartListByIdAccount.length != 0">
+<!--              <h6 class="text-danger"><b>Vui lòng không để trống để hiện nút thanh toán</b></h6>-->
+
+<!--              <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"-->
+<!--                      *ngIf="formOrder.valid" (click)="payClock()"><b>THANH TOÁN</b>-->
+<!--              </button> -->
+              <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"
+                       (click)="payClock()"><b>THANH TOÁN</b>
+              </button>
             </div>
           </div>
-          <div class="col-1"></div>
-        </div>
-      </ng-template>
-    </div>
+<!--        </form>-->
 
-    <div class="col-3 mt-2">
-      <div style="width: 98%">
-        <div class="row address">
-          <h5 class="text-center"><b>Giao tới</b></h5>
-          <p>Khách Hàng: <span class="text-bg-d"
-                               style="border-radius: 7px;padding: 3px"><b>{{customer.customerName}}</b></span>
-          </p>
-          <p>Số điện thoại: <span class="text-bg-primary"
-                                  style="border-radius: 7px;padding: 3px"><b>{{customer.phone|phoneNumber}}</b></span>
-          </p>
-          <p>Email: <span class="text-bg-success"
-                          style="border-radius: 7px;padding: 3px"><b>{{customer.email}}</b></span></p>
-
-          <p><i class="bi bi-geo-alt-fill"></i>: <b>{{customer.addressCustomer}}</b></p>
-        </div>
-
-        <div class="row pay mt-2 mb-2">
-          <p class="mt-2">Tạm tính: <span class="text-bg-warning"
-                                          style="border-radius: 7px;padding: 3px"><b>{{totalPay | number}}
-            VNĐ <=> {{(totalPay / 24000)|number: '0.1'}} USD</b>
-           </span></p>
-          <p>Giảm giá: <span class="text-bg-secondary"
-                             style="border-radius: 7px;padding: 3px"><b>{{totalPay * sale}} VND</b>
-            </span></p>
-          <hr>
-          <h6>Tổng tiền: <span class="text-bg-success"
-                               style="border-radius: 7px;padding: 3px"><b>{{(totalPay - totalPay * sale)|number}}
-            VNĐ <=> {{(totalPay / 24000 - (totalPay / 24000) * sale)|number: '0.1'}} USD</b> </span>
-          </h6>
-        </div>
-        <div class="mb-2 d-flex justify-content-center align-items-center" *ngIf="cartListByIdAccount.length != 0">
-          <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"
-                  (click)="payClock()"><b>THANH TOÁN</b>
-          </button>
-        </div>
       </div>
     </div>
   </div>
+  <ng-template #block>
+    <div class="row pb-2">
+      <div class="col-1"></div>
+      <div class="col-10">
+        <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống.Hẹn gặp bạn lần sau!</h2>
+          <div id="carouselExampleInterval" class="carousel slide  mt-2" data-bs-ride="carousel">
+            <div class="carousel-inner">
+              <div class="carousel-item active" data-bs-interval="2000">
+                <img src="https://zenwatch.vn/thumb/crop/12984/1920/950/"
+                     style="border-radius: 10px;border: 5px solid red"
+                     class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="https://zenwatch.vn/thumb/crop/7730/1920/950/"
+                     style="border-radius: 10px;border: 5px solid red"
+                     class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="https://zenwatch.vn/thumb/crop/5690/1920/950/"
+                     style="border-radius: 10px;border: 5px solid red "
+                     class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="https://zenwatch.vn/thumb/crop/7862/1920/950/"
+                     style="border-radius: 10px;border: 5px solid red"
+                     class="d-block w-100" alt="...">
+              </div>
+              <div class="carousel-item" data-bs-interval="2000">
+                <img src="https://zenwatch.vn/thumb/crop/5692/1920/950/"
+                     style="border-radius: 10px;border: 5px solid red" class=" d-block
+                         w-100" alt="...">
+              </div>
+            </div>
+            <button class="carousel-control-prev" type="button" style="border-radius: 10px" data-bs-target="
+                        #carouselExampleInterval" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval"
+                    data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+            </button>
+          </div>
+
+        </div>
+      </div>
+      <div class="col-1"></div>
+    </div>
+  </ng-template>
+
 </div>
 
 <div class="modal fade" id="delete" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
@@ -184,13 +205,47 @@
 
 <div class="modal fade" id="payPal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
      data-bs-keyboard="false" data-bs-backdrop="static">
-  <div class="modal-dialog modal-lg">
+  <div class="modal-dialog">
     <div class="modal-content" style="background: linear-gradient(to right, #d9f5db, #07af9e);color: blue">
       <div class="modal-header"><h4 class="text-center">THANH TOÁN</h4></div>
       <div class="modal-body">
-        <form>
+                <form [formGroup]="formOrder">
+                  <input hidden type="text" formControlName="id">
+                  <div class="mb-3 mt-3">
+                    <label for="customerName" class="form-label"><b class="text-danger">Họ và tên:</b> </label>
+                    <input type="text" class="form-control" id="customerName" placeholder="Nhập họ và tên"
+                           formControlName="customerName">
+                  </div>
+                  <div class="mb-3">
+                    <label for="phone" class="form-label"><b class="text-danger">Số điện thoại:</b></label>
+                    <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại"
+                           formControlName="phone">
+                  </div>
+                  <div class="mb-3">
+                    <label for="email" class="form-label"><b class="text-danger">Email:</b></label>
+                    <input type="text" class="form-control" id="email" placeholder="Nhập email" formControlName="email">
+                  </div>
+                  <div class="mb-3">
+                    <label for="addressCustomer" class="form-label"><b class="text-danger">Địa chỉ khách hàng:</b></label>
+                    <input type="text" class="form-control" id="addressCustomer" placeholder="Nhập địa chỉ"
+                           formControlName="addressCustomer">
+                  </div>
 
-        </form>
+                  <div class="mb-3">
+                    <label for="deliveryAddress" class="form-label"><b class="text-danger">Địa chỉ giao hàng:</b></label>
+                    <input type="text" class="form-control" id="deliveryAddress" placeholder="Nhập địa chỉ"
+                           formControlName="deliveryAddress">
+                  </div>
+<!--                  <div class="text-center">-->
+<!--                    <p class="text-danger"><b>Vui lòng không để trống để hiện nút xác nhận</b></p>-->
+<!--                    <button type="submit" class="btn btn-primary" *ngIf="formOrder.valid" style="width: 50%"-->
+<!--                            (click)="orders()"-->
+<!--                            data-bs-toggle="modal"-->
+<!--                            data-bs-target="#paymentModal">Xác nhận-->
+<!--                    </button>-->
+<!--                  </div>-->
+<!--                  <br>-->
+                </form>
         <div id="paypalbutton" class="mb-2"></div>
       </div>
       <div class="modal-footer">

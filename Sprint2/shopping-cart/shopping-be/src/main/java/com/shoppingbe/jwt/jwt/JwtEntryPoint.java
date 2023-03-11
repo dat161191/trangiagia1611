@@ -16,8 +16,12 @@ public class JwtEntryPoint implements AuthenticationEntryPoint {// check xem tok
 
     private static final Logger logger = LoggerFactory.getLogger(JwtEntryPoint.class);
 
+    /*Nhận vào một đối tượng HttpServletRequest, HttpServletResponse, và AuthenticationException để xử lý lỗi xác thực.
+    Sử dụng lớp Logger để ghi lại thông báo lỗi không xác thực và chi tiết lỗi được cung cấp bởi AuthenticationException.
+    Sử dụng phương thức sendError của HttpServletResponse để trả về mã lỗi HTTP 401 và thông báo lỗi "Error -> Unauthorized".*/
     @Override
-    public void commence(HttpServletRequest request, HttpServletResponse response, AuthenticationException authException) throws IOException, ServletException {
+    public void commence(HttpServletRequest request, HttpServletResponse response,
+                         AuthenticationException authException) throws IOException, ServletException {
         logger.error("Unauthorized error Message: {}", authException.getMessage());
         response.sendError(HttpServletResponse.SC_ACCEPTED, "Error -> Unauthorized");
     }

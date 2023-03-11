@@ -4,6 +4,7 @@ import {CartCreate} from '../enity/cart/cart-create';
 import {Observable} from 'rxjs';
 import {CartListByIdAccount} from '../enity/cart/cart-list-by-id-account';
 import {RequestCart} from '../enity/cart/request-cart';
+import {OrdersRequest} from '../enity/order/ordersRequest';
 
 @Injectable({
   providedIn: 'root'
@@ -13,13 +14,13 @@ export class CartService {
   constructor(private httpClient: HttpClient) {
   }
 
-  createCart(cart: CartCreate):Observable<any> {
+  createCart(cart: CartCreate): Observable<any> {
     console.log('http://localhost:8080/api/user/cart/create', cart);
     return this.httpClient.post('http://localhost:8080/api/user/cart/create', cart);
   }
 
   getListCartByIdAccount(idAccount: any): Observable<any> {
-    console.log('http://localhost:8080/api/user/cart/create' + '/' + idAccount);
+    // console.log('http://localhost:8080/api/user/cart/create' + '/' + idAccount);
     return this.httpClient.get('http://localhost:8080/api/user/cart/list' + '/' + idAccount);
   }
 
@@ -39,13 +40,18 @@ export class CartService {
    * 06/03/2023
    * @param request
    */
-  changeQuanlity(requestCart: RequestCart) :Observable<any>{
+  changeQuanlity(requestCart: RequestCart): Observable<any> {
     // console.log('http://localhost:8080/api/user/cart/change-quanlity', requestCart);
     return this.httpClient.patch('http://localhost:8080/api/user/cart/change-quanlity', requestCart);
   }
 
-  historyPay(idAccount: number):Observable<any>{
-    console.log('http://localhost:8080/api/user/cart/history' + '/' + idAccount);
-    return this.httpClient.get('http://localhost:8080/api/user/cart/history' + '/' + idAccount)
+  historyPay(idAccount: number): Observable<any> {
+    // console.log('http://localhost:8080/api/user/cart/history' + '/' + idAccount);
+    return this.httpClient.get('http://localhost:8080/api/user/cart/history' + '/' + idAccount);
+  }
+
+  importOrder(ordersRequest: any): Observable<any> {
+    console.log('http://localhost:8080/api/user/cart/order',ordersRequest);
+    return this.httpClient.post('http://localhost:8080/api/user/cart/order', ordersRequest);
   }
 }

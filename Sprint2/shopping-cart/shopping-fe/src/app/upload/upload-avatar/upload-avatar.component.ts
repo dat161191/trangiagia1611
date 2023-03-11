@@ -13,6 +13,7 @@ export class UploadAvatarComponent implements OnInit {
   downloadURL: string | undefined;
   checkUpload = false;
   @Output() urlCreate = new EventEmitter<string>();
+  checkSttUpload = false;
 
   constructor(private angularFireStorage: AngularFireStorage) {
   }
@@ -39,6 +40,7 @@ export class UploadAvatarComponent implements OnInit {
       this.downloadURL = downloadURL;
       this.urlCreate.emit(this.downloadURL);//thông qua emit để gởi đến component khác
       this.checkUpload = false;
+      this.checkSttUpload = true;
       return downloadURL;
     }).catch(error => {
       console.log('failed to upload avatar and get link ${error}', error);

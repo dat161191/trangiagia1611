@@ -1,0 +1,92 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+<div class="row">
+  <div class="col col-1"></div>
+  <div class="col col-10">
+    <table class="table table-dark text-center table-hover text-light">
+      <thead>
+      <tr>
+        <th colspan="9">
+          <h3><b>Contract List</b></h3>
+          <form class="d-flex  justify-content-center" [formGroup]="searchContract" (ngSubmit)="onSearch()">
+            <input class="form-control me-1" style="width: 30%" type="search" placeholder="SearchName"
+                   formControlName="name">
+            <input class="form-control me-1" style="width: 30%" type="search" placeholder="SearchID"
+                   formControlName="id">
+            <button class="btn btn-outline-light text-danger me-1" type="submit"><i
+              class="fa-brands fa-searchengin"></i>Search
+            </button>
+            <button class="btn btn-outline-light text-danger" type="button" [routerLink]="['/contract/create']"> Create
+              Contract
+            </button>
+          </form>
+        </th>
+      </tr>
+      <tr>
+        <th>#</th>
+        <th>ContractCode</th>
+        <th>FacilityName</th>
+        <th>CustomerName</th>
+        <th>StarDate</th>
+        <th>EndDate</th>
+        <th>Deposit(USD)</th>
+        <th colspan="2">Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let contract of contractList | paginate:{itemsPerPage:4,currentPage:p};index as i"
+          class="text-danger">
+        <td>{{i + 1}}</td>
+        <td>{{contract.name}}</td>
+        <td>{{contract.facility?.name}}</td>
+        <td>{{contract.customer?.name}}</td>
+        <td>{{contract.startDate}}</td>
+        <td>{{contract.endDate}}</td>
+        <td>{{contract.deposit|currency:"VND":true}}</td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" [routerLink]="['/contract/edit',contract.id]">Edit
+          </button>
+        </td>
+        <td>
+          <button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#exampleModal"
+                  (click)="(temp=contract)"> Delete
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td colspan="9" *ngIf="contractList.length==0">No Result!!!</td>
+      </tr>
+      </tbody>
+    </table>
+
+    <pagination-controls (pageChange)="p=$event"></pagination-controls>
+
+  </div>
+
+  <div class="col col-1"></div>
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true"
+     data-bs-keyboard="false" data-bs-backdrop="static">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header text-light bg-primary"><h3 class="text-center">Delete Form</h3></div>
+      <div class="modal-body">
+        <h4 class="text-danger text-center">Are you sure you want to delete this Contract?</h4>
+        <div class="row text-primary" hidden>
+          <div class="col-3"><h4>ID:</h4></div>
+          <div class="col-9"><h4>{{temp.id}}</h4></div>
+        </div>
+        <div class="row text-primary">
+          <div class="col-3"><h4>Name:</h4></div>
+          <div class="col-9"><h4>{{temp.name}}</h4></div>
+        </div>
+      </div>
+      <div class="modal-footer bg-primary">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+        <button type="button" data-bs-dismiss="modal" class="btn btn-danger" (click)="deleteProduct()">Save changes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+<app-footer></app-footer>

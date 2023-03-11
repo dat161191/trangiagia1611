@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<canvas id="DemoCanvas" width="500" height="600"></canvas>
+
+</body>
+<script>
+    class HinhChuNhat {
+        constructor(chieuDai, chieuRong) {
+            this.chieuDai = chieuDai;
+            this.chieuRong = chieuRong;
+        }
+
+        setChieuDai(chieuDai) {
+            this.chieuDai = chieuDai;
+        }
+
+        setChieuRong(chieuRong) {
+            this.chieuRong = chieuRong;
+        }
+
+        dienTich() {
+            return this.chieuDai * this.chieuRong;
+        }
+
+        chuVi() {
+            return (this.chieuDai + this.chieuRong) * 2;
+        }
+
+        getHinhChuNhat() {
+            return this.chieuDai + ' ' + this.chieuRong + ' ' + "S =" + this.chieuDai * this.chieuRong + ' ' + 'ChuVi=' + (this.chieuDai + this.chieuRong) * 2;
+        }
+    }
+
+
+    let chieuDai = +prompt("nhập chiều dài");
+    let chieuRong = +prompt("nhap chiều rộng");
+    let ketQua = new HinhChuNhat(chieuDai, chieuRong);
+    alert(ketQua.getHinhChuNhat());
+    let canvas = document.getElementById("DemoCanvas");
+    let ctx = canvas.getContext('2d');
+    ctx.fillStyle = 'blue';
+    ctx.fillRect(10, 10, chieuDai, chieuRong);
+</script>
+</html>

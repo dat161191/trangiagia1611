@@ -1,4 +1,5 @@
 package com.shoppingbe.entity;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -32,5 +33,6 @@ public class Customer {
     @OneToOne
     private Account account;
     @OneToMany(mappedBy = "customer")
+    @JsonBackReference
     private Set<Orders> orders;
 }

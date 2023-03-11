@@ -1,5 +1,6 @@
 package com.shoppingbe.controller.security;
 
+import com.shoppingbe.commons.MyConstants;
 import com.shoppingbe.dto.ChangeAvatar.ChangeAvatar;
 import com.shoppingbe.dto.customer.CustomerDto;
 import com.shoppingbe.dto.customer.GetIdCustomer;
@@ -84,11 +85,11 @@ public class SecurityController {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setFrom("quocdat.tran453@gmail.com");
         message.setTo(customerDto.getEmail());
-        String mailSubject = customerDto.getCustomerName() + "đã gửi một tin nhắn";
+        String mailSubject = MyConstants.SEND_MAIL_REGISTER;
         String mailContent = "Người gửi: " + "Shop Clock" + "\n";
-        mailContent += "Sender E-mail: " + "letahaphuong@gmail.com" + "\n";
+        mailContent += "Sender E-mail: " + "shopclock@gmail.com" + "\n";
         mailContent += "Subject: " + "Thư phản hồi" + "\n";
-        mailContent += "Content: " + "Chào mừng quí khách đã đến với Camera Store" + "\n";
+        mailContent += "Content: " + "Chào mừng quí khách đã đến với Shop Clock" + "\n";
         mailContent += "Username: " + customerDto.getEmail() + "\n";
         mailContent += "Password: " + customerDto.getEncryptPassword() + "\n";
         mailContent += "Content: " + "Vui lòng đăng nhập để tiếp tục." + "\n";
@@ -102,14 +103,28 @@ public class SecurityController {
         customer.setAccount(account);
         customerService.save(customer);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
 
+    /**
+     *  Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(signInForm.getEmail(), signInForm.getPassword()):
+     * Phương thức trên đang thực hiện xác thực (authentication) người dùng (user) bằng cách lấy thông tin đăng nhập từ đối tượng signInForm gồm email và password.
+     * Nó tạo ra một đối tượng UsernamePasswordAuthenticationToken với thông tin đăng nhập và truyền nó vào phương thức authenticate của đối tượng authenticationManager.
+     * Phương thức authenticate sẽ sử dụng các AuthenticationProvider được cấu hình để xác thực người dùng và trả về đối tượng Authentication chứa thông tin xác thực của người dùng nếu xác thực thành công.
+     * Nếu không thành công, nó sẽ ném một ngoại lệ AuthenticationException.
+     * Kết quả xác thực được trả về được gán cho đối tượng authentication.
+     *  @param signInForm
+     * @return
+     */
     @PostMapping("public/signin")
     public ResponseEntity<?> login(@Valid @RequestBody SignInForm signInForm) {
         Authentication authentication = authenticationManager.authenticate(
                 new UsernamePasswordAuthenticationToken(signInForm.getEmail(), signInForm.getPassword())
         );
+        /* SecurityContextHolder.getContext().setAuthentication(authentication)
+        *  Sử dụng để thiết lập thông tin xác thực của người dùng đang được đăng nhập vào ứng dụng.
+        *  Bằng cách gọi phương thức setAuthentication() của SecurityContextHolder, thông tin xác thực này được lưu trữ trong bối cảnh bảo mật hiện tại của ứng dụng.
+        * Sau đó, ứng dụng có thể sử dụng thông tin này để kiểm tra quyền truy cập của người dùng vào các tài nguyên bảo mật khác nhau,
+            + chẳng hạn như trang web, API hoặc truy cập vào cơ sở dữ liệu.*/
         SecurityContextHolder.getContext().setAuthentication(authentication);
 
         String token = jwtProvider.createToken(authentication);

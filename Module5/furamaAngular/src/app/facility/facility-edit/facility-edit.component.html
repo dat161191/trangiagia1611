@@ -1,0 +1,171 @@
+<div class="row mb-1">
+  <div class="col col-3"></div>
+  <div class="col col-6 bg-secondary">
+    <form [formGroup]="facilityEdit" (ngSubmit)="editFacility()">
+      <div class="text-light">
+        <div class="row mt-1 mb-1">
+          <div class="col-5"><h3 class="mt-1 mb-2 text-uppercase text-center">Edit Facility:</h3></div>
+          <div class="col-7">
+            <div class="row">
+              <div class="col-3"><label for="facilityType"><b>FacilityType:</b></label></div>
+              <div class="col-9">
+                <select id="facilityType" formControlName="facilityType"
+                        class="form-select text-primary">
+                  <option value="">-- Choosen---</option>
+                  <option *ngFor="let f of facilityTypes" [ngValue]="f">{{f.name}}</option>
+                </select>
+                <div *ngIf="!faci?.valid && (faci.facilityType.dirty ||faci.facilityType.touched)">
+                  <small *ngIf="faci.facilityType.errors?.required" style="color:red;"> FacilityType is
+                    required! </small>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <hr>
+        <div class="row mb-1" hidden>
+          <div class="col-3"><label for="id" class="form-label"><b>FacilityID</b></label></div>
+          <div class="col-9">
+            <input type="text" name="id" id="id" formControlName="id"
+                   class="form-control"/>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="name" class="form-label"><b>FacilityName:</b></label></div>
+          <div class="col-9">
+            <input type="text" name="name" id="name" formControlName="name"
+                   class="form-control"/>
+            <div *ngIf="!faci?.valid && (faci.name.dirty ||faci.name.touched)">
+              <small *ngIf="faci.name.errors?.required" style="color:red;"> Name is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3">
+            <label for="descriptionOtherConvenience" class="form-label"><b>OtherConvenience:</b></label>
+          </div>
+          <div class="col-9">
+            <input type="text" name="descriptionOtherConvenience" id="descriptionOtherConvenience"
+                   formControlName="descriptionOtherConvenience" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.descriptionOtherConvenience.dirty ||faci.descriptionOtherConvenience.touched)">
+              <small *ngIf="faci.descriptionOtherConvenience.errors?.required" style="color:red;">
+                DescriptionOtherConvenience is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="cost" class="form-label"><b>Cost(USD):</b></label></div>
+          <div class="col-9">
+            <input type="number" min="0" name="cost" id="cost" formControlName="cost"
+                   class="form-control"/>
+            <div *ngIf="!faci?.valid && (faci.cost.dirty ||faci.cost.touched)">
+              <small *ngIf="faci.cost.errors?.required" style="color:red;"> Cost is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="numberOfFloors" class="form-label"><b>NumberFloors:</b></label></div>
+          <div class="col-9">
+            <input type="number" min="0" name="numberOfFloors" id="numberOfFloors" formControlName="numberOfFloors"
+                   class="form-control"/>
+            <div *ngIf="!faci?.valid && (faci.numberOfFloors.dirty ||faci.numberOfFloors.touched)">
+              <small *ngIf="faci.numberOfFloors.errors?.required" style="color:red;"> NumberFloors is required! </small>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="facilityFree"><b>FacilityFree:</b></label></div>
+          <div class="col-9">
+            <input type="text" name="facilityFree" id="facilityFree"
+                   formControlName="facilityFree" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.facilityFree.dirty ||faci.facilityFree.touched)">
+              <small *ngIf="faci.facilityFree.errors?.required" style="color:red;">
+                FacilityFree is required! </small>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="rentType" class="form-label"><b>RentType:</b></label></div>
+          <div class="col-9">
+            <select id="rentType" formControlName="rentType" class="form-select text-primary">
+              <option value="">-- Choosen---</option>
+              <option *ngFor="let r of renTypes" [ngValue]="r">{{r.name}}</option>
+            </select>
+            <div *ngIf="!faci?.valid && (faci.rentType.dirty ||faci.rentType.touched)">
+              <small *ngIf="faci.rentType.errors?.required" style="color:red;"> RentType is required! </small>
+            </div>
+          </div>
+
+
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="standardRoom" class="form-label"><b>StandardRoom:</b></label></div>
+          <div class="col-9">
+            <input type="text" name="standardRoom" id="standardRoom"
+                   formControlName="standardRoom" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.standardRoom.dirty ||faci.standardRoom.touched)">
+              <small *ngIf="faci.standardRoom.errors?.required" style="color:red;">
+                StandardRoom is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="area" class="form-label"><b>Area(m<sup>2</sup>):</b></label></div>
+          <div class="col-9">
+            <input type="number" name="area" id="area" formControlName="area" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.area.dirty ||faci.area.touched)">
+              <small *ngIf="faci.area.errors?.required" style="color:red;">
+                Area is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="maxPeople" class="form-label"><b>MaxPeople:</b></label></div>
+          <div class="col-9">
+            <input type="number" name="maxPeople" id="maxPeople" formControlName="maxPeople" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.maxPeople.dirty ||faci.maxPeople.touched)">
+              <small *ngIf="faci.maxPeople.errors?.required" style="color:red;"> MaxPeople is required! </small>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mb-1">
+          <div class="col-3"><label for="poolArea" class="form-label"><b>PoolArea(m<sup>2</sup>):</b></label></div>
+          <div class="col-9">
+            <input type="number" name="poolArea" id="poolArea" formControlName="poolArea" class="form-control"/>
+            <div
+              *ngIf="!faci?.valid && (faci.poolArea.dirty ||faci.poolArea.touched)">
+              <small *ngIf="faci.poolArea.errors?.required" style="color:red;"> PoolArea is required! </small>
+            </div>
+          </div>
+        </div>
+        <hr>
+
+        <div class="row text-lg-center align-items-center justify-content-center">
+          <small style="color: blue">Enter correctly to show the summit button!!!</small>
+          <button class="btn btn-primary w-25 me-2" *ngIf="facilityEdit.valid" type="submit">Submit</button>
+          <button class="btn btn-primary w-25" type="reset">Reset</button>
+        </div>
+      </div>
+    </form>
+
+  </div>
+  <div class="col col-3"></div>
+</div>
+

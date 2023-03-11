@@ -15,8 +15,7 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
     const token = this.tokenService.getToken();
-    console.log(token);
-    if (this.tokenService.getToken()) {
+    if (token) {
       return true;
     } else {
       this.toast.warning('Vui lòng đăng nhập để sử dụng chức năng.');

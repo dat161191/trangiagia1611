@@ -42,7 +42,6 @@ export class HomeComponent implements OnInit {
   }
 
   getAllList(request: { page: number; size: number } | undefined): void {
-    console.log(this.tokenService.getRole());
     this.clockService.getListClock(request, this.search).subscribe(data => {
       this.clockList = data;
     }, error => {

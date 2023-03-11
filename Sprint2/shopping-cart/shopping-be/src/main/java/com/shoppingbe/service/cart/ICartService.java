@@ -56,7 +56,7 @@ public interface ICartService {
      * @param idCustomer
      * @return
      */
-    List<Cart> findByCustomer_Id(Long idCustomer);
+//    List<Cart> findByCustomer_Id(Long idCustomer);
 
     Cart findByCustomer_IdAndClock_IdAndStatus(Long idCustomer, Long idClock, boolean status);
 

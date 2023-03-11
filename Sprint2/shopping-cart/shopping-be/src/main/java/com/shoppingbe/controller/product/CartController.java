@@ -1,22 +1,28 @@
 package com.shoppingbe.controller.product;
 
+import com.shoppingbe.commons.MyConstants;
+import com.shoppingbe.dto.OrderRequest;
 import com.shoppingbe.dto.cart.CartCreate;
 import com.shoppingbe.dto.cart.CartListByIdAccount;
 import com.shoppingbe.dto.cart.RequestCart;
-import com.shoppingbe.entity.Cart;
-import com.shoppingbe.entity.Clock;
-import com.shoppingbe.entity.Customer;
+import com.shoppingbe.entity.*;
 import com.shoppingbe.service.cart.ICartService;
 import com.shoppingbe.service.clock.IClockService;
 import com.shoppingbe.service.customer.ICustomerService;
+import com.shoppingbe.service.orders.IOrderDetailService;
+import com.shoppingbe.service.orders.IOrdersService;
 import com.shoppingbe.service.security.IAccountService;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.*;
+import java.util.concurrent.ThreadLocalRandom;
 
 @RestController
 @CrossOrigin("*")
@@ -30,8 +36,13 @@ public class CartController {
     private ICustomerService customerService;
     @Autowired
     private IAccountService accountService;
-    private Object idCart;
-    private Object object;
+    @Autowired
+    private IOrdersService ordersService;
+    @Autowired
+    private IOrderDetailService orderDetailService;
+    @Autowired
+    JavaMailSender shopSender;
+
 
     /**
      * 04/03/2023 by BossTran
@@ -94,9 +105,6 @@ public class CartController {
     @PatchMapping("/user/cart/pay-cart/{idAccount}")
     public ResponseEntity<?> payCart(@PathVariable("idAccount") Long idAccount) {
         Customer customer = customerService.findByAccount_IdAccount(idAccount);
-//        if (customer != null) {
-//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//        }
         List<Cart> carts = cartService.findByCustomer_IdAndStatus(customer.getId(), false);
         List<Clock> clocks = clockService.findByCustomerId(customer.getId());
         for (Cart cart : carts) {
@@ -112,6 +120,22 @@ public class CartController {
             }
         }
         cartService.payCart(customer.getId());
+        /*sendmail 10/03/2023*/
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("quocdat.tran453@gmail.com");
+        message.setTo(customer.getEmail());
+        String mailSubject = MyConstants.SEND_MAIL_PAY_CART;
+//        String mailContent = "<b>Người gửi: clockshop.com" + "</b>";
+//        mailContent += "<p><b>Subject: </b>" + "Thư phản hồi" + "</p>";
+//        mailContent += "<p><b>Content: </b>" + "Cảm ơn quý khách đã tin tưởng sản phẩm của shop" + "</p>";
+//        mailContent += "<p><b>Content: </b>" + "Hân hạnh được phục vụ quý khách lần tiếp theo" + "</p>";
+        String mailContent = "<a><b>Người gửi: </b>" + "clockshop.com" + "</a>";
+        mailContent += "<p><b>Subject: </b>" + "Thư phản hồi" + "</p>";
+        mailContent += "Content: Cảm ơn quý khách đã tin tưởng sản phẩm của shop" + "\n";
+        mailContent += "Content: Hân hạnh được phục vụ quý khách lần tiếp theo" + "\n";
+        message.setSubject(mailSubject);
+        message.setText(mailContent);
+        shopSender.send(message);
         List<CartListByIdAccount> cartListByIdAccounts = cartService.getListByAccountId(idAccount);
         return new ResponseEntity<>(cartListByIdAccounts, HttpStatus.OK);
     }
@@ -133,6 +157,32 @@ public class CartController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
+    @PostMapping("/user/cart/order")
+    public ResponseEntity<?> importOrder(@RequestBody OrderRequest orderRequest) {
+        Orders orders = new Orders();
+//        OrderDetail orderDetail = new OrderDetail();
+        Customer customer = customerService.findById(orderRequest.getId());
+//        if (customer != null) {
+//            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//        }
+        orders.setCustomer(customerService.findById(orderRequest.getId()));
+        orders.setCodeOrders(ThreadLocalRandom.current().nextLong(0, 999999));
+        orders.setTotalOrder(orderRequest.getTotalOrder());
+        orders.setDeliveryAddress(orderRequest.getDeliveryAddress());
+        orders.setPhone(orderRequest.getPhone());
+        ordersService.save(orders);
+        List<Cart> carts = cartService.findByCustomer_IdAndStatus(customer.getId(), false);
+        for (Cart iteam : carts) {
+            OrderDetail orderDetail = new OrderDetail();
+            orderDetail.setClock(clockService.findById(iteam.getClock().getId()));
+            orderDetail.setOrders(orders);
+            orderDetail.setQuantityOderDetail(iteam.getQuantityPurchased());
+            orderDetail.setPriceClock(iteam.getClock().getPrice());
+            orderDetailService.save(orderDetail);
+        }
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/user/cart/history/{idAccount}")
     public ResponseEntity<List<CartListByIdAccount>> historyCart(@PathVariable("idAccount") Long idAccount) {
         Customer customer = customerService.findByAccount_IdAccount(idAccount);
@@ -144,4 +194,6 @@ public class CartController {
         }
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
+
+
 }

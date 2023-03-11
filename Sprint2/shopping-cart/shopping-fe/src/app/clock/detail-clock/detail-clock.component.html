@@ -76,7 +76,8 @@
               </div>
             </div>
             <ng-template #block2>
-              <b class="text-danger">Cảm ơn quý khách đã quan tâm đến sản phẩm.Quý khách cần đăng ký để thực hiện chức năng thêm vào giỏ hàng và thanh toán!!!</b>
+              <b class="text-danger">Cảm ơn quý khách đã quan tâm đến sản phẩm.Quý khách cần đăng ký để thực hiện chức
+                năng thêm vào giỏ hàng và thanh toán!!!</b>
             </ng-template>
             <ng-template #block>
               <div class="text-center text-primary"><b>Cảm ơn quý khách đã quan tâm đến sản phẩm.Hàng đang về mong quý
@@ -120,82 +121,92 @@
       <div class="row">
         <div class="col-4"></div>
         <div class="col-4">
-          <div class="card tskt">
-            <div class="card-body">
-
+          <div class="card card-body box gradient-border" style="width: 98%">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <div class="">
               <div class="row">
-                <div class="col-5"><b>Thương hiệu:</b></div>
-                <div class="col-7"><span class="text-bg-success "
-                                         style="border-radius: 5px;padding: 1px">{{clockDetail.trademark?.name}}</span>
+                <div class="col-5">Thương hiệu:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail.trademark?.name}}</b>
                 </div>
               </div>
               <hr>
 
               <div class="row">
                 <div class="col-5"><b>Giới tính:</b></div>
-                <div class="col-7"><span
-                  class="text-bg-success "
-                  style="border-radius: 5px;padding: 1px">{{clockDetail.gender == true ? 'Nam' : 'Nữ'}}</span>
+                <div class="col-7"><b class="text-bg-danger "
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail.gender == true ? 'Nam' : 'Nữ'}}</b>
                 </div>
               </div>
               <hr>
-              <div class="row">
-                <div class="col-5"><b>Kiểu máy:</b></div>
-                <div class="col-7"><span class="text-bg-success "
-                                         style="border-radius: 5px;padding: 1px">{{clockDetail?.machineType?.name}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Đường kính mặt:</b></div>
-                <div class="col-7"><span class="text-bg-success "
-                                         style="border-radius: 5px;padding: 1px">{{clockDetail.faceDiameter}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Độ dày:</b></div>
-                <div class="col-7"><span class="text-bg-success "
-                                         style="border-radius: 5px;padding: 1px">{{clockDetail.thick}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Chất liệu vỏ:</b></div>
-                <div class="col-7"><span
-                  class="text-bg-success " style="border-radius: 5px;padding: 1px">{{clockDetail.shellMaterial}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Chất liệu dây:</b></div>
-                <div class="col-7"><span
-                  class="text-bg-success " style="border-radius: 5px;padding: 1px">{{clockDetail.ropeMaterial}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Chất liệu mặt kính:</b></div>
-                <div class="col-7"><span
-                  class="text-bg-success " style="border-radius: 5px;padding: 1px">{{clockDetail.glassMaterial}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Khả năng chịu nước:</b></div>
-                <div class="col-7"><span class="text-bg-success "
-                                         style="border-radius: 5px;padding: 1px">{{clockDetail.resistanceWater}}</span>
-                </div>
-              </div>
-              <hr>
-              <div class="row">
-                <div class="col-5"><b>Nơi sản xuất:</b></div>
-                <div class="col-7"><span
-                  class="text-bg-success " style="border-radius: 5px;padding: 1px">{{clockDetail.origin}}</span>
-                </div>
-              </div>
-            </div>
 
+              <div class="row">
+                <div class="col-5">Kiểu máy:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.machineType?.name}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Đường kính mặt:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.faceDiameter}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Độ dày:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.thick}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Chất liệu vỏ:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.shellMaterial}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Chất liệu dây:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.ropeMaterial}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Chất liệu mặt kính:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.glassMaterial}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Khả năng chống nước:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.resistanceWater}}</b>
+                </div>
+              </div>
+              <hr>
+
+              <div class="row">
+                <div class="col-5">Nơi sản xuất:</div>
+                <div class="col-7"><b class="text-bg-danger"
+                                      style="border-radius: 5px;padding: 4px">{{clockDetail?.origin}}</b>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
         <div class="col-4"></div>
@@ -214,7 +225,7 @@
         <div class="col-1"></div>
         <div class="col-10">
           <!--          Owl-Carousel-->
-          <owl-carousel-o [options]="customOptions" >
+          <owl-carousel-o [options]="customOptions">
             <ng-container *ngFor="let clock of clockListByTrademark">
               <ng-template carouselSlide>
                 <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">

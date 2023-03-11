@@ -22,6 +22,7 @@ public class JwtProvider {
      * Phương thức gọi setIssuedAt() và setExpiration() để thiết lập thời gian phát hành và thời gian hết hạn của JWT.
      * Phương thức signWith() để ký JWT bằng thuật toán mã hóa HS512 và khóa bí mật (jwtSecret).
      * Phương thức compact() được gọi để tạo chuỗi JWT và trả về chuỗi JWT được tạo.
+     *
      * @param authentication Đối tượng Authentication được truyền vào phương thức này để truy xuất đối tượng AccountPrinciple của người dùng đã xác thực.
      * @return mã thông báo xác thực (JWT).
      */
@@ -36,13 +37,17 @@ public class JwtProvider {
                 .compact();
     }
 
+    /**
+     * Giải mã token và lấy ra các claims (thông tin chứa trong token) được đính kèm.
+     * Sau đó, phương thức getBody() trả về một đối tượng chứa các claims đã được giải mã và có thể sử dụng để xác thực người dùng.
+     * Nếu quá trình giải mã và lấy thông tin thành công, phương thức trả về giá trị true, ngược lại nó sẽ ném ra một exception và phương thức sẽ trả về giá trị false
+     *
+     * @param token
+     * @return
+     */
     public boolean validateToken(String token) { // valid token
         try {
-            /**
-             * Giải mã token và lấy ra các claims (thông tin chứa trong token) được đính kèm.
-             * Sau đó, phương thức getBody() trả về một đối tượng chứa các claims đã được giải mã và có thể sử dụng để xác thực người dùng.
-             * Nếu quá trình giải mã và lấy thông tin thành công, phương thức trả về giá trị true, ngược lại nó sẽ ném ra một exception và phương thức sẽ trả về giá trị false
-             */
+
             Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
             return true;
 

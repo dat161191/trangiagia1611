@@ -26,5 +26,5 @@ public interface CartListByIdAccount {
     String getCreateDate();
     String getPayDate();
 
-    String getStatus();
+    boolean getStatus();
 }

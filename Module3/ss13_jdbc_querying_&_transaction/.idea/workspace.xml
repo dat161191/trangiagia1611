@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="48bced5f-9a08-4379-ba11-c75c1092eb1e" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../castudy_module3_database+web/.idea/misc.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/customer_dto/CustomerDto.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/controller/HomeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/java/com/casetudy_module4/codegym/dto/employee_dto/EmployeeDtoList.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/resources/templates/employee.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/resources/templates/employee.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/resources/templates/my_home.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/casetudy_module4/src/main/resources/templates/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/list.html" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/java/com/example/controller/BlogRestController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../Module4/ss12_ajax_jquery/exercise/blog_ajax_jquery/src/main/java/com/example/controller/BlogRestController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="ProjectId" id="2IZ487I4by0BjNhapeT1g4Fvsbp" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../ss12_jdbc_&amp;_crud/exercise/crud_user" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="48bced5f-9a08-4379-ba11-c75c1092eb1e" name="Changes" comment="" />
+      <created>1670375609259</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1670375609259</updated>
+      <workItem from="1670375610654" duration="43000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
