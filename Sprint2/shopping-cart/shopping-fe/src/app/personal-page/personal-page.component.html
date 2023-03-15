@@ -1,7 +1,9 @@
 <div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
   <div>
     <div class="row pb-2">
-<!--      <video src="https://www.robmillsarchitects.com/files/land/city/RMA_Web_land_city_1.mp4" loop muted autoplay playsinline></video>-->
+<!--      <video style="width: 100%;min-height: 20%" class="mt-2"-->
+<!--        src="https://firebasestorage.googleapis.com/v0/b/shopping-cart-5cc4d.appspot.com/o/NameURL%3A%201uep7uen4li%2013-03-2023%2011%3A12%3A07AM?alt=media&token=321d7e03-4ffa-47ab-bf3e-f09be9a71acb"-->
+<!--        loop muted autoplay playsinline></video>-->
       <div class="col-12">
         <div class="row justify-content-center align-items-center pt-2">
           <button class="custom-btn btn-1 me-3" (click)="changeInfo()" style="font-size: 20px"><span>Click!</span><span>Thông tin khách hàng</span>
@@ -24,7 +26,9 @@
                 <span></span>
                 <div class="change-avatar text-center">
                   <img src="{{avatarUser}}"
-                       style="width: 300px; height: 300px;border-radius: 50%"
+                       style="width: 300px; height: 300px;border-radius: 50%;   box-shadow: 0 0 10px 5px rgb(3, 22, 114);
+;
+ "
                        alt="...">
                 </div>
                 <br>
@@ -54,7 +58,7 @@
                   <div class="row">
                     <div class="col-3">Số điện thoại:</div>
                     <div class="col-9">
-                      <b class="text-bg-danger"
+                      <b class="bg-danger border-5"
                          style="border-radius: 5px;padding: 4px">{{customer.phone | phoneNumber}}</b>
                     </div>
                   </div>

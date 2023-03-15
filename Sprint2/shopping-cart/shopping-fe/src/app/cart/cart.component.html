@@ -70,37 +70,7 @@
     </div>
     <div class="col-3 mt-2" *ngIf="cartListByIdAccount.length!=0">
       <div style="width: 95%" class="pb-2">
-<!--        <form [formGroup]="formOrder">-->
           <div class="row address">
-<!--            <h4 class="text-center pt-2"><b class="text-success">Thông tin giao hàng</b></h4>-->
-
-<!--            <input hidden type="text" formControlName="id">-->
-<!--            <div class="mb-3 mt-3">-->
-<!--              <label for="customerName" class="form-label"><b class="text-danger">Họ và tên:</b> </label>-->
-<!--              <input type="text" class="form-control" id="customerName" placeholder="Nhập họ và tên"-->
-<!--                     formControlName="customerName">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="phone" class="form-label"><b class="text-danger">Số điện thoại:</b></label>-->
-<!--              <input type="text" class="form-control" id="phone" placeholder="Nhập số điện thoại"-->
-<!--                     formControlName="phone">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="email" class="form-label"><b class="text-danger">Email:</b></label>-->
-<!--              <input type="text" class="form-control" id="email" placeholder="Nhập email" formControlName="email">-->
-<!--            </div>-->
-<!--            <div class="mb-3">-->
-<!--              <label for="addressCustomer" class="form-label"><b class="text-danger">Địa chỉ khách hàng:</b></label>-->
-<!--              <input type="text" class="form-control" id="addressCustomer" placeholder="Nhập địa chỉ"-->
-<!--                     formControlName="addressCustomer">-->
-<!--            </div>-->
-
-<!--            <div class="mb-3">-->
-<!--              <label for="deliveryAddress" class="form-label"><b class="text-danger">Địa chỉ giao hàng:</b></label>-->
-<!--              <input type="text" class="form-control" id="deliveryAddress" placeholder="Nhập địa chỉ"-->
-<!--                     formControlName="deliveryAddress">-->
-<!--            </div>-->
-<!--            <br>-->
             <p class="mt-2">Tạm tính: <span class="text-bg-warning"
                                             style="border-radius: 7px;padding: 3px"><b>{{totalPay | number}}
               VNĐ <=> {{(totalPay / 24000)|number: '0.1'}} USD</b>
@@ -113,18 +83,11 @@
               VNĐ <=> {{(totalPay / 24000 - (totalPay / 24000) * sale)|number: '0.1'}} USD</b> </span>
             </h6>
             <div class="mb-2 text-center" *ngIf="cartListByIdAccount.length != 0">
-<!--              <h6 class="text-danger"><b>Vui lòng không để trống để hiện nút thanh toán</b></h6>-->
-
-<!--              <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"-->
-<!--                      *ngIf="formOrder.valid" (click)="payClock()"><b>THANH TOÁN</b>-->
-<!--              </button> -->
               <button type="button" class="btn btn-primary buttonPayPal" data-bs-toggle="modal" data-bs-target="#payPal"
                        (click)="payClock()"><b>THANH TOÁN</b>
               </button>
             </div>
           </div>
-<!--        </form>-->
-
       </div>
     </div>
   </div>
@@ -132,7 +95,7 @@
     <div class="row pb-2">
       <div class="col-1"></div>
       <div class="col-10">
-        <div class="text-center mt-2 text-danger"><h2>Giỏ hàng của bạn đang trống.Hẹn gặp bạn lần sau!</h2>
+        <div class="text-center mt-2 text-danger"><h1><b>Giỏ hàng của bạn đang trống.Hẹn gặp bạn lần sau!</b></h1>
           <div id="carouselExampleInterval" class="carousel slide  mt-2" data-bs-ride="carousel">
             <div class="carousel-inner">
               <div class="carousel-item active" data-bs-interval="2000">

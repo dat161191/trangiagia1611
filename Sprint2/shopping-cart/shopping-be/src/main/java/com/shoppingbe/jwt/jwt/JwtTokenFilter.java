@@ -32,6 +32,7 @@ public class JwtTokenFilter extends OncePerRequestFilter {// tìm kím token tro
      * Tạo một đối tượng UsernamePasswordAuthenticationToken và lưu trữ nó trong SecurityContextHolder để xác thực người dùng trong toàn bộ phiên làm việc.
      * Sau đó, phương thức gọi filterChain để cho request được tiếp tục đi qua các filter khác.
      * Nếu có bất kỳ lỗi nào xảy ra, phương thức sẽ ghi log lỗi và cho phép request tiếp tục đi qua các filter khác mà không được xác thực.
+     *
      * @param request
      * @param response
      * @param filterChain
@@ -42,8 +43,10 @@ public class JwtTokenFilter extends OncePerRequestFilter {// tìm kím token tro
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
         try {
             String token = getJwt(request);// lấy token trong rq
+            System.out.println("====>Token" + token);
             if (token != null && jwtProvider.validateToken(token)) {
                 String username = jwtProvider.getUserNameFromToken(token);
+                System.out.println("=====>Username " +username);
                 UserDetails userDetails = accountDetailService.loadUserByUsername(username);
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(
                         userDetails, null, userDetails.getAuthorities()
@@ -59,11 +62,13 @@ public class JwtTokenFilter extends OncePerRequestFilter {// tìm kím token tro
 
     /**
      * Phương thức này có chức năng lấy token JWT từ header của request.
+     *
      * @param request
      * @return
      */
     public String getJwt(HttpServletRequest request) {
         String authHeader = request.getHeader("Authorization");
+        System.out.println("==>>" + authHeader);
         if (authHeader != null && authHeader.startsWith("Bearer")) {
             return authHeader.replace("Bearer", "");
         }

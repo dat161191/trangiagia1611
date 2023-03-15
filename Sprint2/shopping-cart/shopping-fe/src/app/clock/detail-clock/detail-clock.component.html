@@ -59,7 +59,7 @@
                 <hr>
               </li>
             </ul>
-            <div *ngIf="roles[0]=='ROLE_USER',else block2">
+            <div *ngIf="roles[0]=='ROLE_USER'||roles[0]=='ROLE_ADMIN',else block2">
               <div class="d-flex align-items-center justify-content-center my-3"
                    *ngIf="clockDetail.quanlity != undefined && clockDetail.quanlity > 0">
                 <span>Số lượng: </span>
@@ -76,8 +76,8 @@
               </div>
             </div>
             <ng-template #block2>
-              <b class="text-danger">Cảm ơn quý khách đã quan tâm đến sản phẩm.Quý khách cần đăng ký để thực hiện chức
-                năng thêm vào giỏ hàng và thanh toán!!!</b>
+              <h6><b class="text-danger">Cảm ơn quý khách đã quan tâm đến sản phẩm.Quý khách cần đăng nhập tài khoản để thực hiện
+                chức năng thêm vào giỏ hàng và thanh toán!!!</b></h6>
             </ng-template>
             <ng-template #block>
               <div class="text-center text-primary"><b>Cảm ơn quý khách đã quan tâm đến sản phẩm.Hàng đang về mong quý

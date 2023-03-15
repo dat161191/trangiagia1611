@@ -2,13 +2,15 @@
   <div class="container teal borderYtoX">
     <a (click)="searchNameClock('')" routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png"
                                                         style="width: 100px" alt=""> </a>
+<!--    <a (click)="home()" routerLink=""><img src="https://zenwatch.vn/uploads/logo_zenwatch3.png"-->
+<!--                                                        style="width: 100px" alt=""> </a>-->
     <a (click)="searchNameClock('')" routerLink="" class="text-decoration-none">TRANG
       CHỦ <i class="bi bi-house-fill"></i> </a>
     <a routerLink="/info" class="text-decoration-none">GIỚI THIỆU <i class="bi bi-info-square-fill"></i> </a>
     <!--    <a href="#"><i class="bi bi-credit-card-2-back-fill"></i> THANH TOÁN</a>-->
     <!--    <a href="#"><i class="bi bi-newspaper"></i> TIN TỨC</a>-->
     <a routerLink="/statistical" *ngIf="roles[0]=='ROLE_ADMIN'">THỐNG KÊ <i class="bi bi-graph-up-arrow"></i> </a>
-    <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'">DANH SÁCH KHÁCH HÀNG <i class="bi bi-list-stars"></i></a>
+    <a routerLink="/customer" *ngIf="roles[0]=='ROLE_ADMIN'">DS KHÁCH HÀNG <i class="bi bi-list-stars"></i></a>
 
     <a class="text-decoration-none">
       <span class="dropdown">
@@ -78,7 +80,7 @@
     </div>
     <div>
       <div class="container-text">
-        <b>CLOCKSHOP.COM</b>
+        <b>WATCHSHOP.COM</b>
       </div>
     </div>
   </div>

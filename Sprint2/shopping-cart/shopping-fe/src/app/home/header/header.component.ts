@@ -67,4 +67,9 @@ export class HeaderComponent implements OnInit {
     this.behaviorService.setValue(search);
     this.router.navigateByUrl('');
   }
+
+  // home() {
+  //   this.behaviorService.setValue('');
+  //   this.router.navigateByUrl('');
+  // }
 }

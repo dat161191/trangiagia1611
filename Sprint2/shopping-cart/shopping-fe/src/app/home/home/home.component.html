@@ -61,8 +61,8 @@
       <hr>
 
       <div class="row mt-1 mb-1">
-        <div class="col-3 mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h6>Không có sản phẩm cần
-          tìm.</h6></div>
+        <div class="mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h1 class="text-center text-danger">Không có sản phẩm cần
+          tìm.</h1></div>
         <ng-template #elseBlock>
           <div class="col-3 mt-2 mb-1" *ngFor="let clock of clockList?.content">
             <a [routerLink]="['/detail',clock.clockId]" class="text-decoration-none">
