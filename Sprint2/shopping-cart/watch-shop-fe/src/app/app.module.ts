@@ -50,15 +50,15 @@ import {NgxPaginationModule} from 'ngx-pagination';
     UploadAvatarComponent,
     PhonePipe,CCCDPipe
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        ToastrModule.forRoot(),
-        HttpClientModule,
-        BrowserAnimationsModule,
-        ReactiveFormsModule, CarouselModule, FormsModule,
-        AngularFireStorageModule, AngularFireModule.initializeApp(environment.firebaseConfig), NgxPaginationModule
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    ToastrModule.forRoot(),
+    HttpClientModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule, CarouselModule, FormsModule,
+    AngularFireStorageModule, AngularFireModule.initializeApp(environment.firebaseConfig), NgxPaginationModule
+  ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptor,

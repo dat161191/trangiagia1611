@@ -1,9 +1,9 @@
 <div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
   <div>
     <div class="row pb-2">
-<!--      <video style="width: 100%;min-height: 20%" class="mt-2"-->
-<!--        src="https://firebasestorage.googleapis.com/v0/b/shopping-cart-5cc4d.appspot.com/o/NameURL%3A%201uep7uen4li%2013-03-2023%2011%3A12%3A07AM?alt=media&token=321d7e03-4ffa-47ab-bf3e-f09be9a71acb"-->
-<!--        loop muted autoplay playsinline></video>-->
+      <!--      <video style="width: 100%;min-height: 20%" class="mt-2"-->
+      <!--        src="https://firebasestorage.googleapis.com/v0/b/shopping-cart-5cc4d.appspot.com/o/NameURL%3A%201uep7uen4li%2013-03-2023%2011%3A12%3A07AM?alt=media&token=321d7e03-4ffa-47ab-bf3e-f09be9a71acb"-->
+      <!--        loop muted autoplay playsinline></video>-->
       <div class="col-12">
         <div class="row justify-content-center align-items-center pt-2">
           <button class="custom-btn btn-1 me-3" (click)="changeInfo()" style="font-size: 20px"><span>Click!</span><span>Thông tin khách hàng</span>
@@ -59,7 +59,7 @@
                     <div class="col-3">Số điện thoại:</div>
                     <div class="col-9">
                       <b class="bg-danger border-5"
-                         style="border-radius: 5px;padding: 4px">{{customer.phone | phoneNumber}}</b>
+                         style="border-radius: 5px;padding: 4px" *ngIf="customer.phone !=undefined">{{customer.phone | phoneNumber}}</b>
                     </div>
                   </div>
                   <hr>
@@ -76,7 +76,8 @@
                     <div class="col-3">CCCD:</div>
                     <div class="col-9">
                       <b class="text-bg-danger"
-                         style="border-radius: 5px;padding: 4px">{{customer.idCard | CCCD}}</b>
+                         style="border-radius: 5px;padding: 4px"
+                         *ngIf="customer.idCard!=undefined">{{customer.idCard | CCCD}}</b>
                     </div>
                   </div>
                   <hr>
@@ -129,7 +130,8 @@
                   <td>{{item.clockName}}</td>
                   <td class="text-center">{{item.quanlityCart}}</td>
                   <td>{{item.clockPrince|number}}</td>
-                  <td>{{item.quanlityCart * item.clockPrince|number}}</td>
+                  <td
+                    *ngIf="item.quanlityCart!=undefined && item.clockPrince!=undefined">{{item.quanlityCart * item.clockPrince|number}}</td>
                   <td>{{item.createDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
                   <td>{{item.payDate|date:'dd/MM/yyyy  hh:mm:ssa'}}</td>
                   <td>{{item.status == true ? 'Đã thanh toán' : 'Chưa thanh toán'}}</td>

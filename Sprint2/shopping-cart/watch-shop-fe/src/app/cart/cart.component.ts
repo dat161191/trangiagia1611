@@ -30,6 +30,7 @@ export class CartComponent implements OnInit {
   customer: Customer = {};
   formOrder: FormGroup = new FormGroup({});
   ordersRequest: OrdersRequest = {};
+  @ViewChild('myModal') myModal: any;
 
   constructor(private toastrService: ToastrService,
               private router: Router,
@@ -224,19 +225,19 @@ export class CartComponent implements OnInit {
       value: (this.totalPay / 24000).toFixed(0),
       onApprove: (details => {
         this.payProduct();
+        location.reload();
         this.toastrService.success('Bạn đã thanh toán thành công.Xin cảm ơn!', 'Thông báo', {timeOut: 2000});
       })
     });
   }
 
   reset() {
-    console.log('RSet payPal');
     location.reload();
   }
 
   orders() {
-    if (this.formOrder.value.deliveryAddress==""){
-      this.formOrder.value.deliveryAddress=this.customer.addressCustomer;
+    if (this.formOrder.value.deliveryAddress == "") {
+      this.formOrder.value.deliveryAddress = this.customer.addressCustomer;
     }
     this.ordersRequest = this.formOrder.value;
     this.ordersRequest.totalOrder = this.totalPay;

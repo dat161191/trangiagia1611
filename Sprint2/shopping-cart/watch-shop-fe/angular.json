@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "PersonalProject": {
+    "watch-shop-be": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:application": {
@@ -17,7 +17,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/PersonalProject",
+            "outputPath": "dist/watch-shop-be",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "PersonalProject:build"
+            "browserTarget": "watch-shop-be:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "PersonalProject:build:production"
+              "browserTarget": "watch-shop-be:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "PersonalProject:build"
+            "browserTarget": "watch-shop-be:build"
           }
         },
         "test": {
@@ -120,19 +120,19 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "PersonalProject:serve"
+            "devServerTarget": "watch-shop-be:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "PersonalProject:serve:production"
+              "devServerTarget": "watch-shop-be:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "PersonalProject",
+  "defaultProject": "watch-shop-be",
   "cli": {
-    "analytics": "a3fc9557-b4ee-4211-9cc7-bf600a36e232"
+    "analytics": "8bfe7821-5350-4575-b11d-b2287c231291"
   }
 }

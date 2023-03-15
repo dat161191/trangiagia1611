@@ -11,7 +11,6 @@ import {AdminGuard} from './canactive/admin.guard';
 import {StatisticalComponent} from './clock/statistical/statistical.component';
 import {PersonalPageComponent} from './personal-page/personal-page.component';
 import {ClockCreateComponent} from './clock/create-clock/clock-create.component';
-import {UserGuard} from './canactive/user.guard';
 
 const routes: Routes = [{path: '', component: HomeComponent},
   {path: 'login', component: LoginComponent},

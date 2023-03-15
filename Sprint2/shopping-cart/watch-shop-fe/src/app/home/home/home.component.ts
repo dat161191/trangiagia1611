@@ -44,7 +44,7 @@ export class HomeComponent implements OnInit {
   getAllList(request: { page: number; size: number } | undefined): void {
     this.clockService.getListClock(request, this.search).subscribe(data => {
       this.clockList = data;
-      console.log(data);
+      // console.log(data);
     }, error => {
       this.clockList.content = [];
       this.toastrService.error('Không tìm ra sản phẩm', 'Lỗi', {timeOut: 2000});
