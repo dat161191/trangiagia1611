@@ -17,6 +17,8 @@ export class ClockCreateComponent implements OnInit {
   clockForm: FormGroup;
   trademarks: Trademark[] = [];
   machineTypes: MachineType[] = [];
+  /*====21/03/2023*/
+  checkValid = {nameDuplicate: '', nameIsNull: ''}
 
   @Output()
   emit = new EventEmitter();
@@ -59,16 +61,43 @@ export class ClockCreateComponent implements OnInit {
     });
   }
 
+  // createClock(): void {
+  //   let clock = this.clockForm.value;
+  //   this.clockService.saveClock(clock).subscribe(data => {
+  //     clock = data;
+  //     console.log(clock);
+  //     if (clock != null) {
+  //       this.toastrService.success('Thêm mới thành công', 'Thông báo', {timeOut: 2000});
+  //       this.ngOnInit();
+  //     }
+  //   });
+  //   this.emit.emit('');
+  // }
+
+  /*=========21/03/2023==========*/
   createClock(): void {
-    let clock = this.clockForm.value;
-    this.clockService.saveClock(clock).subscribe(data => {
-      clock=data;
-      console.log(clock);
-      if (clock != null) {
-        this.toastrService.success('Thêm mới thành công', 'Thông báo', {timeOut: 2000});
-        this.ngOnInit();
-      }
-    });
-    this.emit.emit('');
+    if (this.clockForm.valid) {
+      let clock = this.clockForm.value;
+      this.clockService.saveClock(clock).subscribe(data => {
+        this.toastrService.success('Thêm mới thành công', 'Thông báo', {
+          timeOut: 2000, positionClass: 'toast-top-center'
+        });
+      }, err => {
+        console.log(err.error);
+        for (let i = 0; i < err.error.length; i++) {
+          if (err.error && err.error[i].codes[3] === "nameIsDuplicate") {
+            this.checkValid.nameDuplicate = err.error[i].defaultMessage;
+          }
+          if (err.error && err.error[i].codes[3] === "nameIsNull") {
+            this.checkValid.nameIsNull = err.error[i].defaultMessage;
+          }
+          console.log(this.checkValid.nameDuplicate, this.checkValid.nameIsNull)
+        }
+
+        this.toastrService.error('Thêm mới thất bại', 'Lỗi', {
+          timeOut: 2000, positionClass: 'toast-top-center'
+        });
+      })
+    }
   }
 }

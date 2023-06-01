@@ -107,7 +107,7 @@ export class DetailClockComponent implements OnInit {
   getImgListByIdClock() {
     this.clockService.findImgByIdClock(this.idClock).subscribe(result => {
       this.imgList = result;
-      console.log(this.imgList);
+      // console.log(this.imgList);
     }, error => {
     }, () => {
     });

@@ -7,6 +7,7 @@ import {BehaviorService} from '../../service/behavior.service';
 import {TokenService} from '../../security/service/token.service';
 import {CartListByIdAccount} from '../../enity/cart/cart-list-by-id-account';
 import {CartService} from '../../service/cart.service';
+import {Img} from "../../enity/clock/Img";
 
 @Component({
   selector: 'app-home',
@@ -15,11 +16,15 @@ import {CartService} from '../../service/cart.service';
 })
 export class HomeComponent implements OnInit {
   clockList!: ClockInfoJson;
-  request = {page: 0, size: 8};
+  // request = {page: 0, size: 8};
+  // request = {page: 0};
+  page = 0;
   search = '';
   clockCarousel: ClockHome[] = [];
   cartListByIdAccount: CartListByIdAccount[] = [];
   idAccount: number = -1;
+  size = 4;
+  imgList: Img[] = [];
 
 
   constructor(private clockService: ClockService,
@@ -33,49 +38,66 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.getAllList(this.request);
+    this.getAllList(this.page);
     this.getValueHeader();
     this.idAccount = Number(this.tokenService.getId());
-    if (this.idAccount != null) {
-      this.getListCart();
-    }
+    this.getImgList(this.size);
   }
 
-  getAllList(request: { page: number; size: number } | undefined): void {
-    this.clockService.getListClock(request, this.search).subscribe(data => {
+  getAllList(page: number): void {
+    // console.log(page)
+    this.clockService.getListClock(page, this.search).subscribe(data => {
       this.clockList = data;
       // console.log(data);
     }, error => {
       this.clockList.content = [];
-      this.toastrService.error('Không tìm ra sản phẩm', 'Lỗi', {timeOut: 2000});
     });
 
   }
 
   changePage(pageNumber: number) {
-    this.request.page = pageNumber;
-    this.ngOnInit();
+    // console.log(pageNumber)
+    this.page = pageNumber;
+    this.getAllList(this.page);
   }
 
   private getValueHeader() {
     this.behaviorService.getValue().subscribe(data => {
       this.search = data;
-      this.request.page=0;
-      this.getAllList(this.request);
+      // this.request.page = 0;
+      this.page = 0;
+      // this.getAllList(this.request);
+      this.getAllList(this.page);
     });
   }
 
-  getListCart() {
-    this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
-      this.cartListByIdAccount = data;
-      this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
-    }, error => {
-      this.cartListByIdAccount.length = 0;
-      this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
-    });
-  }
+  // getListCart() {
+  //   this.cartService.getListCartByIdAccount(this.idAccount).subscribe(data => {
+  //     this.cartListByIdAccount = data;
+  //     this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
+  //   }, error => {
+  //     this.cartListByIdAccount.length = 0;
+  //     this.behaviorService.setCartTotal(String(this.cartListByIdAccount.length));
+  //   });
+  // }
+  last: any;
+  first: any;
 
   scroll() {
-    window.scrollTo(0,0);
+    window.scrollTo(0, 0);
+  }
+
+  /**
+   * 03/23/2023
+   * @param size
+   */
+  getImgList(size: any) {
+    this.clockService.getListImg(size).subscribe(data => {
+      console.log(data)
+      this.imgList = data.content;
+      this.last = data.last;
+      this.first = data.first;
+      this.size = data.size;
+    })
   }
 }

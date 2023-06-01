@@ -1,5 +1,5 @@
 <button id="btnScrollToTop" (click)="scroll()">Move
-   <i class="fa-solid fa-angles-up"></i>
+  <i class="fa-solid fa-angles-up"></i>
 </button>
 <div class="container-fluid" style="background: linear-gradient(to right, #d9f5db, #739a96)">
   <div class="row">
@@ -40,12 +40,11 @@
 
 
   <div class="body row mt-3 ms-1">
-    <div class="col-2">
-    </div>
+    <div class="col-2"></div>
 
     <div class="col-8">
       <h1 class="text-primary mt-1">Sản phẩm</h1>
-      <div class="container teal borderYtoX runcarousel">
+      <div class="container teal borderYtoX  runcarousel">
         <div class="Marquee">
           <div class="Marquee-content">
             <div class="Marquee-tag" *ngFor="let clock of clockCarousel">
@@ -61,7 +60,8 @@
       <hr>
 
       <div class="row mt-1 mb-1">
-        <div class="mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h1 class="text-center text-danger">Không có sản phẩm cần
+        <div class="mt-2 mb-1" *ngIf="clockList?.content?.length == 0; else elseBlock"><h1
+          class="text-center text-danger">Không có sản phẩm cần
           tìm.</h1></div>
         <ng-template #elseBlock>
           <div class="col-3 mt-2 mb-1" *ngFor="let clock of clockList?.content">
@@ -149,4 +149,39 @@
       </div>
     </div>
   </div>
+
+  <div class="row mt-1 pb-1">
+    <div class="col-2"></div>
+    <div class="col-8">
+      <div class="row">
+        <div class="mt-2 mb-1" *ngIf="imgList.length == 0; else img"><h1 class="text-center text-danger">Không có sản
+          phẩm cần tìm.</h1></div>
+        <ng-template #img>
+          <div class="col-3 mt-2 mb-1" *ngFor="let img of imgList">
+            <div class="card img-detail">
+              <div>
+                <img src="{{img.url}}" class="card-img-top" alt="...">
+              </div>
+            </div>
+          </div>
+        </ng-template>
+        <div class="d-flex align-items-center justify-content-center">
+          <a style="cursor: pointer; color: #f44336; text-decoration: none" type="button"
+             class="btn btn-primary w-25 text-light me-2 text-center"
+             (click)="getImgList(size+4)"
+             *ngIf="!last"> <i class="fas fa-angle-double-down"></i>Xem thêm...
+          </a>
+
+          <a style="cursor: pointer; color: #f44336; text-decoration: none" type="button"
+             class="btn btn-primary w-25 text-light text-center" (click)="getImgList(size=4)"
+             *ngIf="imgList.length>4">
+            <i class="fas fa-angle-double-up"></i> Ẩn bớt
+          </a></div>
+
+      </div>
+
+    </div>
+    <div class="col-2"></div>
+  </div>
+
 </div>

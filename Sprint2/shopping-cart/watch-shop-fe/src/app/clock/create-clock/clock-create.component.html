@@ -16,7 +16,7 @@
                          placeholder="ĐỒNG HỒ NAM AOUKE AK05-1"
                          id="name">
                   <div class="text-danger"
-                       *ngIf="clockForm.controls.name.invalid && (clockForm.controls.name.touched) else elseBlock">
+                       *ngIf="clockForm.controls.name.invalid && (clockForm.controls.name.touched) else elseBlock1">
                     <small *ngIf="clockForm.controls.name.errors?.required"><i
                       class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên sản phẩm không được để trống.</small>
                     <small *ngIf="clockForm.controls.name.errors?.pattern"><i
@@ -28,7 +28,13 @@
                       class="fa-solid fa-triangle-exclamation"></i>&nbsp;Tên sản phẩm không được lớn hơn 100 ký
                       tự.</small>
                   </div>
-                  <ng-template #elseBlock><br></ng-template>
+                  <ng-template #elseBlock1>
+                    <small *ngIf="checkValid.nameDuplicate"
+                                                 style="color:red;">{{checkValid.nameDuplicate}}</small>
+                    <small *ngIf="checkValid.nameIsNull"
+                           style="color:red;">{{checkValid.nameIsNull}}</small>
+                    <br>
+                  </ng-template>
                 </div>
               </div>
 

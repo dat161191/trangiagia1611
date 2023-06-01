@@ -15,7 +15,7 @@ public class PrintIsoscelesTriangle {
             }
             /*Và vòng lặp while với điều kiện k != 2 * i -1, để in dấu *.*/
             while (k != 2 * i - 1) {
-                System.out.print("* ");
+                System.out.print("*");
                 k++;
             }
             System.out.println();

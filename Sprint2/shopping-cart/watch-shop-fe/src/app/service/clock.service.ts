@@ -13,6 +13,7 @@ export class ClockService {
   urlClockList = 'http://localhost:8080/api/public/clock/list';
   urlClockDetail = 'http://localhost:8080/api/public/clock/detail';
   urlImgListByIdClock = 'http://localhost:8080/api/public/img';
+  urlImgList = 'http://localhost:8080/api/public/img/list';
   urlClockListByTradeId = 'http://localhost:8080/api/public/clock/detail-by-trademark';
   urlTrademarks = 'http://localhost:8080/api/public/trademark';
   urlMachineTypes = 'http://localhost:8080/api/public/machine';
@@ -22,15 +23,18 @@ export class ClockService {
   constructor(private httpClient: HttpClient) {
   }
 
-  getListClock(request: any, search: string): Observable<any> {
-    const params = request;
-    // console.log(this.urlClockList + '?search=' + search, {params});
+  // getListClock(request: any, search: string): Observable<any> {
+  getListClock(page: any, search: string): Observable<any> {
+    const params = {page: page};
+    // console.log(params)
     return this.httpClient.get(this.urlClockList + '?search=' + search, {params});
+    // return this.httpClient.get(this.urlClockList + '?search=' + search+'&page='+page);
   }
 
-  getListHeader():Observable<any>{
+  getListHeader(): Observable<any> {
     return this.httpClient.get(this.urlClockHeader);
   }
+
   findById(id: number): Observable<ClockDetail> {
     // console.log(this.urlClockList + '/' + id);
     return this.httpClient.get<ClockDetail>(this.urlClockDetail + '/' + id);
@@ -39,6 +43,10 @@ export class ClockService {
   findImgByIdClock(id: number): Observable<ImgDto[]> {
     // console.log(this.urlImgListByIdClock + '/' + id);
     return this.httpClient.get<ImgDto[]>(this.urlImgListByIdClock + '/' + id);
+  }
+
+  getListImg(size: any): Observable<any> {
+    return this.httpClient.get(this.urlImgList + '?size=' + size)
   }
 
   getListByTrademarkId(id: number): Observable<any> {

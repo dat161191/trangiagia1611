@@ -225,7 +225,6 @@ export class CartComponent implements OnInit {
       value: (this.totalPay / 24000).toFixed(0),
       onApprove: (details => {
         this.payProduct();
-        location.reload();
         this.toastrService.success('Bạn đã thanh toán thành công.Xin cảm ơn!', 'Thông báo', {timeOut: 2000});
       })
     });

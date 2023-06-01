@@ -143,7 +143,7 @@
               <div class="col-4"><label for="gender" class="form-label"><b>Giới tính:</b></label></div>
               <div class="col-8">
                 <select formControlName="gender" class="form-select" id="gender">
-                  <option value="">----- Xin chọn giới tính -----</option>
+                  <option value="">----- Chọn giới tính -----</option>
                   <option [value]=true>Nam</option>
                   <option [value]=false>Nữ</option>
                 </select>
@@ -159,6 +159,7 @@
           </div>
         </div>
         <div class="text-center mb-1">
+          <h6>Tất cả các thông tin không được để trống được đăng ký</h6>
           <button type="submit" *ngIf="customerForm.valid" class="btn btn-outline-light">Đăng ký</button>
         </div>
         <br>

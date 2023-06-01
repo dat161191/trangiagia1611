@@ -29,6 +29,7 @@ import {UploadAvatarComponent} from './upload/upload-avatar/upload-avatar.compon
 import {PhonePipe} from './pipes/phone-pipe';
 import {CCCDPipe} from './pipes/CCCD-Pipe';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { HomeSeeMoreComponent } from './home/home-see-more/home-see-more.component';
 
 
 @NgModule({
@@ -48,7 +49,7 @@ import {NgxPaginationModule} from 'ngx-pagination';
     StatisticalComponent,
     PayClockComponent,
     UploadAvatarComponent,
-    PhonePipe,CCCDPipe
+    PhonePipe,CCCDPipe, HomeSeeMoreComponent
   ],
   imports: [
     BrowserModule,
